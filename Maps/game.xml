@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<portalRush>
+	<monsterList>
+		<monster name="Shell">
+			<image step="1" position="0" path="step1_front_center.png" />
+			<image step="1" position="1" path="step1_front_left.png" />
+			<image step="1" position="8" path="step1_front_right.png" />
+			<image step="1" position="2" path="step1_middle_left.png" />
+			<image step="1" position="7" path="step1_middle_right.png" />
+			<image step="1" position="5" path="step1_rear_center.png" />
+			<image step="1" position="4" path="step1_rear_left.png" />
+			<image step="1" position="6" path="step1_rear_right.png" />
+			<image step="2" position="0" path="step2_front_center.png" />
+			<image step="2" position="1" path="step2_front_left.png" />
+			<image step="2" position="8" path="step2_front_right.png" />
+			<image step="2" position="2" path="step2_middle_left.png" />
+			<image step="2" position="7" path="step2_middle_right.png" />
+			<image step="2" position="5" path="step2_rear_center.png" />
+			<image step="2" position="4" path="step2_rear_left.png" />
+			<image step="2" position="6" path="step2_rear_right.png" />
+			<image step="3" position="0" path="step3_front_center.png" />
+			<image step="3" position="1" path="step3_front_left.png" />
+			<image step="3" position="8" path="step3_front_right.png" />
+			<image step="3" position="2" path="step3_middle_left.png" />
+			<image step="3" position="7" path="step3_middle_right.png" />
+			<image step="3" position="5" path="step3_rear_center.png" />
+			<image step="3" position="4" path="step3_rear_left.png" />
+			<image step="3" position="6" path="step3_rear_right.png" />
+			<image step="4" position="0" path="step4_front_center.png" />
+			<image step="4" position="1" path="step4_front_left.png" />
+			<image step="4" position="8" path="step4_front_right.png" />
+			<image step="4" position="7" path="step4_middle_left.png" />
+			<image step="4" position="5" path="step4_middle_right.png" />
+			<image step="4" position="4" path="step4_rear_center.png" />
+			<image step="4" position="6" path="step4_rear_left.png" />
+			<image step="4" position="0" path="step4_rear_right.png" />
+		</monster>
+	</monsterList>
+	<towerList>
+		<tower name="Archer tower">
+			<towerImage path="" />
+			<bulletImage path="" />
+			<attackRange>
+				<range level="1" value="" />
+				<range level="2" value="" />
+				<range level="3" value="" />
+			</attackRange>
+			<attackSpeed>
+				<speed level="1" value="" />
+				<speed level="2" value="" />
+				<speed level="3" value="" />
+			</attackSpeed>
+			<attackDamage>
+				<damageStrength>
+					<damage level="1" value="" />
+					<damage level="2" value="" />
+					<damage level="3" value="" />
+				</damageStrength>
+				<damageMagic>
+					<damage level="1" value="" />
+					<damage level="2" value="" />
+					<damage level="3" value="" />
+				</damageMagic>
+				<damageRange>
+					<damage level="1" value="" />
+					<damage level="2" value="" />
+					<damage level="3" value="" />
+				</damageRange>
+			</attackDamage>
+			<priceList>
+				<price level="1" value="" />
+				<price level="2" value="" />
+				<price level="3" value="" />
+			</priceList>
+		</tower>
+		<tower name="Magic tower">
+			<towerImage path="" />
+			<bulletImage path="" />
+			<attackRange>
+				<range level="1" value="" />
+				<range level="2" value="" />
+				<range level="3" value="" />
+			</attackRange>
+			<attackSpeed>
+				<speed level="1" value="" />
+				<speed level="2" value="" />
+				<speed level="3" value="" />
+			</attackSpeed>
+			<attackDamage>
+				<damageStrength>
+					<damage level="1" value="" />
+					<damage level="2" value="" />
+					<damage level="3" value="" />
+				</damageStrength>
+				<damageMagic>
+					<damage level="1" value="" />
+					<damage level="2" value="" />
+					<damage level="3" value="" />
+				</damageMagic>
+				<damageRange>
+					<damage level="1" value="" />
+					<damage level="2" value="" />
+					<damage level="3" value="" />
+				</damageRange>
+			</attackDamage>
+			<priceList>
+				<price level="1" value="" />
+				<price level="2" value="" />
+				<price level="3" value="" />
+			</priceList>
+		</tower>
+		<tower name="Artillery tower">
+			<towerImage path="" />
+			<bulletImage path="" />
+			<attackRange>
+				<range level="1" value="" />
+				<range level="2" value="" />
+				<range level="3" value="" />
+			</attackRange>
+			<attackSpeed>
+				<speed level="1" value="" />
+				<speed level="2" value="" />
+				<speed level="3" value="" />
+			</attackSpeed>
+			<attackDamage>
+				<damageStrength>
+					<damage level="1" value="" />
+					<damage level="2" value="" />
+					<damage level="3" value="" />
+				</damageStrength>
+				<damageMagic>
+					<damage level="1" value="" />
+					<damage level="2" value="" />
+					<damage level="3" value="" />
+				</damageMagic>
+				<damageRange>
+					<damage level="1" value="" />
+					<damage level="2" value="" />
+					<damage level="3" value="" />
+				</damageRange>
+			</attackDamage>
+			<priceList>
+				<price level="1" value="" />
+				<price level="2" value="" />
+				<price level="3" value="" />
+			</priceList>
+		</tower>
+	</towerList>
+</portalRush>
