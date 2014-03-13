@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace PortalRush.GameEngine
 {
@@ -42,6 +43,11 @@ namespace PortalRush.GameEngine
         private int lifes;
 
         /// <summary>
+        /// Main canvas for drawing game, into MainWindow
+        /// </summary>
+        private Canvas canvas;
+
+        /// <summary>
         /// Linked map, currently played
         /// </summary>
         private Map.Map map;
@@ -50,6 +56,21 @@ namespace PortalRush.GameEngine
         /// List of registered tickable objects, having to be ticked each 1/30 sec
         /// </summary>
         private List<Tickable> tickables;
+
+        /// <summary>
+        /// Main canvas for drawing game, into MainWindow
+        /// </summary>
+        public Canvas Canvas
+        {
+            get
+            {
+                return this.canvas;
+            }
+            set
+            {
+                this.canvas = value;
+            }
+        }
 
         /// <summary>
         /// Load configuration from fixed file
@@ -66,7 +87,11 @@ namespace PortalRush.GameEngine
         /// <param name="index">ID of selected map</param>
         public void loadMap(int index)
         {
-
+            // TEMP CODE, WAITING FOR XML PARSERS TO BE IN PLACE
+            if (index == -1)
+            {
+                this.TEMP_LOAD_MAP();
+            }
         }
 
         /// <summary>
@@ -83,6 +108,14 @@ namespace PortalRush.GameEngine
         private void tick()
         {
 
+        }
+
+        /// <summary>
+        /// TEMP FUNCTION, WAITING FOR XML PARSERS TO BE IN PLACE
+        /// </summary>
+        private void TEMP_LOAD_MAP()
+        {
+            this.map = new Map.Map(null);
         }
     }
 }

@@ -24,9 +24,20 @@ namespace PortalRush.View.Control
         /// <summary>
         /// Default constructor
         /// </summary>
-        public LayerControl()
+        /// <param name="imagePath">Path to plain-field image</param>
+        /// <param name="zIndex">Z-index to use (can't be modified in the future)</param>
+        public LayerControl(String imagePath, int zIndex)
         {
             InitializeComponent();
+
+            // Set image
+            this.image.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + imagePath));
+
+            // Set Zindex
+            Canvas.SetZIndex(this, zIndex);
+
+            // Add control to drawing canvas
+            GameEngine.GameManager.Instance.Canvas.Children.Add(this);
         }
     }
 }

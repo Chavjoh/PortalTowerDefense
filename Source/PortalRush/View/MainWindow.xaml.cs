@@ -17,12 +17,25 @@ namespace PortalRush
 {
     /// <summary>
     /// Logique d'interaction pour MainWindow.xaml
+    /// Main view window containing application
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
+
+            // TEMP CODE : WAITING FOR XML PARSERS TO BE IN PLACE
+            this.Width = 916;
+            this.Height = 798;
+
+            GameEngine.GameManager.Instance.Canvas = this.mainCanvas;
+            GameEngine.GameManager.Instance.loadConfig();
+            GameEngine.GameManager.Instance.loadMap(-1);
+            GameEngine.GameManager.Instance.play();
         }
     }
 }

@@ -38,7 +38,11 @@ namespace PortalRush.Map
         /// <param name="filepath">XML file path for map loading</param>
         public Map(String filepath)
         {
-
+            // TEMP CODE, WAITING FOR XML PARSERS TO BE IN PLACE
+            if (filepath == null)
+            {
+                this.TEMP_MAP_CONSTRUCTOR();
+            }
         }
 
         /// <summary>
@@ -95,6 +99,20 @@ namespace PortalRush.Map
         private void linkPoints()
         {
 
+        }
+
+        /// <summary>
+        /// TEMP FUNCTION, WAITING FOR XML PARSERS TO BE IN PLACE
+        /// </summary>
+        private void TEMP_MAP_CONSTRUCTOR()
+        {
+            // Create layers
+            this.layers = new List<View.Control.LayerControl>();
+            this.layers.Add(new View.Control.LayerControl("Maps\\Static\\Layers\\map_layer1.png", 1));
+            this.layers.Add(new View.Control.LayerControl("Maps\\Static\\Layers\\map_layer2.png", 2));
+            this.layers.Add(new View.Control.LayerControl("Maps\\Static\\Layers\\map_layer4.png", 4));
+            this.layers.Add(new View.Control.LayerControl("Maps\\Static\\Layers\\map_layer6.png", 6));
+            this.layers.Add(new View.Control.LayerControl("Maps\\Static\\Layers\\map_layer7.png", 7));
         }
     }
 }
