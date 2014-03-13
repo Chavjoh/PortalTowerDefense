@@ -87,6 +87,7 @@
     </Compile>
     <Compile Include="Entity\Bullet.cs" />
     <Compile Include="Entity\Monster.cs" />
+    <Compile Include="Entity\MonsterOrientation.cs" />
     <Compile Include="Entity\Monsters\ChellMonster.cs" />
     <Compile Include="Entity\Tower.cs" />
     <Compile Include="Entity\Towers\ArcherTower.cs" />

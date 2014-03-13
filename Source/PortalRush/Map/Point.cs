@@ -22,14 +22,44 @@ namespace PortalRush.Map
         private int y;
 
         /// <summary>
+        /// ZIndex given to monsters passing this point
+        /// </summary>
+        private int zIndex;
+
+        /// <summary>
+        /// Orientation given to monsters passing this point
+        /// </summary>
+        private Entity.MonsterOrientation orientation;
+
+        /// <summary>
         /// Distance from this point to the path TargetPoint
         /// </summary>
-        private int distanceToTarget;
+        private int distanceToTarget = -1;
 
         /// <summary>
         /// Point to reach after current
         /// </summary>
-        private Point next;
+        private Point next = null;
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="x">X position on screen</param>
+        /// <param name="y">Y position on screen</param>
+        /// <param name="orientation">Orientation given to monsters passing this point</param>
+        /// <param name="zIndex">ZIndex given to monsters passing this point</param>
+        public Point(int x, int y, Entity.MonsterOrientation orientation = Entity.MonsterOrientation.NULL, int zIndex = -1)
+        {
+            // Position on screen
+            this.x = x;
+            this.y = y;
+
+            // Orientation given to monsters passing this point
+            this.orientation = orientation;
+
+            // ZIndex given to monsters passing this point
+            this.zIndex = zIndex;
+        }
 
         /// <summary>
         /// Get the move manager to use to go the current point

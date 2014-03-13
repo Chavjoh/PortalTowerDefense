@@ -113,6 +113,17 @@ namespace PortalRush.Map
             this.layers.Add(new View.Control.LayerControl("Maps\\Static\\Layers\\map_layer4.png", 4));
             this.layers.Add(new View.Control.LayerControl("Maps\\Static\\Layers\\map_layer6.png", 6));
             this.layers.Add(new View.Control.LayerControl("Maps\\Static\\Layers\\map_layer7.png", 7));
+
+            // Create points
+            this.points = new List<Point>();
+            this.points.Add(new Points.SpawnPoint(344, 562, Entity.MonsterOrientation.REAR_LEFT, 5));
+            this.points.Add(new Points.PathPoint(271, 472, Entity.MonsterOrientation.REAR_RIGHT));
+            this.points.Add(new Points.PathPoint(419, 445, Entity.MonsterOrientation.REAR_LEFT));
+            this.points.Add(new Points.PathPoint(326, 339));
+            this.points.Add(new Points.PortalPoint(732, 386, Entity.MonsterOrientation.FRONT_LEFT));
+            this.points.Add(new Points.PathPoint(631, 405, Entity.MonsterOrientation.REAR_LEFT));
+            this.points.Add(new Points.PathPoint(525, 304, Entity.MonsterOrientation.REAR_LEFT, 3));
+            this.points.Add(new Points.TargetPoint(494, 255));
         }
     }
 }

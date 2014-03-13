@@ -12,6 +12,16 @@ namespace PortalRush.Map.Points
     class TargetPoint : Point
     {
         /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="x">X position on screen</param>
+        /// <param name="y">Y position on screen</param>
+        public TargetPoint(int x, int y)
+            : base(x,y)
+        {
+        }
+
+        /// <summary>
         /// Inherited from Point
         /// Get the move manager to use to go the current point
         /// </summary>

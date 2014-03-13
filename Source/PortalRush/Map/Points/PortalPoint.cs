@@ -12,6 +12,18 @@ namespace PortalRush.Map.Points
     class PortalPoint : Point
     {
         /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="x">X position on screen</param>
+        /// <param name="y">Y position on screen</param>
+        /// <param name="orientation">Orientation given to monsters passing this point</param>
+        /// <param name="zIndex">ZIndex given to monsters passing this point</param>
+        public PortalPoint(int x, int y, Entity.MonsterOrientation orientation = Entity.MonsterOrientation.NULL, int zIndex = -1)
+            : base(x,y,orientation,zIndex)
+        {
+        }
+
+        /// <summary>
         /// Inherited from Point
         /// Get the move manager to use to go the current point
         /// </summary>

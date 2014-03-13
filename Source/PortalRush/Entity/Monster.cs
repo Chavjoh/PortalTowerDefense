@@ -52,6 +52,11 @@ namespace PortalRush.Entity
         private Map.Location location;
 
         /// <summary>
+        /// Current display orientation
+        /// </summary>
+        private MonsterOrientation orientation;
+
+        /// <summary>
         /// Visual control, displaying the monster on the map
         /// </summary>
         private View.Control.MonsterControl control;
