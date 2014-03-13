@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace PortalRush.Entity.Towers
 {
-    class MagicTower
+    class MagicTower : Tower
     {
+        /// <summary>
+        /// Inherited from Tower
+        /// Upgrade the tower to its next level
+        /// </summary>
+        public override void upgrade()
+        {
+
+        }
     }
 }

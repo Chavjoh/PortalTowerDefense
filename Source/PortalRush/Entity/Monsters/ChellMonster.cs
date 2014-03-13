@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PortalRush.Entity.Monsters
 {
-    class ChellMonster
+    class ChellMonster : Monster
     {
     }
 }

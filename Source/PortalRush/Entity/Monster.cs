@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace PortalRush.Entity
 {
-    class Monster
+    abstract class Monster : GameEngine.Tickable
     {
+        /// <summary>
+        /// Inherited from Tickable
+        /// Called by GameEngine at each game tick (1/30 sec.)
+        /// </summary>
+        public void tick()
+        {
+
+        }
     }
 }

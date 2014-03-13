@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace PortalRush.GameEngine.MoveManagers
 {
-    class FlyMoveManager
+    class FlyMoveManager : MoveManager
     {
+        /// <summary>
+        /// Inherited from MoveManager
+        /// Called by associated monster when he has to move
+        /// </summary>
+        public override void move()
+        {
+
+        }
     }
 }

@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace PortalRush.GameEngine
 {
-    class MoveManager
+    abstract class MoveManager
     {
+        /// <summary>
+        /// Called by associated monster when he has to move
+        /// </summary>
+        public abstract void move();
     }
 }

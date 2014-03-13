@@ -1,7 +1,6 @@
 Y:\Documents\GIT-SVN\PortalTowerDefense\Source\PortalRush\bin\Debug\PortalRush.exe.config
 Y:\Documents\GIT-SVN\PortalTowerDefense\Source\PortalRush\bin\Debug\PortalRush.exe
 Y:\Documents\GIT-SVN\PortalTowerDefense\Source\PortalRush\bin\Debug\PortalRush.pdb
-Y:\Documents\GIT-SVN\PortalTowerDefense\Source\PortalRush\obj\Debug\PortalRush.csprojResolveAssemblyReference.cache
 Y:\Documents\GIT-SVN\PortalTowerDefense\Source\PortalRush\obj\Debug\App.g.cs
 Y:\Documents\GIT-SVN\PortalTowerDefense\Source\PortalRush\obj\Debug\PortalRush_MarkupCompile.cache
 Y:\Documents\GIT-SVN\PortalTowerDefense\Source\PortalRush\obj\Debug\PortalRush.g.resources
