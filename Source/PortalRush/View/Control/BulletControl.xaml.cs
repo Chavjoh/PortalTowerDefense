@@ -17,12 +17,35 @@ namespace PortalRush.View.Control
 {
     /// <summary>
     /// Logique d'interaction pour BulletControl.xaml
+    /// Visual control for a bullet
     /// </summary>
-    public partial class BulletControl : UserControl
+    public partial class BulletControl : UserControl, GameEngine.Dynamic
     {
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public BulletControl()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// Change the image for the element
+        /// </summary>
+        /// <param name="index">Index of new image, referencing internal tab</param>
+        public void changeImage(int index)
+        {
+
+        }
+
+        /// <summary>
+        /// Move the element to a given location
+        /// </summary>
+        /// <param name="x">X position on screen</param>
+        /// <param name="y">Y position on screen</param>
+        public void move(int x, int y)
+        {
+
         }
     }
 }

@@ -17,12 +17,35 @@ namespace PortalRush.View.Control
 {
     /// <summary>
     /// Logique d'interaction pour TrapControl.xaml
+    /// Visual control for a trap
     /// </summary>
-    public partial class TrapControl : UserControl
+    public partial class TrapControl : UserControl, GameEngine.Dynamic
     {
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public TrapControl()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// Change the image for the element
+        /// </summary>
+        /// <param name="index">Index of new image, referencing internal tab</param>
+        public void changeImage(int index)
+        {
+
+        }
+
+        /// <summary>
+        /// Move the element to a given location
+        /// </summary>
+        /// <param name="x">X position on screen</param>
+        /// <param name="y">Y position on screen</param>
+        public void move(int x, int y)
+        {
+
         }
     }
 }

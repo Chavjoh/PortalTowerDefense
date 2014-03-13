@@ -96,6 +96,7 @@
     <Compile Include="Entity\Traps\BeamTrap.cs" />
     <Compile Include="Entity\Traps\JumpPadTrap.cs" />
     <Compile Include="Entity\Traps\LaserTrap.cs" />
+    <Compile Include="GameEngine\Dynamic.cs" />
     <Compile Include="GameEngine\GameManager.cs" />
     <Compile Include="GameEngine\MoveManager.cs" />
     <Compile Include="GameEngine\MoveManagers\BallisticMoveManager.cs" />

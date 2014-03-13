@@ -17,9 +17,13 @@ namespace PortalRush.View.Control
 {
     /// <summary>
     /// Logique d'interaction pour LayerControl.xaml
+    /// Visual control for a layer of a map
     /// </summary>
     public partial class LayerControl : UserControl
     {
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public LayerControl()
         {
             InitializeComponent();
