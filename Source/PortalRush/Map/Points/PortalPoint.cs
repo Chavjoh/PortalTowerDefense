@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace PortalRush.Map.Points
 {
+    /// <summary>
+    /// Special portal point to which the monster has to move by an immediate movement
+    /// </summary>
     class PortalPoint : Point
     {
         /// <summary>

@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace PortalRush.GameEngine.MoveManagers
 {
+    /// <summary>
+    /// Move manager for a standard walk movement
+    /// Should be used when monster walks along the path
+    /// </summary>
     class WalkMoveManager : MoveManager
     {
         /// <summary>

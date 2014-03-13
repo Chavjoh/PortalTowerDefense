@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace PortalRush.Map.Points
 {
+    /// <summary>
+    /// Spawn point, creating new monsters at configured intervals
+    /// </summary>
     class SpawnPoint : Point, GameEngine.Tickable
     {
         /// <summary>

@@ -6,8 +6,21 @@ using System.Threading.Tasks;
 
 namespace PortalRush.Entity.Towers
 {
+    /// <summary>
+    /// Archer tower
+    /// </summary>
     class ArcherTower : Tower
     {
+        /// <summary>
+        /// Get the price of archer tower at given level
+        /// </summary>
+        /// <param name="level">Level of wanted tower</param>
+        /// <returns>Price of an archer tower</returns>
+        public static int getPrice(int level)
+        {
+            return 0;
+        }
+
         /// <summary>
         /// Inherited from Tower
         /// Upgrade the tower to its next level

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace PortalRush.Entity.Traps
 {
+    /// <summary>
+    /// Beam trap, catching monster and making him fly over a hole for a given time before releasing him...
+    /// </summary>
     class BeamTrap : Trap
     {
         /// <summary>

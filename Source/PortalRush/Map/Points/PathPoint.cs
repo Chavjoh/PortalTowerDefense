@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace PortalRush.Map.Points
 {
+    /// <summary>
+    /// Standard path point on which monster has to pass by walking
+    /// </summary>
     class PathPoint : Point
     {
         /// <summary>

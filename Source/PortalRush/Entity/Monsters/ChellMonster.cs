@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace PortalRush.Entity.Monsters
 {
+    /// <summary>
+    /// Standard monster, based on Chell character from original Portal games
+    /// </summary>
     class ChellMonster : Monster
     {
     }

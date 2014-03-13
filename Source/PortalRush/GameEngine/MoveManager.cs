@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace PortalRush.GameEngine
 {
+    /// <summary>
+    /// Move management for monsters, depending on targeted point
+    /// </summary>
     abstract class MoveManager
     {
         /// <summary>

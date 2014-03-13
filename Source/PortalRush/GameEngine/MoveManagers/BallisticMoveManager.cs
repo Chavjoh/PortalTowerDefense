@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace PortalRush.GameEngine.MoveManagers
 {
+    /// <summary>
+    /// Move manager for a ballistic movement
+    /// Should be used when monster is ejected by a JumpPadTrap
+    /// </summary>
     class BallisticMoveManager : MoveManager
     {
         /// <summary>

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace PortalRush.Entity.Traps
 {
+    /// <summary>
+    /// JumpPad trap, making the monster fly out of the map
+    /// </summary>
     class JumpPadTrap : Trap
     {
         /// <summary>

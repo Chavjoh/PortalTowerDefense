@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace PortalRush.GameEngine.MoveManagers
 {
+    /// <summary>
+    /// Move manager for an immediate "teleportation" movement
+    /// Should be used when monster goes through a portal
+    /// </summary>
     class ImmediateMoveManager : MoveManager
     {
         /// <summary>

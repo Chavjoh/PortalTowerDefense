@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace PortalRush.Map.Points
 {
+    /// <summary>
+    /// Special point corresponding to a trap in which monster will fall when passing
+    /// </summary>
     class TrapPoint : Point
     {
         /// <summary>

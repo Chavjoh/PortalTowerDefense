@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace PortalRush.GameEngine.MoveManagers
 {
+    /// <summary>
+    /// Move manager for a flying linear movement
+    /// Should be used when monster is trapped into a BeamTrap
+    /// </summary>
     class FlyMoveManager : MoveManager
     {
         /// <summary>

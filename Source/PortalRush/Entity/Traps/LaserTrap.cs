@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace PortalRush.Entity.Traps
 {
+    /// <summary>
+    /// Laser trap, making the monster eatable for conventional people
+    /// </summary>
     class LaserTrap : Trap
     {
         /// <summary>

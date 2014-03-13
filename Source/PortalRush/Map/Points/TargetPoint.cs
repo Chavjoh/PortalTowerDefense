@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace PortalRush.Map.Points
 {
+    /// <summary>
+    /// Target point, placed at end of path and making player lose one life per passing monster
+    /// </summary>
     class TargetPoint : Point
     {
         /// <summary>
