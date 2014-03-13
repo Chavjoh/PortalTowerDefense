@@ -42,6 +42,21 @@ namespace PortalRush.Entity
         private int money;
 
         /// <summary>
+        /// Linked MoveManager, which to call when having to move (1/30 sec)
+        /// </summary>
+        private GameEngine.MoveManager moveManager;
+
+        /// <summary>
+        /// Linked Location, which to have as a target when moving
+        /// </summary>
+        private Map.Location location;
+
+        /// <summary>
+        /// Visual control, displaying the monster on the map
+        /// </summary>
+        private View.Control.MonsterControl control;
+
+        /// <summary>
         /// Inherited from Tickable
         /// Called by GameEngine at each game tick (1/30 sec.)
         /// </summary>

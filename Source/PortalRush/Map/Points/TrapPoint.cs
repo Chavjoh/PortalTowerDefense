@@ -12,6 +12,11 @@ namespace PortalRush.Map.Points
     class TrapPoint : Point
     {
         /// <summary>
+        /// Linked trap, triggered when a monster passed on the point
+        /// </summary>
+        private Entity.Trap trap;
+
+        /// <summary>
         /// Inherited from Point
         /// Get the move manager to use to go the current point
         /// </summary>

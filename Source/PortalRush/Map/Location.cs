@@ -20,5 +20,10 @@ namespace PortalRush.Map
         /// Y position on screen
         /// </summary>
         private int y;
+
+        /// <summary>
+        /// Linked point, having generated this real location on map
+        /// </summary>
+        private Point point;
     }
 }

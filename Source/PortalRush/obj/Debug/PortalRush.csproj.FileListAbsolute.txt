@@ -22,3 +22,4 @@ Y:\Documents\GIT-SVN\PortalTowerDefense\Source\PortalRush\obj\Debug\View\Control
 Y:\Documents\GIT-SVN\PortalTowerDefense\Source\PortalRush\obj\Debug\View\Control\TowerControl.g.cs
 Y:\Documents\GIT-SVN\PortalTowerDefense\Source\PortalRush\obj\Debug\View\Control\TowerLocationControl.g.cs
 Y:\Documents\GIT-SVN\PortalTowerDefense\Source\PortalRush\obj\Debug\View\Control\TrapControl.g.cs
+Y:\Documents\GIT-SVN\PortalTowerDefense\Source\PortalRush\obj\Debug\PortalRush.csprojResolveAssemblyReference.cache

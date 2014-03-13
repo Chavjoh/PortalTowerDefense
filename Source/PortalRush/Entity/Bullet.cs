@@ -38,6 +38,16 @@ namespace PortalRush.Entity
         private int y;
 
         /// <summary>
+        /// Main target monster
+        /// </summary>
+        private Monster target;
+
+        /// <summary>
+        /// Visual control, drawing the bullet at its current location
+        /// </summary>
+        private View.Control.BulletControl control;
+
+        /// <summary>
         /// Move the bullet to its next position (1/30 sec)
         /// </summary>
         public void move()

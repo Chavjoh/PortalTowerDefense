@@ -42,6 +42,16 @@ namespace PortalRush.GameEngine
         private int lifes;
 
         /// <summary>
+        /// Linked map, currently played
+        /// </summary>
+        private Map.Map map;
+
+        /// <summary>
+        /// List of registered tickable objects, having to be ticked each 1/30 sec
+        /// </summary>
+        private List<Tickable> tickables;
+
+        /// <summary>
         /// Load configuration from fixed file
         /// Should be replaced in the complete version by the main menu
         /// </summary>

@@ -27,6 +27,11 @@ namespace PortalRush.Map
         private int distanceToTarget;
 
         /// <summary>
+        /// Point to reach after current
+        /// </summary>
+        private Point next;
+
+        /// <summary>
         /// Get the move manager to use to go the current point
         /// </summary>
         /// <returns>MoveManager to assign to monster</returns>

@@ -22,6 +22,16 @@ namespace PortalRush.Map
         private int y;
 
         /// <summary>
+        /// Linked tower, occupying the location
+        /// </summary>
+        private Entity.Tower tower;
+
+        /// <summary>
+        /// Visual control, drawing the tower location and sub-menu when user acting with location
+        /// </summary>
+        private View.Control.TowerLocationControl control;
+
+        /// <summary>
         /// Triggered when the user click on the location to create a tower (location is empty)
         /// </summary>
         public void clickCreate()

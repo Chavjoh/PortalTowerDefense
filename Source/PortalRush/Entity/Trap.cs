@@ -12,6 +12,16 @@ namespace PortalRush.Entity
     abstract class Trap : GameEngine.Tickable
     {
         /// <summary>
+        /// Logic path point to which the trap is linked
+        /// </summary>
+        private Map.Points.TrapPoint point;
+
+        /// <summary>
+        /// Visual control, drawing the trap in its current state
+        /// </summary>
+        private View.Control.TrapControl control;
+
+        /// <summary>
         /// Triggered when a monster arrives in the trap
         /// </summary>
         /// <param name="monster">Monster who arrived</param>

@@ -13,6 +13,26 @@ namespace PortalRush.Map
     class Map
     {
         /// <summary>
+        /// List of layers for drawing the map
+        /// </summary>
+        private List<View.Control.LayerControl> layers;
+
+        /// <summary>
+        /// List of monsters currently on the map
+        /// </summary>
+        private List<Entity.Monster> monsters;
+
+        /// <summary>
+        /// List of points, representing logical path(s) for monsters
+        /// </summary>
+        private List<Point> points;
+
+        /// <summary>
+        /// List of tower locations where towers can be placed
+        /// </summary>
+        private List<TowerLocation> towerLocations;
+
+        /// <summary>
         /// Default constructor
         /// </summary>
         /// <param name="filepath">XML file path for map loading</param>

@@ -38,6 +38,21 @@ namespace PortalRush.Entity
         private List<Monster> attackedMonsters;
 
         /// <summary>
+        /// Linked location, on which the tower is placed
+        /// </summary>
+        private Map.TowerLocation location;
+
+        /// <summary>
+        /// Linked bullets, thrown by tower and having not reached monster yet
+        /// </summary>
+        private List<Bullet> bullets;
+
+        /// <summary>
+        /// Visual control, drawing the tower at its location
+        /// </summary>
+        private View.Control.TowerControl control;
+
+        /// <summary>
         /// Upgrade the tower to its next level
         /// </summary>
         public abstract void upgrade();
