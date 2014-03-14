@@ -65,6 +65,17 @@ namespace PortalRush.GameEngine
         private Thread gameLoop = null;
 
         /// <summary>
+        /// Linked map, currently played
+        /// </summary>
+        public Map.Map Map
+        {
+            get
+            {
+                return this.map;
+            }
+        }
+
+        /// <summary>
         /// Main canvas for drawing game, into MainWindow
         /// </summary>
         public Canvas Canvas
@@ -147,7 +158,7 @@ namespace PortalRush.GameEngine
             watch.Start();
             while (true)
             {
-                if (watch.ElapsedMilliseconds >= 16)
+                if (watch.ElapsedMilliseconds >= 33)
                 {
                     watch.Restart();
                     this.tick();
@@ -160,6 +171,10 @@ namespace PortalRush.GameEngine
         /// </summary>
         private void tick()
         {
+            foreach (Tickable tickable in this.clocks)
+            {
+                tickable.tick();
+            }
         }
 
         /// <summary>

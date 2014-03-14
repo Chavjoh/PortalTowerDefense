@@ -55,7 +55,13 @@ namespace PortalRush.Map.Points
         /// </summary>
         public void tick()
         {
-            Console.WriteLine((float)elapsedTicks/(float)40);
+            if (this.spawners.Keys.Contains(this.elapsedTicks))
+            {
+                Entity.MonsterType monsterType = this.spawners[this.elapsedTicks];
+                this.spawners.Remove(this.elapsedTicks);
+                Entity.Monster monster = new Entity.Monster(monsterType, this.X, this.Y);
+                GameEngine.GameManager.Instance.Map.NewMonster = monster;
+            }
             this.elapsedTicks++;
         }
 

@@ -33,6 +33,31 @@ namespace PortalRush.Map
         private List<TowerLocation> towerLocations;
 
         /// <summary>
+        /// Monster to add to referenced list
+        /// </summary>
+        public Entity.Monster NewMonster
+        {
+            set
+            {
+                this.monsters.Add(value);
+            }
+        }
+
+        /// <summary>
+        /// Monster to remove from referenced list
+        /// </summary>
+        public Entity.Monster OldMonster
+        {
+            set
+            {
+                if (this.monsters.Contains(value))
+                {
+                    this.monsters.Remove(value);
+                }
+            }
+        }
+
+        /// <summary>
         /// Default constructor
         /// </summary>
         /// <param name="filepath">XML file path for map loading</param>
@@ -43,6 +68,9 @@ namespace PortalRush.Map
             {
                 this.TEMP_MAP_CONSTRUCTOR();
             }
+
+            // Construct local lists
+            this.monsters = new List<Entity.Monster>();
         }
 
         /// <summary>
@@ -106,6 +134,9 @@ namespace PortalRush.Map
         /// </summary>
         private void TEMP_MAP_CONSTRUCTOR()
         {
+            // Register monsters images folder
+            Entity.Monster.BaseFolder = "Maps\\Static\\Monsters\\";
+
             // Create layers
             this.layers = new List<View.Control.LayerControl>();
             this.layers.Add(new View.Control.LayerControl("Maps\\Static\\Layers\\map_layer1.png", 1));
@@ -116,7 +147,9 @@ namespace PortalRush.Map
 
             // Create points
             this.points = new List<Point>();
-            this.points.Add(new Points.SpawnPoint(344, 562, Entity.MonsterOrientation.REAR_LEFT, 5));
+            Points.SpawnPoint spawn = new Points.SpawnPoint(344, 562, Entity.MonsterOrientation.REAR_LEFT, 5);
+            spawn.spawn(60, Entity.MonsterType.CHELL);
+            this.points.Add(spawn);
             this.points.Add(new Points.PathPoint(271, 472, Entity.MonsterOrientation.REAR_RIGHT));
             this.points.Add(new Points.PathPoint(419, 445, Entity.MonsterOrientation.REAR_LEFT));
             this.points.Add(new Points.PathPoint(326, 339));

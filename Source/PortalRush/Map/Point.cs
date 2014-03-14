@@ -42,6 +42,28 @@ namespace PortalRush.Map
         private Point next = null;
 
         /// <summary>
+        /// X position on screen
+        /// </summary>
+        protected int X
+        {
+            get
+            {
+                return this.x;
+            }
+        }
+
+        /// <summary>
+        /// Y position on screen
+        /// </summary>
+        protected int Y
+        {
+            get
+            {
+                return this.y;
+            }
+        }
+
+        /// <summary>
         /// Default constructor
         /// </summary>
         /// <param name="x">X position on screen</param>

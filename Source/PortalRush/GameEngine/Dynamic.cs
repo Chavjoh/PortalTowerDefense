@@ -18,6 +18,12 @@ namespace PortalRush.GameEngine
         void changeImage(int index);
 
         /// <summary>
+        /// Change the Z Index of the element
+        /// </summary>
+        /// <param name="index">Z-index of element in canvas</param>
+        void changeZIndex(int index);
+
+        /// <summary>
         /// Move the element to a given location
         /// </summary>
         /// <param name="x">X position on screen</param>
