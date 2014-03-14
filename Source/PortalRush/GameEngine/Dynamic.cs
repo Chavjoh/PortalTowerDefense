@@ -28,6 +28,6 @@ namespace PortalRush.GameEngine
         /// </summary>
         /// <param name="x">X position on screen</param>
         /// <param name="y">Y position on screen</param>
-        void move(int x, int y);
+        void move(double x, double y);
     }
 }

@@ -29,17 +29,17 @@ namespace PortalRush.View.Control
         /// <summary>
         /// Pixels differentials between left of image and base placement
         /// </summary>
-        private int deltaX;
+        private double deltaX;
 
         /// <summary>
         /// Pixels diffrentials between top of image and base placement
         /// </summary>
-        private int deltaY;
+        private double deltaY;
 
         /// <summary>
         /// Default constructor
         /// </summary>
-        public MonsterControl(Dictionary<int,String> images, int deltaX, int deltaY)
+        public MonsterControl(Dictionary<int,String> images, double deltaX, double deltaY)
         {
             // Visual element initialization
             InitializeComponent();
@@ -85,7 +85,7 @@ namespace PortalRush.View.Control
         /// </summary>
         /// <param name="x">X position on screen</param>
         /// <param name="y">Y position on screen</param>
-        public void move(int x, int y)
+        public void move(double x, double y)
         {
             Canvas.SetLeft(this, x - this.deltaX);
             Canvas.SetTop(this, y - this.deltaY);

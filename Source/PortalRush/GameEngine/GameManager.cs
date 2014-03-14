@@ -60,6 +60,16 @@ namespace PortalRush.GameEngine
         private List<Tickable> clocks;
 
         /// <summary>
+        /// List of newly registered tickable objects
+        /// </summary>
+        private List<Tickable> clocksNew;
+
+        /// <summary>
+        /// List of soon deleted tickable objects
+        /// </summary>
+        private List<Tickable> clocksOld;
+
+        /// <summary>
         /// Game loop self-containing thread
         /// </summary>
         private Thread gameLoop = null;
@@ -96,6 +106,8 @@ namespace PortalRush.GameEngine
         public GameManager()
         {
             this.clocks = new List<Tickable>();
+            this.clocksNew = new List<Tickable>();
+            this.clocksOld = new List<Tickable>();
         }
 
         /// <summary>
@@ -135,7 +147,12 @@ namespace PortalRush.GameEngine
         /// <param name="child">Element to register</param>
         public void clockRegister(Tickable child)
         {
-            this.clocks.Add(child);
+            this.clocksNew.Add(child);
+        }
+
+        public void clockUnregister(Tickable child)
+        {
+            this.clocksOld.Add(child);
         }
 
         /// <summary>
@@ -175,6 +192,16 @@ namespace PortalRush.GameEngine
             {
                 tickable.tick();
             }
+            foreach (Tickable newTickable in this.clocksNew)
+            {
+                this.clocks.Add(newTickable);
+            }
+            this.clocksNew.Clear();
+            foreach (Tickable oldTickable in this.clocksOld)
+            {
+                this.clocks.Remove(oldTickable);
+            }
+            this.clocksOld.Clear();
         }
 
         /// <summary>

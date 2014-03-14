@@ -28,7 +28,7 @@ namespace PortalRush.Map.Points
         /// <returns>MoveManager to assign to monster</returns>
         public override GameEngine.MoveManager getMoveManager()
         {
-            return null;
+            return new GameEngine.MoveManagers.WalkMoveManager();
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace PortalRush.Map.Points
         /// <param name="monster">Monster who arrived</param>
         public override void monsterArrived(Entity.Monster monster)
         {
-            base.monsterArrived(monster);
+            GameEngine.GameManager.Instance.clockUnregister(monster);
         }
     }
 }

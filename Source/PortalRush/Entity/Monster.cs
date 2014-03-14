@@ -41,12 +41,12 @@ namespace PortalRush.Entity
         /// <summary>
         /// X position on screen
         /// </summary>
-        private int x;
+        private double x;
 
         /// <summary>
         /// Y position on screen
         /// </summary>
-        private int y;
+        private double y;
 
         /// <summary>
         /// Current health of monster
@@ -84,10 +84,95 @@ namespace PortalRush.Entity
         private View.Control.MonsterControl control;
 
         /// <summary>
+        /// Current walking step
+        /// </summary>
+        private int step;
+
+        /// <summary>
+        /// Tick counter for changing steps
+        /// </summary>
+        private int stepCounter;
+
+        /// <summary>
+        /// X position on screen
+        /// </summary>
+        public double X
+        {
+            get
+            {
+                return this.x;
+            }
+        }
+
+        /// <summary>
+        /// Y position on screen
+        /// </summary>
+        public double Y
+        {
+            get
+            {
+                return this.y;
+            }
+        }
+
+        /// <summary>
+        /// Linked Location, which to have as a target when moving
+        /// </summary>
+        public Map.Location Location
+        {
+            get
+            {
+                return this.location;
+            }
+            set
+            {
+                this.location = value;
+            }
+        }
+
+        /// <summary>
+        /// Linked MoveManager, which to call when having to move (1/30 sec)
+        /// </summary>
+        public GameEngine.MoveManager MoveManager
+        {
+            set
+            {
+                this.moveManager = value;
+                this.moveManager.Monster = this;
+            }
+        }
+
+        /// <summary>
+        /// Current display orientation
+        /// </summary>
+        public MonsterOrientation Orientation
+        {
+            set
+            {
+                this.orientation = value;
+                this.updateStep();
+            }
+        }
+
+        /// <summary>
+        /// Z-Index on canvas of displayed element
+        /// </summary>
+        public int ZIndex
+        {
+            set
+            {
+                Application.Current.Dispatcher.BeginInvoke((Action)delegate()
+                {
+                    this.control.changeZIndex(value);
+                });
+            }
+        }
+
+        /// <summary>
         /// Default constructor
         /// </summary>
         /// <param name="type">Type of monster to build</param>
-        public Monster(MonsterType type, int x, int y)
+        public Monster(MonsterType type, Map.Points.SpawnPoint spawnPoint)
         {
             // Assign type
             this.type = type;
@@ -96,10 +181,12 @@ namespace PortalRush.Entity
             this.moveManager = null;
             this.location = null;
             this.orientation = MonsterOrientation.NULL;
+            this.step = 1;
+            this.stepCounter = 1;
 
             // Basic location (spawn point)
-            this.x = x;
-            this.y = y;
+            this.x = spawnPoint.X;
+            this.y = spawnPoint.Y;
 
             // Type-dependant values
             String name;
@@ -148,6 +235,13 @@ namespace PortalRush.Entity
                 this.control.changeImage(11);
                 this.control.changeZIndex(5);
             });
+
+            // Associate linked location
+            this.location = spawnPoint.getExactLocation();
+            this.moveManager = null;
+
+            // Add to Tickable list
+            GameEngine.GameManager.Instance.clockRegister(this);
         }
 
         /// <summary>
@@ -156,7 +250,30 @@ namespace PortalRush.Entity
         /// </summary>
         public void tick()
         {
+            // Update step value
+            this.stepCounter--;
+            if (this.stepCounter == 0)
+            {
+                stepCounter = 5;
+                this.step++;
+                if (this.step > 4)
+                {
+                    this.step = 1;
+                }
+                this.updateStep();
+            }
 
+            // If point reached, head to next
+            if (this.location.isReached(this.x, this.y))
+            {
+                this.location.Point.monsterArrived(this);
+            }
+
+            // Move to next point
+            else
+            {
+                this.moveManager.move();
+            }
         }
 
         /// <summary>
@@ -166,6 +283,56 @@ namespace PortalRush.Entity
         public int distanceToTarget()
         {
             return 0;
+        }
+
+        /// <summary>
+        /// Move monster to specified location
+        /// </summary>
+        /// <param name="x">X position on screen</param>
+        /// <param name="y">Y position on screen</param>
+        public void move(double x, double y)
+        {
+            this.x = x;
+            this.y = y;
+
+
+            // Add visual control to UI
+            Application.Current.Dispatcher.BeginInvoke((Action)delegate()
+            {
+                this.control.move(x, y);
+            });
+            
+        }
+
+        /// <summary>
+        /// Update control image, based on current step and orientation
+        /// </summary>
+        private void updateStep()
+        {
+            int index = 0;
+            switch (this.orientation)
+            {
+                case MonsterOrientation.FRONT_LEFT:
+                    index = 10;
+                    break;
+                case MonsterOrientation.FRONT_RIGHT:
+                    index = 20;
+                    break;
+                case MonsterOrientation.REAR_LEFT:
+                    index = 30;
+                    break;
+                case MonsterOrientation.REAR_RIGHT:
+                    index = 40;
+                    break;
+                default:
+                    index = 0;
+                    break;
+            }
+            index += this.step;
+            Application.Current.Dispatcher.BeginInvoke((Action)delegate()
+            {
+                this.control.changeImage(index);
+            });
         }
     }
 }

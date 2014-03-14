@@ -46,7 +46,7 @@ namespace PortalRush.Map.Points
         /// <returns>MoveManager to assign to monster</returns>
         public override GameEngine.MoveManager getMoveManager()
         {
-            return null;
+            return new GameEngine.MoveManagers.WalkMoveManager();
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace PortalRush.Map.Points
             {
                 Entity.MonsterType monsterType = this.spawners[this.elapsedTicks];
                 this.spawners.Remove(this.elapsedTicks);
-                Entity.Monster monster = new Entity.Monster(monsterType, this.X, this.Y);
+                Entity.Monster monster = new Entity.Monster(monsterType, this);
                 GameEngine.GameManager.Instance.Map.NewMonster = monster;
             }
             this.elapsedTicks++;
@@ -73,6 +73,15 @@ namespace PortalRush.Map.Points
         public void spawn(int time, Entity.MonsterType type)
         {
             this.spawners.Add(time, type);
+        }
+
+        /// <summary>
+        /// Get the location corresponding to the exact center of this point
+        /// </summary>
+        /// <returns></returns>
+        public Location getExactLocation()
+        {
+            return new Location(this, X, Y);
         }
     }
 }

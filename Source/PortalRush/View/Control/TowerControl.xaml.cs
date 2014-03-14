@@ -52,7 +52,7 @@ namespace PortalRush.View.Control
         /// </summary>
         /// <param name="x">X position on screen</param>
         /// <param name="y">Y position on screen</param>
-        public void move(int x, int y)
+        public void move(double x, double y)
         {
 
         }
