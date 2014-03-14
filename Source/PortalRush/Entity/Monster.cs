@@ -42,6 +42,11 @@ namespace PortalRush.Entity
         private int money;
 
         /// <summary>
+        /// Type of monster
+        /// </summary>
+        private MonsterType type;
+
+        /// <summary>
         /// Linked MoveManager, which to call when having to move (1/30 sec)
         /// </summary>
         private GameEngine.MoveManager moveManager;

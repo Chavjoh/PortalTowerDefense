@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace PortalRush.GameEngine
 {
@@ -55,7 +57,12 @@ namespace PortalRush.GameEngine
         /// <summary>
         /// List of registered tickable objects, having to be ticked each 1/30 sec
         /// </summary>
-        private List<Tickable> tickables;
+        private List<Tickable> clocks;
+
+        /// <summary>
+        /// Game loop self-containing thread
+        /// </summary>
+        private Thread gameLoop = null;
 
         /// <summary>
         /// Main canvas for drawing game, into MainWindow
@@ -70,6 +77,14 @@ namespace PortalRush.GameEngine
             {
                 this.canvas = value;
             }
+        }
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public GameManager()
+        {
+            this.clocks = new List<Tickable>();
         }
 
         /// <summary>
@@ -99,7 +114,45 @@ namespace PortalRush.GameEngine
         /// </summary>
         public void play()
         {
-            
+            this.gameLoop = new Thread(clock);
+            this.gameLoop.Start();
+        }
+
+        /// <summary>
+        /// Register an element to be ticked every 1/30 sec
+        /// </summary>
+        /// <param name="child">Element to register</param>
+        public void clockRegister(Tickable child)
+        {
+            this.clocks.Add(child);
+        }
+
+        /// <summary>
+        /// Stop main game loop and free resources
+        /// </summary>
+        public void quit()
+        {
+            if (this.gameLoop != null)
+            {
+                this.gameLoop.Abort();
+            }
+        }
+
+        /// <summary>
+        /// Clock function, managing clock calls each 1/30 second
+        /// </summary>
+        private void clock()
+        {
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
+            while (true)
+            {
+                if (watch.ElapsedMilliseconds >= 16)
+                {
+                    watch.Restart();
+                    this.tick();
+                }
+            }
         }
 
         /// <summary>
@@ -107,7 +160,6 @@ namespace PortalRush.GameEngine
         /// </summary>
         private void tick()
         {
-
         }
 
         /// <summary>

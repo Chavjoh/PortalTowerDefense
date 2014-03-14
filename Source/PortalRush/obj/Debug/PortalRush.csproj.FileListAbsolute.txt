@@ -22,3 +22,4 @@ Y:\Documents\GIT-SVN\PortalTowerDefense\Source\PortalRush\obj\Debug\PortalRush.P
 Y:\Documents\GIT-SVN\PortalTowerDefense\Source\PortalRush\obj\Debug\PortalRush.csproj.GenerateResource.Cache
 Y:\Documents\GIT-SVN\PortalTowerDefense\Source\PortalRush\obj\Debug\PortalRush.exe
 Y:\Documents\GIT-SVN\PortalTowerDefense\Source\PortalRush\obj\Debug\PortalRush.pdb
+Y:\Documents\GIT-SVN\PortalTowerDefense\Source\PortalRush\obj\Debug\PortalRush.csprojResolveAssemblyReference.cache
