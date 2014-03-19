@@ -18,7 +18,13 @@ namespace PortalRush.GameEngine.MoveManagers
         /// </summary>
         public override void move()
         {
-
+            double vectorX = this.Monster.Location.X - this.Monster.X;
+            double vectorY = this.Monster.Location.Y - this.Monster.Y;
+            double norm = Math.Sqrt(vectorX * vectorX + vectorY * vectorY);
+            norm = 2 / norm;
+            vectorX *= norm;
+            vectorY *= norm;
+            this.Monster.move(this.Monster.X + vectorX, this.Monster.Y + vectorY);
         }
     }
 }

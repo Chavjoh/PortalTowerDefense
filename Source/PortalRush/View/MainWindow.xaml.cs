@@ -37,5 +37,15 @@ namespace PortalRush
             GameEngine.GameManager.Instance.loadMap(-1);
             GameEngine.GameManager.Instance.play();
         }
+
+        /// <summary>
+        /// Closing procedure, must stop subthreads
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            GameEngine.GameManager.Instance.quit();
+        }
     }
 }

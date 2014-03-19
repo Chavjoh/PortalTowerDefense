@@ -18,7 +18,7 @@ namespace PortalRush.GameEngine.MoveManagers
         /// </summary>
         public override void move()
         {
-
+            this.Monster.move(this.Monster.Location.X, this.Monster.Location.Y);
         }
     }
 }

@@ -35,7 +35,7 @@ namespace PortalRush.Map.Points
         /// <returns>MoveManager to assign to monster</returns>
         public override GameEngine.MoveManager getMoveManager()
         {
-            return null;
+            return new GameEngine.MoveManagers.WalkMoveManager();
         }
 
         /// <summary>

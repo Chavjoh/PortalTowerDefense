@@ -39,11 +39,20 @@ namespace PortalRush.View.Control
         }
 
         /// <summary>
+        /// Change the Z Index of the element
+        /// </summary>
+        /// <param name="index">Z-index of element in canvas</param>
+        public void changeZIndex(int index)
+        {
+
+        }
+
+        /// <summary>
         /// Move the element to a given location
         /// </summary>
         /// <param name="x">X position on screen</param>
         /// <param name="y">Y position on screen</param>
-        public void move(int x, int y)
+        public void move(double x, double y)
         {
 
         }

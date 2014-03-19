@@ -22,11 +22,41 @@ namespace PortalRush.View.Control
     public partial class MonsterControl : UserControl, GameEngine.Dynamic
     {
         /// <summary>
+        /// List of images
+        /// </summary>
+        private Dictionary<int, BitmapImage> images;
+
+        /// <summary>
+        /// Pixels differentials between left of image and base placement
+        /// </summary>
+        private double deltaX;
+
+        /// <summary>
+        /// Pixels diffrentials between top of image and base placement
+        /// </summary>
+        private double deltaY;
+
+        /// <summary>
         /// Default constructor
         /// </summary>
-        public MonsterControl()
+        public MonsterControl(Dictionary<int,String> images, double deltaX, double deltaY)
         {
+            // Visual element initialization
             InitializeComponent();
+
+            // Differentials
+            this.deltaX = deltaX;
+            this.deltaY = deltaY;
+
+            // Dictionary of images
+            this.images = new Dictionary<int, BitmapImage>();
+            foreach(int index in images.Keys)
+            {
+                this.images.Add(index, new BitmapImage(new Uri(images[index])));
+            }
+
+            // Add control to drawing canvas
+            GameEngine.GameManager.Instance.Canvas.Children.Add(this);
         }
 
         /// <summary>
@@ -35,7 +65,19 @@ namespace PortalRush.View.Control
         /// <param name="index">Index of new image, referencing internal tab</param>
         public void changeImage(int index)
         {
+            if (this.images.Keys.Contains(index))
+            {
+                this.image.Source = this.images[index];
+            }
+        }
 
+        /// <summary>
+        /// Change the Z Index of the element
+        /// </summary>
+        /// <param name="index">Z-index of element in canvas</param>
+        public void changeZIndex(int index)
+        {
+            Canvas.SetZIndex(this, index);
         }
 
         /// <summary>
@@ -43,9 +85,10 @@ namespace PortalRush.View.Control
         /// </summary>
         /// <param name="x">X position on screen</param>
         /// <param name="y">Y position on screen</param>
-        public void move(int x, int y)
+        public void move(double x, double y)
         {
-
+            Canvas.SetLeft(this, x - this.deltaX);
+            Canvas.SetTop(this, y - this.deltaY);
         }
     }
 }

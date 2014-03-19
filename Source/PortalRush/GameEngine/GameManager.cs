@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace PortalRush.GameEngine
 {
@@ -55,7 +57,33 @@ namespace PortalRush.GameEngine
         /// <summary>
         /// List of registered tickable objects, having to be ticked each 1/30 sec
         /// </summary>
-        private List<Tickable> tickables;
+        private List<Tickable> clocks;
+
+        /// <summary>
+        /// List of newly registered tickable objects
+        /// </summary>
+        private List<Tickable> clocksNew;
+
+        /// <summary>
+        /// List of soon deleted tickable objects
+        /// </summary>
+        private List<Tickable> clocksOld;
+
+        /// <summary>
+        /// Game loop self-containing thread
+        /// </summary>
+        private Thread gameLoop = null;
+
+        /// <summary>
+        /// Linked map, currently played
+        /// </summary>
+        public Map.Map Map
+        {
+            get
+            {
+                return this.map;
+            }
+        }
 
         /// <summary>
         /// Main canvas for drawing game, into MainWindow
@@ -70,6 +98,16 @@ namespace PortalRush.GameEngine
             {
                 this.canvas = value;
             }
+        }
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public GameManager()
+        {
+            this.clocks = new List<Tickable>();
+            this.clocksNew = new List<Tickable>();
+            this.clocksOld = new List<Tickable>();
         }
 
         /// <summary>
@@ -99,7 +137,50 @@ namespace PortalRush.GameEngine
         /// </summary>
         public void play()
         {
-            
+            this.gameLoop = new Thread(clock);
+            this.gameLoop.Start();
+        }
+
+        /// <summary>
+        /// Register an element to be ticked every 1/30 sec
+        /// </summary>
+        /// <param name="child">Element to register</param>
+        public void clockRegister(Tickable child)
+        {
+            this.clocksNew.Add(child);
+        }
+
+        public void clockUnregister(Tickable child)
+        {
+            this.clocksOld.Add(child);
+        }
+
+        /// <summary>
+        /// Stop main game loop and free resources
+        /// </summary>
+        public void quit()
+        {
+            if (this.gameLoop != null)
+            {
+                this.gameLoop.Abort();
+            }
+        }
+
+        /// <summary>
+        /// Clock function, managing clock calls each 1/30 second
+        /// </summary>
+        private void clock()
+        {
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
+            while (true)
+            {
+                if (watch.ElapsedMilliseconds >= 33)
+                {
+                    watch.Restart();
+                    this.tick();
+                }
+            }
         }
 
         /// <summary>
@@ -107,7 +188,20 @@ namespace PortalRush.GameEngine
         /// </summary>
         private void tick()
         {
-
+            foreach (Tickable tickable in this.clocks)
+            {
+                tickable.tick();
+            }
+            foreach (Tickable newTickable in this.clocksNew)
+            {
+                this.clocks.Add(newTickable);
+            }
+            this.clocksNew.Clear();
+            foreach (Tickable oldTickable in this.clocksOld)
+            {
+                this.clocks.Remove(oldTickable);
+            }
+            this.clocksOld.Clear();
         }
 
         /// <summary>

@@ -17,6 +17,21 @@ namespace PortalRush.GameEngine
         private Entity.Monster monster;
 
         /// <summary>
+        /// Linked monster, which to move when called (1/30 sec)
+        /// </summary>
+        public Entity.Monster Monster
+        {
+            get
+            {
+                return this.monster;
+            }
+            set
+            {
+                this.monster = value;
+            }
+        }
+
+        /// <summary>
         /// Called by associated monster when he has to move
         /// </summary>
         public abstract void move();

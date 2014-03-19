@@ -42,6 +42,43 @@ namespace PortalRush.Map
         private Point next = null;
 
         /// <summary>
+        /// X position on screen
+        /// </summary>
+        public int X
+        {
+            get
+            {
+                return this.x;
+            }
+        }
+
+        /// <summary>
+        /// Y position on screen
+        /// </summary>
+        public int Y
+        {
+            get
+            {
+                return this.y;
+            }
+        }
+
+        /// <summary>
+        /// Point to reach after current
+        /// </summary>
+        public Point Next
+        {
+            get
+            {
+                return this.next;
+            }
+            set
+            {
+                this.next = value;
+            }
+        }
+
+        /// <summary>
         /// Default constructor
         /// </summary>
         /// <param name="x">X position on screen</param>
@@ -73,7 +110,16 @@ namespace PortalRush.Map
         /// <param name="monster">Monster who arrived</param>
         public virtual void monsterArrived(Entity.Monster monster)
         {
-
+            monster.Location = this.next.getRangedLocation();
+            monster.MoveManager = this.next.getMoveManager();
+            if (this.orientation != Entity.MonsterOrientation.NULL)
+            {
+                monster.Orientation = this.orientation;
+            }
+            if (this.zIndex >= 0)
+            {
+                monster.ZIndex = this.zIndex;
+            }
         }
 
         /// <summary>
@@ -82,7 +128,7 @@ namespace PortalRush.Map
         /// <returns>Real location usable by a monster as a target for movement</returns>
         public Location getRangedLocation()
         {
-            return null;
+            return new Location(this, this.x, this.y);
         }
     }
 }
