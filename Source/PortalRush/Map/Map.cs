@@ -148,7 +148,12 @@ namespace PortalRush.Map
             // Create points
             this.points = new List<Point>();
             Points.SpawnPoint spawn = new Points.SpawnPoint(344, 562, Entity.MonsterOrientation.REAR_LEFT, 5);
+            spawn.spawn(30, Entity.MonsterType.CHELL);
             spawn.spawn(60, Entity.MonsterType.CHELL);
+            spawn.spawn(90, Entity.MonsterType.CHELL);
+            spawn.spawn(120, Entity.MonsterType.CHELL);
+            spawn.spawn(150, Entity.MonsterType.CHELL);
+            spawn.spawn(180, Entity.MonsterType.CHELL);
             Points.PathPoint p1 = new Points.PathPoint(271, 472, Entity.MonsterOrientation.REAR_RIGHT);
             Points.PathPoint p2 = new Points.PathPoint(419, 445, Entity.MonsterOrientation.REAR_LEFT);
             Points.PathPoint p3 = new Points.PathPoint(326, 339);
