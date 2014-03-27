@@ -22,11 +22,32 @@ namespace PortalRush.View.Control
     public partial class TowerLocationControl : UserControl, GameEngine.Dynamic
     {
         /// <summary>
+        /// Pixels differentials between left of image and base placement
+        /// </summary>
+        private double deltaX;
+
+        /// <summary>
+        /// Pixels differentials between top of image and base placement
+        /// </summary>
+        private double deltaY;
+
+        /// <summary>
         ///  Default constructor
         /// </summary>
-        public TowerLocationControl()
+        public TowerLocationControl(String image, double deltaX, double deltaY)
         {
+            // Visual element initialization
             InitializeComponent();
+
+            // Differentials
+            this.deltaX = deltaX;
+            this.deltaY = deltaY;
+
+            // Image loading
+            this.image.Source = new BitmapImage(new Uri(image));
+
+            // Add control to drawing canvas
+            GameEngine.GameManager.Instance.Canvas.Children.Add(this);
         }
 
         /// <summary>
@@ -35,7 +56,7 @@ namespace PortalRush.View.Control
         /// <param name="index">Index of new image, referencing internal tab</param>
         public void changeImage(int index)
         {
-
+            // Nothing
         }
 
         /// <summary>
@@ -44,7 +65,7 @@ namespace PortalRush.View.Control
         /// <param name="index">Z-index of element in canvas</param>
         public void changeZIndex(int index)
         {
-
+            Canvas.SetZIndex(this, index);
         }
 
         /// <summary>
@@ -54,7 +75,8 @@ namespace PortalRush.View.Control
         /// <param name="y">Y position on screen</param>
         public void move(double x, double y)
         {
-
+            Canvas.SetLeft(this, x - this.deltaX);
+            Canvas.SetTop(this, y - this.deltaY);
         }
     }
 }
