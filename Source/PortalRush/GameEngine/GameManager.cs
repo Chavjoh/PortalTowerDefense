@@ -177,9 +177,28 @@ namespace PortalRush.GameEngine
             this.clocksNew.Add(child);
         }
 
+        /// <summary>
+        /// Unregister an element from the tick system
+        /// </summary>
+        /// <param name="child">Element to unregister</param>
         public void clockUnregister(Tickable child)
         {
             this.clocksOld.Add(child);
+        }
+
+        /// <summary>
+        /// Lose a life
+        /// </summary>
+        public void lifeMinus()
+        {
+            this.lifes--;
+            if (this.lifes <= 0)
+            {
+                Application.Current.Dispatcher.BeginInvoke((Action)delegate()
+                {
+                    Application.Current.MainWindow.Close();
+                });
+            }
         }
 
         /// <summary>
