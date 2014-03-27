@@ -10,7 +10,7 @@ namespace PortalRush.Map
     /// <summary>
     /// Location on which a tower can be placed on the map
     /// </summary>
-    class TowerLocation
+    public class TowerLocation
     {
         /// <summary>
         /// Base folder for tower location image
@@ -69,16 +69,24 @@ namespace PortalRush.Map
             // Add visual control to UI
             Application.Current.Dispatcher.BeginInvoke((Action)delegate()
             {
-                this.control = new View.Control.TowerLocationControl(image, 35, 17);
+                this.control = new View.Control.TowerLocationControl(this, image, 35, 17);
                 this.control.move(x, y);
                 this.control.changeZIndex(zIndex);
             });
         }
 
         /// <summary>
+        /// Triggered when the user click on the location
+        /// </summary>
+        public void click()
+        {
+            Console.WriteLine("click");
+        }
+
+        /// <summary>
         /// Triggered when the user click on the location to create a tower (location is empty)
         /// </summary>
-        public void clickCreate()
+        private void clickCreate()
         {
 
         }
@@ -86,7 +94,7 @@ namespace PortalRush.Map
         /// <summary>
         /// Triggered when the user click on the location to upgrade or sell a tower (location is filled)
         /// </summary>
-        public void clickTower()
+        private void clickTower()
         {
 
         }

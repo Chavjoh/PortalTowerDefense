@@ -32,12 +32,20 @@ namespace PortalRush.View.Control
         private double deltaY;
 
         /// <summary>
+        /// Logic owner for passing back click events
+        /// </summary>
+        private Map.TowerLocation owner;
+
+        /// <summary>
         ///  Default constructor
         /// </summary>
-        public TowerLocationControl(String image, double deltaX, double deltaY)
+        public TowerLocationControl(Map.TowerLocation owner, String image, double deltaX, double deltaY)
         {
             // Visual element initialization
             InitializeComponent();
+
+            // Owner registration
+            this.owner = owner;
 
             // Differentials
             this.deltaX = deltaX;
@@ -77,6 +85,14 @@ namespace PortalRush.View.Control
         {
             Canvas.SetLeft(this, x - this.deltaX);
             Canvas.SetTop(this, y - this.deltaY);
+        }
+
+        /// <summary>
+        /// Click on the tower location, called by canvas who receive event
+        /// </summary>
+        public void click()
+        {
+            this.owner.click();
         }
     }
 }
