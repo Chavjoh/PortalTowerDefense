@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 
@@ -48,6 +49,16 @@ namespace PortalRush.GameEngine
         /// Main canvas for drawing game, into MainWindow
         /// </summary>
         private Canvas canvas;
+
+        /// <summary>
+        /// Label for displaying lifes in
+        /// </summary>
+        private Label labelLifes;
+
+        /// <summary>
+        /// Label for displaying money in
+        /// </summary>
+        private Label labelMoney;
 
         /// <summary>
         /// Linked map, currently played
@@ -97,6 +108,18 @@ namespace PortalRush.GameEngine
             set
             {
                 this.canvas = value;
+
+                labelLifes = new Label();
+                this.canvas.Children.Add(labelLifes);
+                Canvas.SetLeft(labelLifes, 10);
+                Canvas.SetTop(labelLifes, 10);
+                Canvas.SetZIndex(labelLifes, 100000);
+
+                labelMoney = new Label();
+                this.canvas.Children.Add(labelMoney);
+                Canvas.SetRight(labelMoney, 10);
+                Canvas.SetTop(labelMoney, 10);
+                Canvas.SetZIndex(labelMoney, 100000);
             }
         }
 
@@ -108,6 +131,10 @@ namespace PortalRush.GameEngine
             this.clocks = new List<Tickable>();
             this.clocksNew = new List<Tickable>();
             this.clocksOld = new List<Tickable>();
+            
+            // TEMP : load from config file
+            this.lifes = 20;
+            this.money = 1000;
         }
 
         /// <summary>
@@ -202,6 +229,13 @@ namespace PortalRush.GameEngine
                 this.clocks.Remove(oldTickable);
             }
             this.clocksOld.Clear();
+
+            // Update labels
+            Application.Current.Dispatcher.BeginInvoke((Action)delegate()
+            {
+                this.labelMoney.Content = "Money : " + this.money;
+                this.labelLifes.Content = "Lifes : " + this.lifes;
+            });
         }
 
         /// <summary>
