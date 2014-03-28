@@ -22,14 +22,32 @@ namespace PortalRush.Map
         private int y;
 
         /// <summary>
+        /// Layer index to position tower
+        /// </summary>
+        private int layerIndex;
+
+        /// <summary>
         /// Linked tower, occupying the location
         /// </summary>
         private Entity.Tower tower;
-
+        
         /// <summary>
         /// Visual control, drawing the tower location and sub-menu when user acting with location
         /// </summary>
         private View.Control.TowerLocationControl control;
+        
+        /// <summary>
+        /// Create a new tower location to place a tower
+        /// </summary>
+        /// <param name="x">Y position on screen</param>
+        /// <param name="y">X position on screen</param>
+        /// <param name="layerIndex">Tower position in layer indexes</param>
+        public TowerLocation(int x, int y, int layerIndex)
+        {
+            this.x = x;
+            this.y = y;
+            this.layerIndex = layerIndex;
+        }
 
         /// <summary>
         /// Triggered when the user click on the location to create a tower (location is empty)

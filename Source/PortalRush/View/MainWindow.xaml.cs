@@ -28,13 +28,27 @@ namespace PortalRush
         {
             InitializeComponent();
 
-            // TEMP CODE : WAITING FOR XML PARSERS TO BE IN PLACE
-            this.Width = 916;
-            this.Height = 798;
-
+            // Register canvas in GameManager
             GameEngine.GameManager.Instance.Canvas = this.mainCanvas;
+
+            // Launch default configuration
             GameEngine.GameManager.Instance.loadConfig();
-            GameEngine.GameManager.Instance.loadMap(-1);
+
+            try
+            {
+                // Load default map
+                GameEngine.GameManager.Instance.loadMap("Static");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Map loading error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            // Set window size using map size
+            this.Width = GameEngine.GameManager.Instance.Map.Width;
+            this.Height = GameEngine.GameManager.Instance.Map.Height;
+
+            // Launch game
             GameEngine.GameManager.Instance.play();
         }
 

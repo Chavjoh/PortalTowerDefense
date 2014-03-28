@@ -24,7 +24,7 @@ namespace PortalRush.Entity
         {
             set
             {
-                baseFolder = AppDomain.CurrentDomain.BaseDirectory + value;
+                baseFolder = value;
             }
         }
 

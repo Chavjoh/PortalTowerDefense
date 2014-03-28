@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 
@@ -75,6 +77,16 @@ namespace PortalRush.GameEngine
         private Thread gameLoop = null;
 
         /// <summary>
+        /// Game maps folder path
+        /// </summary>
+        private static string mapFolder = AppDomain.CurrentDomain.BaseDirectory + "Maps\\";
+
+        /// <summary>
+        /// Game maps configuration file extension
+        /// </summary>
+        private static string mapExtension = ".xml";
+
+        /// <summary>
         /// Linked map, currently played
         /// </summary>
         public Map.Map Map
@@ -123,13 +135,9 @@ namespace PortalRush.GameEngine
         /// Load the selected map
         /// </summary>
         /// <param name="index">ID of selected map</param>
-        public void loadMap(int index)
+        public void loadMap(string name)
         {
-            // TEMP CODE, WAITING FOR XML PARSERS TO BE IN PLACE
-            if (index == -1)
-            {
-                this.TEMP_LOAD_MAP();
-            }
+            this.map = new Map.Map(mapFolder + name + "\\" + name + mapExtension);
         }
 
         /// <summary>
@@ -150,6 +158,11 @@ namespace PortalRush.GameEngine
             this.clocksNew.Add(child);
         }
 
+        /// <summary>
+        /// Unregister an ticked element.
+        /// Used because it's impossible to delete an array element during array iteration.
+        /// </summary>
+        /// <param name="child">Element to unregister</param>
         public void clockUnregister(Tickable child)
         {
             this.clocksOld.Add(child);
@@ -202,14 +215,6 @@ namespace PortalRush.GameEngine
                 this.clocks.Remove(oldTickable);
             }
             this.clocksOld.Clear();
-        }
-
-        /// <summary>
-        /// TEMP FUNCTION, WAITING FOR XML PARSERS TO BE IN PLACE
-        /// </summary>
-        private void TEMP_LOAD_MAP()
-        {
-            this.map = new Map.Map(null);
         }
     }
 }
