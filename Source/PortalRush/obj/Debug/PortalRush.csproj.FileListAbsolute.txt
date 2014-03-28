@@ -28,7 +28,6 @@ Z:\Documents\Modules HE-Arc\3258 - IA .NET Cours à choix\3258.2 DOTNET\Workspac
 Z:\Documents\Modules HE-Arc\3258 - IA .NET Cours à choix\3258.2 DOTNET\Workspace\PortalTowerDefense\Source\PortalRush\obj\Debug\PortalRush.pdb
 Z:\Documents\Modules HE-Arc\3258 - IA .NET Cours à choix\3258.2 DOTNET\Workspace\PortalTowerDefense\Source\PortalRush\bin\Debug\PortalRush.exe
 Z:\Documents\Modules HE-Arc\3258 - IA .NET Cours à choix\3258.2 DOTNET\Workspace\PortalTowerDefense\Source\PortalRush\bin\Debug\PortalRush.pdb
-Z:\Documents\Modules HE-Arc\3258 - IA .NET Cours à choix\3258.2 DOTNET\Workspace\PortalTowerDefense\Source\PortalRush\obj\Debug\PortalRush.csprojResolveAssemblyReference.cache
 Z:\Documents\Modules HE-Arc\3258 - IA .NET Cours à choix\3258.2 DOTNET\Workspace\PortalTowerDefense\Source\PortalRush\obj\Debug\View\Control\BulletControl.baml
 Z:\Documents\Modules HE-Arc\3258 - IA .NET Cours à choix\3258.2 DOTNET\Workspace\PortalTowerDefense\Source\PortalRush\obj\Debug\View\Control\LayerControl.baml
 Z:\Documents\Modules HE-Arc\3258 - IA .NET Cours à choix\3258.2 DOTNET\Workspace\PortalTowerDefense\Source\PortalRush\obj\Debug\View\Control\MonsterControl.baml

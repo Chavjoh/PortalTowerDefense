@@ -121,6 +121,7 @@ namespace PortalRush.Map
                 XmlNode mapWidth = mapDoc.SelectSingleNode("/portalRushMap/width");
                 XmlNode mapHeight = mapDoc.SelectSingleNode("/portalRushMap/height");
                 XmlNode monsterPath = mapDoc.SelectSingleNode("/portalRushMap/monsterPath");
+                XmlNode towerPath = mapDoc.SelectSingleNode("/portalRushMap/towerPath");
                 XmlNode mapPathPointList = mapDoc.SelectSingleNode("/portalRushMap/pathPointList");
                 XmlNode mapTowerPositionList = mapDoc.SelectSingleNode("/portalRushMap/towerPositionList");
                 XmlNode mapLayerList = mapDoc.SelectSingleNode("/portalRushMap/layerList");
@@ -131,6 +132,7 @@ namespace PortalRush.Map
 
                 // Save monster path
                 Entity.Monster.BaseFolder = Path.GetDirectoryName(mapFile) + "\\" + monsterPath.InnerText;
+                TowerLocation.BaseFolder = Path.GetDirectoryName(mapFile) + "\\" + towerPath.InnerText;
 
                 // Store point list to bind them together
                 Dictionary<string, Point> pointList = new Dictionary<string, Point>();
@@ -348,8 +350,9 @@ namespace PortalRush.Map
         /// </summary>
         private void TEMP_MAP_CONSTRUCTOR()
         {
-            // Register monsters images folder
+            // Register images folder
             Entity.Monster.BaseFolder = "Maps\\Static\\Monsters\\";
+            TowerLocation.BaseFolder = "Maps\\Static\\Towers\\";
 
             // Create layers
             this.layers = new List<View.Control.LayerControl>();
@@ -391,6 +394,15 @@ namespace PortalRush.Map
             p5.Next = p6;
             p6.Next = p7;
             p7.Next = null;
+
+            // Create tower locations
+            this.towerLocations = new List<TowerLocation>();
+            this.towerLocations.Add(new TowerLocation(221, 520, 3));
+            this.towerLocations.Add(new TowerLocation(245, 439, 3));
+            this.towerLocations.Add(new TowerLocation(292, 395, 3));
+            this.towerLocations.Add(new TowerLocation(460, 400, 3));
+            this.towerLocations.Add(new TowerLocation(500, 358, 5));
+            this.towerLocations.Add(new TowerLocation(530, 387, 5));
         }
     }
 }

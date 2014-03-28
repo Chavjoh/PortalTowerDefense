@@ -3,6 +3,7 @@
 	<height>798</height>
 	<width>916</width>
 	<monsterPath>Monsters\</monsterPath>
+	<towerPath>Towers\</towerPath>
 	<pathPointList>
 		<spawnPoint  id="1" next="2" x="340" y="559" monsterOrientation="REAR_LEFT" layerIndex="5">
 			<chell interval="30" startTime="0" quantity="5" />

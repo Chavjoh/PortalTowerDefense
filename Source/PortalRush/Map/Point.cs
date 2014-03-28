@@ -128,7 +128,10 @@ namespace PortalRush.Map
         /// <returns>Real location usable by a monster as a target for movement</returns>
         public Location getRangedLocation()
         {
-            return new Location(this, this.x, this.y);
+            Random random = new Random();
+            double rangedX = this.x + (random.NextDouble() - 0.5) * 30;
+            double rangedY = this.y + (random.NextDouble() - 0.5) * 30;
+            return new Location(this, rangedX, rangedY);
         }
     }
 }

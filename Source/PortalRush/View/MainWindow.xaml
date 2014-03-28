@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Portal Rush" Height="600" Width="800" ResizeMode="NoResize" Closed="Window_Closed">
     <Grid>
-        <Canvas x:Name="mainCanvas"/>
+        <Canvas x:Name="mainCanvas" MouseLeftButtonDown="mainCanvas_MouseLeftButtonDown" IsHitTestVisible="True"/>
 
     </Grid>
 </Window>

@@ -9,7 +9,7 @@ namespace PortalRush.Entity
     /// <summary>
     /// Generic tower entity, attacking spotted monsters
     /// </summary>
-    abstract class Tower : GameEngine.Tickable
+    public abstract class Tower : GameEngine.Tickable
     {
         /// <summary>
         /// Attack range, in screen units

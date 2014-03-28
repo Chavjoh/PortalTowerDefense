@@ -38,6 +38,7 @@ namespace PortalRush.Map.Points
         /// <param name="monster">Monster who arrived</param>
         public override void monsterArrived(Entity.Monster monster)
         {
+            GameEngine.GameManager.Instance.lifeMinus();
             GameEngine.GameManager.Instance.clockUnregister(monster);
         }
     }
