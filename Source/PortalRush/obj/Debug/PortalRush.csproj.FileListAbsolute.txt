@@ -47,3 +47,5 @@ Z:\Documents\Modules HE-Arc\3258 - IA .NET Cours à choix\3258.2 DOTNET\Workspac
 Z:\Documents\Modules HE-Arc\3258 - IA .NET Cours à choix\3258.2 DOTNET\Workspace\PortalTowerDefense\Source\PortalRush\obj\Debug\PortalRush.g.resources
 Z:\Documents\Modules HE-Arc\3258 - IA .NET Cours à choix\3258.2 DOTNET\Workspace\PortalTowerDefense\Source\PortalRush\obj\Debug\PortalRush.Properties.Resources.resources
 Z:\Documents\Modules HE-Arc\3258 - IA .NET Cours à choix\3258.2 DOTNET\Workspace\PortalTowerDefense\Source\PortalRush\obj\Debug\PortalRush.csproj.GenerateResource.Cache
+Y:\Documents\GIT-SVN\PortalTowerDefense\Source\PortalRush\obj\Debug\View\Menu\NoTowerMenu.baml
+Y:\Documents\GIT-SVN\PortalTowerDefense\Source\PortalRush\obj\Debug\View\Menu\NoTowerMenu.g.cs

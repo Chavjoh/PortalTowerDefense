@@ -69,6 +69,21 @@ namespace PortalRush
         /// <param name="e"></param>
         private void mainCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            // Delete remaining menu(s) of towers
+            List<UIElement> listDelete = new List<UIElement>();
+            foreach (UIElement uiElement in this.mainGrid.Children)
+            {
+                if (uiElement is View.Menu.NoTowerMenu)
+                {
+                    listDelete.Add(uiElement);
+                }
+            }
+            foreach (UIElement uiElement in listDelete)
+            {
+                this.mainGrid.Children.Remove(uiElement);
+            }
+
+            // Search for clicked tower location
             foreach (UIElement uiElement in this.mainCanvas.Children)
             {
                 View.Control.TowerLocationControl control = uiElement as View.Control.TowerLocationControl;
