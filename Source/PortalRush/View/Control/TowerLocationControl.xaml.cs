@@ -36,6 +36,20 @@ namespace PortalRush.View.Control
         /// </summary>
         private Map.TowerLocation owner;
 
+        #region Properties
+
+        public double DeltaX
+        {
+            set { this.deltaX = value; }
+        }
+
+        public double DeltaY
+        {
+            set { this.deltaY = value; }
+        }
+
+        #endregion
+
         /// <summary>
         ///  Default constructor
         /// </summary>
@@ -67,9 +81,17 @@ namespace PortalRush.View.Control
             // Nothing
         }
 
+        /// <summary>
+        /// Change image for another (used for tower construction or destruction)
+        /// </summary>
+        /// <param name="image">Image path</param>
         public void changeImage(String image)
         {
             this.image.Source = new BitmapImage(new Uri(image));
+
+            this.deltaX = (int)(this.image.Source.Width / 2);
+            this.deltaY = (int)(this.image.Source.Height / 1.35);
+            move(owner.X, owner.Y);
         }
 
         /// <summary>
