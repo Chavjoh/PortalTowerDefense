@@ -53,6 +53,12 @@ namespace PortalRush.Entity
         private View.Control.TowerControl control;
 
         /// <summary>
+        /// Get image path of the current tower
+        /// </summary>
+        /// <returns>Image path</returns>
+        public abstract string image();
+
+        /// <summary>
         /// Upgrade the tower to its next level
         /// </summary>
         public abstract void upgrade();

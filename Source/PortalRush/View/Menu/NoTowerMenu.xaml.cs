@@ -45,8 +45,7 @@ namespace PortalRush.View.Menu
         /// <param name="e"></param>
         private void imageArcher_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Console.WriteLine(towerLocation.X);
-            Console.WriteLine(towerLocation.Y);
+            this.towerLocation.createTower(new Entity.Towers.ArcherTower());
             Console.WriteLine("construction archer");
         }
 
@@ -57,8 +56,7 @@ namespace PortalRush.View.Menu
         /// <param name="e"></param>
         private void imageArtillery_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Console.WriteLine(towerLocation.X);
-            Console.WriteLine(towerLocation.Y);
+            this.towerLocation.createTower(new Entity.Towers.ArtilleryTower());
             Console.WriteLine("construction artillery");
         }
 
@@ -69,8 +67,7 @@ namespace PortalRush.View.Menu
         /// <param name="e"></param>
         private void imageMagic_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Console.WriteLine(towerLocation.X);
-            Console.WriteLine(towerLocation.Y);
+            this.towerLocation.createTower(new Entity.Towers.MagicTower());
             Console.WriteLine("construction magic");
         }
     }

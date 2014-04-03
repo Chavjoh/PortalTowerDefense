@@ -22,6 +22,10 @@ namespace PortalRush.Map
         /// </summary>
         public static String BaseFolder
         {
+            get
+            {
+                return baseFolder;
+            }
             set
             {
                 baseFolder = value;
@@ -137,7 +141,8 @@ namespace PortalRush.Map
         /// <param name="tower">Tower to place on this location</param>
         public void createTower(Entity.Tower tower)
         {
-
+            this.tower = tower;
+            this.control.changeImage(TowerLocation.BaseFolder + tower.image());
         }
 
         /// <summary>

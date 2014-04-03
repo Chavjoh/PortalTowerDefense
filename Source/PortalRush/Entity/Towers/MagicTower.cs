@@ -12,6 +12,15 @@ namespace PortalRush.Entity.Towers
     class MagicTower : Tower
     {
         /// <summary>
+        /// Get image path of the current tower
+        /// </summary>
+        /// <returns>Image path</returns>
+        public override string image()
+        {
+            return "magic.png";
+        }
+
+        /// <summary>
         /// Get the price of magic tower at given level
         /// </summary>
         /// <param name="level">Level of wanted tower</param>

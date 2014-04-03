@@ -67,6 +67,11 @@ namespace PortalRush.View.Control
             // Nothing
         }
 
+        public void changeImage(String image)
+        {
+            this.image.Source = new BitmapImage(new Uri(image));
+        }
+
         /// <summary>
         /// Change the Z Index of the element
         /// </summary>
