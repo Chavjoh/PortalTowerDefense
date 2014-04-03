@@ -53,6 +53,20 @@ namespace PortalRush.Map
         /// </summary>
         private View.Control.TowerLocationControl control;
 
+        #region Properties
+
+        public int X
+        {
+            get { return this.x; }
+        }
+
+        public int Y 
+        {
+            get { return this.y; }
+        }
+
+        #endregion
+
         /// <summary>
         /// Default constructor
         /// </summary>
