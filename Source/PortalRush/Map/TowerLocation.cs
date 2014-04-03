@@ -88,7 +88,14 @@ namespace PortalRush.Map
         /// </summary>
         public void click()
         {
-            Console.WriteLine("click");
+            if (this.tower == null)
+            {
+                this.clickCreate();
+            }
+            else
+            {
+                this.clickTower();
+            }
         }
 
         /// <summary>
@@ -96,7 +103,10 @@ namespace PortalRush.Map
         /// </summary>
         private void clickCreate()
         {
-
+            View.Menu.NoTowerMenu menu = new View.Menu.NoTowerMenu(this);
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            mainWindow.mainGrid.Children.Add(menu);
+            menu.Margin = new Thickness(this.x - menu.Width/2.0, this.y + menu.Height, 0, 0);
         }
 
         /// <summary>
@@ -104,7 +114,7 @@ namespace PortalRush.Map
         /// </summary>
         private void clickTower()
         {
-
+            Console.WriteLine("click on tower");
         }
 
         /// <summary>
