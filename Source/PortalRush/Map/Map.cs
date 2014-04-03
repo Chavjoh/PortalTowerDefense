@@ -106,10 +106,9 @@ namespace PortalRush.Map
         {
             mapFile = filepath;
 
-            layers = new List<View.Control.LayerControl>();
             monsters = new List<Entity.Monster>();
             points = new List<Point>();
-            towerLocations = new List<TowerLocation>();
+            
 
             if (File.Exists(mapFile))
             {
@@ -123,8 +122,6 @@ namespace PortalRush.Map
                 XmlNode monsterPath = mapDoc.SelectSingleNode("/portalRushMap/monsterPath");
                 XmlNode towerPath = mapDoc.SelectSingleNode("/portalRushMap/towerPath");
                 XmlNode mapPathPointList = mapDoc.SelectSingleNode("/portalRushMap/pathPointList");
-                XmlNode mapTowerPositionList = mapDoc.SelectSingleNode("/portalRushMap/towerPositionList");
-                XmlNode mapLayerList = mapDoc.SelectSingleNode("/portalRushMap/layerList");
                 
                 // Save map size
                 this.width = int.Parse(mapWidth.InnerText);
@@ -252,28 +249,12 @@ namespace PortalRush.Map
                 }
 
                 // Save all tower positions
-                foreach (XmlNode towerPosition in mapTowerPositionList)
-                {
-                    int x = int.Parse(towerPosition.Attributes.GetNamedItem("x").Value);
-                    int y = int.Parse(towerPosition.Attributes.GetNamedItem("y").Value);
-                    int layerIndex = int.Parse(towerPosition.Attributes.GetNamedItem("layerIndex").Value);
-
-                    this.towerLocations.Add(new TowerLocation(x, y, layerIndex));
-                }
+                loadTowerLocation(mapDoc);
 
                 /**
                  * Save all layers
                  */
-                this.layers = new List<View.Control.LayerControl>();
-                string layerLocation = mapLayerList.Attributes.GetNamedItem("location").Value;
-
-                foreach (XmlNode layer in mapLayerList)
-                {
-                    int layerIndex = int.Parse(layer.Attributes.GetNamedItem("layerIndex").Value);
-                    string layerImageName = layer.Attributes.GetNamedItem("image").Value;
-
-                    this.layers.Add(new View.Control.LayerControl(Path.GetDirectoryName(mapFile) + "\\" + layerLocation + layerImageName, layerIndex));
-                }
+                loadLayer(mapDoc);
 
                 /**
                  * Save points list in class attribute
@@ -313,19 +294,43 @@ namespace PortalRush.Map
         /// <summary>
         /// Load a map visual layer
         /// </summary>
-        /// <param name="xmlDocument">XML node representing layer</param>
-        private void loadLayer(XmlDocument xmlDocument)
+        /// <param name="mapDocument">XML Map Descriptof</param>
+        private void loadLayer(XmlDocument mapDocument)
         {
+            this.layers = new List<View.Control.LayerControl>();
+            XmlNode mapLayerList = mapDocument.SelectSingleNode("/portalRushMap/layerList");
+            string layerLocation = mapLayerList.Attributes.GetNamedItem("location").Value;
 
+            foreach (XmlNode layer in mapLayerList)
+            {
+                checkAttributeList(layer, new List<string> { "layerIndex", "image" }, "Layer : ");
+
+                int layerIndex = int.Parse(layer.Attributes.GetNamedItem("layerIndex").Value);
+                string layerImageName = layer.Attributes.GetNamedItem("image").Value;
+
+                this.layers.Add(new View.Control.LayerControl(Path.GetDirectoryName(mapFile) + "\\" + layerLocation + layerImageName, layerIndex));
+            }
         }
 
         /// <summary>
         /// Load a tower location on the map
         /// </summary>
-        /// <param name="xmlDocument">XML node representing tower location</param>
-        private void loadTowerLocation(XmlDocument xmlDocument)
+        /// <param name="mapDocument">XML Map Descriptor</param>
+        private void loadTowerLocation(XmlDocument mapDocument)
         {
+            towerLocations = new List<TowerLocation>();
+            XmlNode mapTowerPositionList = mapDocument.SelectSingleNode("/portalRushMap/towerPositionList");
 
+            foreach (XmlNode towerPosition in mapTowerPositionList)
+            {
+                checkAttributeList(towerPosition, new List<string> { "x", "y", "layerIndex" }, "TowerLocation : ");
+
+                int x = int.Parse(towerPosition.Attributes.GetNamedItem("x").Value);
+                int y = int.Parse(towerPosition.Attributes.GetNamedItem("y").Value);
+                int layerIndex = int.Parse(towerPosition.Attributes.GetNamedItem("layerIndex").Value);
+
+                this.towerLocations.Add(new TowerLocation(x, y, layerIndex));
+            }
         }
 
         /// <summary>
@@ -343,6 +348,23 @@ namespace PortalRush.Map
         private void linkPoints()
         {
 
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="attributeList"></param>
+        /// <param name="title"></param>
+        private void checkAttributeList(XmlNode node, List<string> attributeList, string title = "")
+        {
+            foreach (string attributeName in attributeList)
+            {
+                if (node.Attributes.GetNamedItem(attributeName) == null)
+                {
+                    throw new Exception(title + "Attribute " + attributeName + " not found.");
+                }
+            }
         }
 
         /// <summary>
