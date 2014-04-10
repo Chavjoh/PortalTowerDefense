@@ -18,6 +18,7 @@ namespace PortalRush.Entity.Towers
         public ArcherTower() : base()
         {
             // TODO : set this.attackRange, this.attackSpeed, this.attackDamage
+            GameEngine.GameManager.Instance.gainMoney(-1 * ArcherTower.getPrice(1));
         }
 
         /// <summary>
@@ -36,7 +37,17 @@ namespace PortalRush.Entity.Towers
         /// <returns>Price of an archer tower</returns>
         public static int getPrice(int level)
         {
-            return 0;
+            switch (level)
+            {
+                case 1:
+                    return 60;
+                case 2:
+                    return 100;
+                case 3:
+                    return 200;
+                default:
+                    return 1000000;
+            }
         }
 
         /// <summary>

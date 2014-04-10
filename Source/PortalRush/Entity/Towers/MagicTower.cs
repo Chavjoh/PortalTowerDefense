@@ -16,8 +16,9 @@ namespace PortalRush.Entity.Towers
         /// </summary>
         public MagicTower() : base()
         {
-            
+
             // TODO : set this.attackRange, this.attackSpeed, this.attackDamage
+            GameEngine.GameManager.Instance.gainMoney(-1 * MagicTower.getPrice(1));
         }
 
         /// <summary>
@@ -36,7 +37,17 @@ namespace PortalRush.Entity.Towers
         /// <returns>Price of a magic tower</returns>
         public static int getPrice(int level)
         {
-            return 0;
+            switch (level)
+            {
+                case 1:
+                    return 80;
+                case 2:
+                    return 180;
+                case 3:
+                    return 240;
+                default:
+                    return 1000000;
+            }
         }
 
         /// <summary>

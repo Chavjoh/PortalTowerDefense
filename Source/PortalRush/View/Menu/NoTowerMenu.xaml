@@ -3,16 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" d:DesignWidth="111" Height="32" Width="110" HorizontalAlignment="Left" VerticalAlignment="Top">
+             mc:Ignorable="d" d:DesignWidth="111" Height="52" Width="110" HorizontalAlignment="Left" VerticalAlignment="Top">
+    <UserControl.Resources>
+
+        <SolidColorBrush x:Key="BrushLabelPriceNegative" Color="#FF630000"/>
+
+    </UserControl.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="37*"/>
             <ColumnDefinition Width="37*"/>
             <ColumnDefinition Width="37*"/>
         </Grid.ColumnDefinitions>
-        <Image x:Name="imageArcher" MouseLeftButtonDown="imageArcher_MouseLeftButtonDown" Source="/PortalRush;component/Resources/archer.png" Width="32" Height="32" Margin="2,0,3,0"/>
-        <Image x:Name="imageArtillery" Grid.Column="1" MouseLeftButtonDown="imageArtillery_MouseLeftButtonDown" Source="/PortalRush;component/Resources/artillery.png" Width="32" Height="32" Margin="2,0"/>
-        <Image x:Name="imageMagic" Grid.Column="2" MouseLeftButtonDown="imageMagic_MouseLeftButtonDown" Source="/PortalRush;component/Resources/magic.png" Width="32" Height="32" Margin="3,0,2,0"/>
+        <Image x:Name="imageArcher" MouseLeftButtonDown="imageArcher_MouseLeftButtonDown" Source="/PortalRush;component/Resources/archer.png" Width="32" Height="32" Margin="2,0,3,0" MouseEnter="imageArcher_MouseEnter" MouseLeave="image_MouseLeave"/>
+        <Image x:Name="imageArtillery" Grid.Column="1" MouseLeftButtonDown="imageArtillery_MouseLeftButtonDown" Source="/PortalRush;component/Resources/artillery.png" Width="32" Height="32" Margin="2,0" MouseLeave="image_MouseLeave" MouseEnter="imageArtillery_MouseEnter" Opacity="0.3"/>
+        <Image x:Name="imageMagic" Grid.Column="2" MouseLeftButtonDown="imageMagic_MouseLeftButtonDown" Source="/PortalRush;component/Resources/magic.png" Width="32" Height="32" Margin="3,0,2,0" MouseLeave="image_MouseLeave" MouseEnter="imageMagic_MouseEnter"/>
+        <Label x:Name="labelPrice" Content="Price" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Grid.ColumnSpan="3" Foreground="{DynamicResource BrushLabelPriceNegative}" Padding="0" FontWeight="Bold" FontSize="14">
+            <Label.Effect>
+                <DropShadowEffect ShadowDepth="0" Direction="0" Color="White" BlurRadius="3"/>
+            </Label.Effect>
+        </Label>
 
     </Grid>
 </UserControl>

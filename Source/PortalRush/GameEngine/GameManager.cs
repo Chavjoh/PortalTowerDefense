@@ -195,6 +195,25 @@ namespace PortalRush.GameEngine
         }
 
         /// <summary>
+        /// Check if player can buy a thing or not
+        /// </summary>
+        /// <param name="cost"></param>
+        /// <returns></returns>
+        public bool canBuy(int cost)
+        {
+            return cost <= this.money;
+        }
+
+        /// <summary>
+        /// Gain (+) or lose (-) money
+        /// </summary>
+        /// <param name="money"></param>
+        public void gainMoney(int money)
+        {
+            this.money += money;
+        }
+
+        /// <summary>
         /// Lose a life
         /// </summary>
         public void lifeMinus()

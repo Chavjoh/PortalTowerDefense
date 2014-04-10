@@ -26,6 +26,11 @@ namespace PortalRush.View.Menu
         private Map.TowerLocation towerLocation;
 
         /// <summary>
+        /// Index of tower type on which the mouse is
+        /// </summary>
+        private int onTower;
+
+        /// <summary>
         /// Default constructor
         /// </summary>
         /// <param name="towerLocation">tower location on which build a tower</param>
@@ -36,6 +41,85 @@ namespace PortalRush.View.Menu
 
             // Associated requester
             this.towerLocation = towerLocation;
+
+            // Update max costs
+            this.updateMaxCost();
+        }
+
+        /// <summary>
+        /// Update available items, based on player's money
+        /// </summary>
+        /// <param name="money"></param>
+        public void updateMaxCost()
+        {
+            if (GameEngine.GameManager.Instance.canBuy(Entity.Towers.ArcherTower.getPrice(1)))
+            {
+                this.imageArcher.Opacity = 1;
+            }
+            else
+            {
+                this.imageArcher.Opacity = 0.3;
+            }
+            if (GameEngine.GameManager.Instance.canBuy(Entity.Towers.ArtilleryTower.getPrice(1)))
+            {
+                this.imageArtillery.Opacity = 1;
+            }
+            else
+            {
+                this.imageArtillery.Opacity = 0.3;
+            }
+            if (GameEngine.GameManager.Instance.canBuy(Entity.Towers.MagicTower.getPrice(1)))
+            {
+                this.imageMagic.Opacity = 1;
+            }
+            else
+            {
+                this.imageMagic.Opacity = 0.3;
+            }
+            this.updateLabel();
+        }
+
+        /// <summary>
+        /// Update label content
+        /// </summary>
+        private void updateLabel()
+        {
+            switch (this.onTower)
+            {
+                case 1:
+                    if (this.imageArcher.Opacity == 1)
+                    {
+                        this.labelPrice.Content = "-" + Entity.Towers.ArcherTower.getPrice(1).ToString() + "$";
+                    }
+                    else
+                    {
+                        this.labelPrice.Content = "Not enough $";
+                    }
+                    break;
+                case 2:
+                    if (this.imageArtillery.Opacity == 1)
+                    {
+                        this.labelPrice.Content = "-" + Entity.Towers.ArtilleryTower.getPrice(1).ToString() + "$";
+                    }
+                    else
+                    {
+                        this.labelPrice.Content = "Not enough $";
+                    }
+                    break;
+                case 3:
+                    if (this.imageMagic.Opacity == 1)
+                    {
+                        this.labelPrice.Content = "-" + Entity.Towers.MagicTower.getPrice(1).ToString() + "$";
+                    }
+                    else
+                    {
+                        this.labelPrice.Content = "Not enough $";
+                    }
+                    break;
+                default:
+                    this.labelPrice.Content = null;
+                    break;
+            }
         }
 
         /// <summary>
@@ -45,7 +129,21 @@ namespace PortalRush.View.Menu
         /// <param name="e"></param>
         private void imageArcher_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            this.towerLocation.createTower(new Entity.Towers.ArcherTower());
+            if (this.imageArcher.Opacity == 1)
+            {
+                this.towerLocation.createTower(new Entity.Towers.ArcherTower());
+            }
+        }
+
+        /// <summary>
+        /// Mouse enter an archer tower button, update displayed price
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void imageArcher_MouseEnter(object sender, MouseEventArgs e)
+        {
+            this.onTower = 1;
+            this.updateLabel();
         }
 
         /// <summary>
@@ -55,7 +153,21 @@ namespace PortalRush.View.Menu
         /// <param name="e"></param>
         private void imageArtillery_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            this.towerLocation.createTower(new Entity.Towers.ArtilleryTower());
+            if (this.imageArtillery.Opacity == 1)
+            {
+                this.towerLocation.createTower(new Entity.Towers.ArtilleryTower());
+            }
+        }
+
+        /// <summary>
+        /// Mouse enter an artillery tower button, update displayed price
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void imageArtillery_MouseEnter(object sender, MouseEventArgs e)
+        {
+            this.onTower = 2;
+            this.updateLabel();
         }
 
         /// <summary>
@@ -65,7 +177,32 @@ namespace PortalRush.View.Menu
         /// <param name="e"></param>
         private void imageMagic_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            this.towerLocation.createTower(new Entity.Towers.MagicTower());
+            if (this.imageMagic.Opacity == 1)
+            {
+                this.towerLocation.createTower(new Entity.Towers.MagicTower());
+            }
+        }
+
+        /// <summary>
+        /// Mouse enter a magic tower button, update displayed price
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void imageMagic_MouseEnter(object sender, MouseEventArgs e)
+        {
+            this.onTower = 3;
+            this.updateLabel();
+        }
+
+        /// <summary>
+        /// Mouse leave a tower button, clear displayed price
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void image_MouseLeave(object sender, MouseEventArgs e)
+        {
+            this.onTower = 0;
+            this.updateLabel();
         }
     }
 }
