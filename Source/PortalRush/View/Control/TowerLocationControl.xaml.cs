@@ -82,19 +82,6 @@ namespace PortalRush.View.Control
         }
 
         /// <summary>
-        /// Change image for another (used for tower construction or destruction)
-        /// </summary>
-        /// <param name="image">Image path</param>
-        public void changeImage(String image)
-        {
-            this.image.Source = new BitmapImage(new Uri(image));
-
-            this.deltaX = (int)(this.image.Source.Width / 2);
-            this.deltaY = (int)(this.image.Source.Height / 1.35);
-            move(owner.X, owner.Y);
-        }
-
-        /// <summary>
         /// Change the Z Index of the element
         /// </summary>
         /// <param name="index">Z-index of element in canvas</param>

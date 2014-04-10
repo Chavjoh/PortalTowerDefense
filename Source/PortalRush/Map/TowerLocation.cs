@@ -143,7 +143,10 @@ namespace PortalRush.Map
         /// </summary>
         private void clickTower()
         {
-            Console.WriteLine("click on tower");
+            View.Menu.TowerMenu menu = new View.Menu.TowerMenu(this);
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            mainWindow.mainGrid.Children.Add(menu);
+            menu.Margin = new Thickness(this.x - menu.Width / 2.0, this.y + menu.Height, 0, 0);
         }
 
         /// <summary>
@@ -155,7 +158,6 @@ namespace PortalRush.Map
             this.setTower(tower);
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             mainWindow.clearAllMenus();
-            //this.control.changeImage(TowerLocation.BaseFolder + tower.image());
         }
 
         /// <summary>

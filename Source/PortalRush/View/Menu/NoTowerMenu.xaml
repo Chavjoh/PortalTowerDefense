@@ -6,13 +6,13 @@
              mc:Ignorable="d" d:DesignWidth="111" Height="32" Width="110" HorizontalAlignment="Left" VerticalAlignment="Top">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="37*"/>
+            <ColumnDefinition Width="37*"/>
+            <ColumnDefinition Width="37*"/>
         </Grid.ColumnDefinitions>
-        <Image x:Name="imageArcher" MouseLeftButtonDown="imageArcher_MouseLeftButtonDown" Source="/PortalRush;component/Resources/archer.png" Width="32" Height="32"/>
-        <Image x:Name="imageArtillery" Grid.Column="1" MouseLeftButtonDown="imageArtillery_MouseLeftButtonDown" Source="/PortalRush;component/Resources/artillery.png" Width="32" Height="32"/>
-        <Image x:Name="imageMagic" Grid.Column="2" MouseLeftButtonDown="imageMagic_MouseLeftButtonDown" Source="/PortalRush;component/Resources/magic.png" Width="32" Height="32"/>
+        <Image x:Name="imageArcher" MouseLeftButtonDown="imageArcher_MouseLeftButtonDown" Source="/PortalRush;component/Resources/archer.png" Width="32" Height="32" Margin="2,0,3,0"/>
+        <Image x:Name="imageArtillery" Grid.Column="1" MouseLeftButtonDown="imageArtillery_MouseLeftButtonDown" Source="/PortalRush;component/Resources/artillery.png" Width="32" Height="32" Margin="2,0"/>
+        <Image x:Name="imageMagic" Grid.Column="2" MouseLeftButtonDown="imageMagic_MouseLeftButtonDown" Source="/PortalRush;component/Resources/magic.png" Width="32" Height="32" Margin="3,0,2,0"/>
 
     </Grid>
 </UserControl>

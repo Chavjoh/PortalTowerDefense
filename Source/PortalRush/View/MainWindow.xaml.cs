@@ -65,6 +65,10 @@ namespace PortalRush
                 {
                     listDelete.Add(uiElement);
                 }
+                else if (uiElement is View.Menu.TowerMenu)
+                {
+                    listDelete.Add(uiElement);
+                }
             }
             foreach (UIElement uiElement in listDelete)
             {
