@@ -227,14 +227,13 @@ namespace PortalRush.Map
         /// <summary>
         /// Load a point on the map
         /// </summary>
-        /// <param name="XmlNode">XML node representing point</param>
+        /// <param name="pathPoint">XML node representing point</param>
+        /// <param name="pointList">List of all points</param>
+        /// <param name="bindList">List of points to bind between them</param>
         private void loadPoint(XmlNode pathPoint, Dictionary<string, Point> pointList, Dictionary<string, string> bindList)
         {
             Point mapPoint;
 
-            /**
-             * Common values
-             */
             string id = pathPoint.Attributes.GetNamedItem("id").Value;
             string idNext = (pathPoint.Attributes.GetNamedItem("next") != null) ? pathPoint.Attributes.GetNamedItem("next").Value : "";
 
@@ -328,6 +327,8 @@ namespace PortalRush.Map
         /// <summary>
         /// Link the Point objects like described in XML file
         /// </summary>
+        /// <param name="pointList">List of all points</param>
+        /// <param name="bindList">List of points to bind between them</param>
         private void linkPoints(Dictionary<string, Point> pointList, Dictionary<string, string> bindList)
         {
             foreach (KeyValuePair<string, string> bindPair in bindList)
@@ -344,11 +345,11 @@ namespace PortalRush.Map
         }
 
         /// <summary>
-        /// 
+        /// Check if a list of attributes exist in a node
         /// </summary>
-        /// <param name="node"></param>
-        /// <param name="attributeList"></param>
-        /// <param name="title"></param>
+        /// <param name="node">Node to check the attribute in list</param>
+        /// <param name="attributeList">List of attribute to check in node</param>
+        /// <param name="title">Exception title</param>
         private void checkAttributeList(XmlNode node, List<string> attributeList, string title = "")
         {
             foreach (string attributeName in attributeList)
