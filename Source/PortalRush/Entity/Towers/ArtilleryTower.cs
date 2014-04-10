@@ -55,7 +55,11 @@ namespace PortalRush.Entity.Towers
         /// </summary>
         public override void upgrade()
         {
-
+            if (this.level < 3)
+            {
+                this.level++;
+                GameEngine.GameManager.Instance.gainMoney(-1 * ArtilleryTower.getPrice(this.level));
+            }
         }
     }
 }

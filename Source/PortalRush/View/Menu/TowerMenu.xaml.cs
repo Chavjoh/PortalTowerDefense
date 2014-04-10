@@ -59,21 +59,21 @@ namespace PortalRush.View.Menu
             {
                 if (this.towerLocation.Tower is Entity.Towers.ArcherTower)
                 {
-                    if (GameEngine.GameManager.Instance.canBuy(Entity.Towers.ArcherTower.getPrice(this.towerLocation.Tower.Level)))
+                    if (GameEngine.GameManager.Instance.canBuy(Entity.Towers.ArcherTower.getPrice(this.towerLocation.Tower.Level+1)))
                     {
                         this.imageUpgrade.Opacity = 1;
                     }
                 }
                 else if (this.towerLocation.Tower is Entity.Towers.ArtilleryTower)
                 {
-                    if (GameEngine.GameManager.Instance.canBuy(Entity.Towers.ArtilleryTower.getPrice(this.towerLocation.Tower.Level)))
+                    if (GameEngine.GameManager.Instance.canBuy(Entity.Towers.ArtilleryTower.getPrice(this.towerLocation.Tower.Level+1)))
                     {
                         this.imageUpgrade.Opacity = 1;
                     }
                 }
                 else if (this.towerLocation.Tower is Entity.Towers.MagicTower)
                 {
-                    if (GameEngine.GameManager.Instance.canBuy(Entity.Towers.MagicTower.getPrice(this.towerLocation.Tower.Level)))
+                    if (GameEngine.GameManager.Instance.canBuy(Entity.Towers.MagicTower.getPrice(this.towerLocation.Tower.Level+1)))
                     {
                         this.imageUpgrade.Opacity = 1;
                     }
@@ -148,7 +148,9 @@ namespace PortalRush.View.Menu
         {
             if (this.imageUpgrade.Opacity == 1)
             {
-                Console.WriteLine("upgrade");
+                this.towerLocation.Tower.upgrade();
+                MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+                mainWindow.clearAllMenus();
             }
         }
 
