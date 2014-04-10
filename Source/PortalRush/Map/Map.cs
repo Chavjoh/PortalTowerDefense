@@ -104,170 +104,10 @@ namespace PortalRush.Map
         /// <param name="filepath">XML file path for map loading</param>
         public Map(String filepath)
         {
-            mapFile = filepath;
-
             monsters = new List<Entity.Monster>();
             points = new List<Point>();
-            
 
-            if (File.Exists(mapFile))
-            {
-                // Load XML from map file
-                XmlDocument mapDoc = new XmlDocument();
-                mapDoc.Load(mapFile);
-                
-                // Load nodes
-                XmlNode mapWidth = mapDoc.SelectSingleNode("/portalRushMap/width");
-                XmlNode mapHeight = mapDoc.SelectSingleNode("/portalRushMap/height");
-                XmlNode monsterPath = mapDoc.SelectSingleNode("/portalRushMap/monsterPath");
-                XmlNode towerPath = mapDoc.SelectSingleNode("/portalRushMap/towerPath");
-                XmlNode mapPathPointList = mapDoc.SelectSingleNode("/portalRushMap/pathPointList");
-                
-                // Save map size
-                this.width = int.Parse(mapWidth.InnerText);
-                this.height = int.Parse(mapHeight.InnerText);
-
-                // Save monster path
-                Entity.Monster.BaseFolder = Path.GetDirectoryName(mapFile) + "\\" + monsterPath.InnerText;
-                TowerLocation.BaseFolder = Path.GetDirectoryName(mapFile) + "\\" + towerPath.InnerText;
-
-                // Store point list to bind them together
-                Dictionary<string, Point> pointList = new Dictionary<string, Point>();
-                Dictionary<string, string> bindList = new Dictionary<string, string>();
-                
-                // Save all path points
-                foreach (XmlNode pathPoint in mapPathPointList)
-                {
-                    Point mapPoint;
-
-                    /**
-                     * Common values
-                     */
-                    string id = pathPoint.Attributes.GetNamedItem("id").Value;
-                    string idNext = (pathPoint.Attributes.GetNamedItem("next") != null) ? pathPoint.Attributes.GetNamedItem("next").Value : "";
-
-                    int x = int.Parse(pathPoint.Attributes.GetNamedItem("x").Value);
-                    int y = int.Parse(pathPoint.Attributes.GetNamedItem("y").Value);
-
-                    string monsterOrientationName = (pathPoint.Attributes.GetNamedItem("monsterOrientation") != null) ? pathPoint.Attributes.GetNamedItem("monsterOrientation").Value : "";
-                    Entity.MonsterOrientation monsterOrientation;
-                    int layerIndex = (pathPoint.Attributes.GetNamedItem("layerIndex") != null) ? int.Parse(pathPoint.Attributes.GetNamedItem("layerIndex").Value) : -1 ;
-
-                    switch (monsterOrientationName)
-                    {
-                        case "REAR_LEFT":
-                            monsterOrientation = Entity.MonsterOrientation.REAR_LEFT;
-                            break;
-
-                        case "REAR_RIGHT":
-                            monsterOrientation = Entity.MonsterOrientation.REAR_RIGHT;
-                            break;
-
-                        case "FRONT_LEFT":
-                            monsterOrientation = Entity.MonsterOrientation.FRONT_LEFT;
-                            break;
-
-                        case "FRONT_RIGHT":
-                            monsterOrientation = Entity.MonsterOrientation.FRONT_RIGHT;
-                            break;
-
-                        default:
-                            monsterOrientation = Entity.MonsterOrientation.NULL;
-                            break;
-                    }
-
-                    switch (pathPoint.Name)
-                    {
-                        case "spawnPoint":
-                            mapPoint = new Points.SpawnPoint(x, y, monsterOrientation, layerIndex);
-
-                            foreach(XmlNode monsterOnSpawnPoint in pathPoint)
-                            {
-                                // Common values
-                                int interval = int.Parse(monsterOnSpawnPoint.Attributes.GetNamedItem("interval").Value);
-                                int startTime = int.Parse(monsterOnSpawnPoint.Attributes.GetNamedItem("startTime").Value);
-                                int quantity = int.Parse(monsterOnSpawnPoint.Attributes.GetNamedItem("quantity").Value);
-                                Entity.MonsterType monsterType;
-
-                                // Choose monster type
-                                switch(monsterOnSpawnPoint.Name)
-                                {
-                                    case "chell":
-                                        monsterType = Entity.MonsterType.CHELL;
-                                        break;
-
-                                    default:
-                                        throw new Exception("Invalid monster type (" + monsterOnSpawnPoint.Name + ")");
-                                }
-
-                                // Create each monster at the good start time
-                                for (int currentTime = startTime; currentTime < (startTime + quantity * interval); currentTime += interval)
-                                {
-                                    ((Points.SpawnPoint)mapPoint).spawn(currentTime, monsterType);
-                                }
-                            }
-                            break;
-
-                        case "pathPoint":
-                            mapPoint = new Points.PathPoint(x, y, monsterOrientation, layerIndex);
-                            break;
-
-                        case "portalPoint":
-                            mapPoint = new Points.PortalPoint(x, y, monsterOrientation, layerIndex);
-                            break;
-
-                        case "targetPoint":
-                            mapPoint = new Points.TargetPoint(x, y);
-                            break;
-
-                        default:
-                            throw new Exception("Node type not registered (" + pathPoint.Name + ") in map file.");
-                    }
-
-                    pointList.Add(id, mapPoint);
-
-                    // Remember to bind it with another point if indicated
-                    if (!String.IsNullOrEmpty(idNext))
-                    {
-                        bindList.Add(id, idNext);
-                    }
-                }
-
-                /**
-                 * Bind map points together
-                 */
-                foreach (KeyValuePair<string, string> bindPair in bindList)
-                {
-                    if (pointList.ContainsKey(bindPair.Key) && pointList.ContainsKey(bindPair.Value))
-                    {
-                        pointList[bindPair.Key].Next = pointList[bindPair.Value];
-                    }
-                    else
-                    {
-                        throw new Exception("Invalid map points binding between ID " + bindPair.Key + " and ID " + bindPair.Value);
-                    }
-                }
-
-                // Save all tower positions
-                loadTowerLocation(mapDoc);
-
-                /**
-                 * Save all layers
-                 */
-                loadLayer(mapDoc);
-
-                /**
-                 * Save points list in class attribute
-                 */
-                foreach (KeyValuePair<string, Point> pointPair in pointList)
-                {
-                    this.points.Add(pointPair.Value);
-                }
-            }
-            else
-            {
-                throw new FileNotFoundException("Map configuration file not found (searching for " + mapFile + ").");
-            }
+            this.loadMap(filepath);
         }
 
         /// <summary>
@@ -288,7 +128,58 @@ namespace PortalRush.Map
         /// <param name="filepath">XML file path for map loading</param>
         private void loadMap(String filepath)
         {
+            mapFile = filepath;
 
+            if (File.Exists(mapFile))
+            {
+                // Load XML from map file
+                XmlDocument mapDoc = new XmlDocument();
+                mapDoc.Load(mapFile);
+
+                // Load nodes
+                XmlNode mapWidth = mapDoc.SelectSingleNode("/portalRushMap/width");
+                XmlNode mapHeight = mapDoc.SelectSingleNode("/portalRushMap/height");
+                XmlNode monsterPath = mapDoc.SelectSingleNode("/portalRushMap/monsterPath");
+                XmlNode towerPath = mapDoc.SelectSingleNode("/portalRushMap/towerPath");
+                XmlNode mapPathPointList = mapDoc.SelectSingleNode("/portalRushMap/pathPointList");
+
+                // Save map size
+                this.width = int.Parse(mapWidth.InnerText);
+                this.height = int.Parse(mapHeight.InnerText);
+
+                // Save monster path
+                Entity.Monster.BaseFolder = Path.GetDirectoryName(mapFile) + "\\" + monsterPath.InnerText;
+                TowerLocation.BaseFolder = Path.GetDirectoryName(mapFile) + "\\" + towerPath.InnerText;
+
+                // Store point list to bind them together
+                Dictionary<string, Point> pointList = new Dictionary<string, Point>();
+                Dictionary<string, string> bindList = new Dictionary<string, string>();
+
+                // Save all path points
+                foreach (XmlNode pathPoint in mapPathPointList)
+                {
+                    loadPoint(pathPoint, pointList, bindList);
+                }
+
+                // Bind points
+                linkPoints(pointList, bindList);
+
+                // Save all tower positions
+                loadTowerLocation(mapDoc);
+
+                // Save all layers
+                loadLayer(mapDoc);
+
+                // Save points list in class attribute
+                foreach (KeyValuePair<string, Point> pointPair in pointList)
+                {
+                    this.points.Add(pointPair.Value);
+                }
+            }
+            else
+            {
+                throw new FileNotFoundException("Map configuration file not found (searching for " + mapFile + ").");
+            }
         }
 
         /// <summary>
@@ -336,18 +227,120 @@ namespace PortalRush.Map
         /// <summary>
         /// Load a point on the map
         /// </summary>
-        /// <param name="xmlDocument">XML node representing point</param>
-        private void loadPoint(XmlDocument xmlDocument)
+        /// <param name="XmlNode">XML node representing point</param>
+        private void loadPoint(XmlNode pathPoint, Dictionary<string, Point> pointList, Dictionary<string, string> bindList)
         {
+            Point mapPoint;
 
+            /**
+             * Common values
+             */
+            string id = pathPoint.Attributes.GetNamedItem("id").Value;
+            string idNext = (pathPoint.Attributes.GetNamedItem("next") != null) ? pathPoint.Attributes.GetNamedItem("next").Value : "";
+
+            int x = int.Parse(pathPoint.Attributes.GetNamedItem("x").Value);
+            int y = int.Parse(pathPoint.Attributes.GetNamedItem("y").Value);
+
+            string monsterOrientationName = (pathPoint.Attributes.GetNamedItem("monsterOrientation") != null) ? pathPoint.Attributes.GetNamedItem("monsterOrientation").Value : "";
+            Entity.MonsterOrientation monsterOrientation;
+            int layerIndex = (pathPoint.Attributes.GetNamedItem("layerIndex") != null) ? int.Parse(pathPoint.Attributes.GetNamedItem("layerIndex").Value) : -1;
+
+            switch (monsterOrientationName)
+            {
+                case "REAR_LEFT":
+                    monsterOrientation = Entity.MonsterOrientation.REAR_LEFT;
+                    break;
+
+                case "REAR_RIGHT":
+                    monsterOrientation = Entity.MonsterOrientation.REAR_RIGHT;
+                    break;
+
+                case "FRONT_LEFT":
+                    monsterOrientation = Entity.MonsterOrientation.FRONT_LEFT;
+                    break;
+
+                case "FRONT_RIGHT":
+                    monsterOrientation = Entity.MonsterOrientation.FRONT_RIGHT;
+                    break;
+
+                default:
+                    monsterOrientation = Entity.MonsterOrientation.NULL;
+                    break;
+            }
+
+            switch (pathPoint.Name)
+            {
+                case "spawnPoint":
+                    mapPoint = new Points.SpawnPoint(x, y, monsterOrientation, layerIndex);
+
+                    foreach (XmlNode monsterOnSpawnPoint in pathPoint)
+                    {
+                        // Common values
+                        int interval = int.Parse(monsterOnSpawnPoint.Attributes.GetNamedItem("interval").Value);
+                        int startTime = int.Parse(monsterOnSpawnPoint.Attributes.GetNamedItem("startTime").Value);
+                        int quantity = int.Parse(monsterOnSpawnPoint.Attributes.GetNamedItem("quantity").Value);
+                        Entity.MonsterType monsterType;
+
+                        // Choose monster type
+                        switch (monsterOnSpawnPoint.Name)
+                        {
+                            case "chell":
+                                monsterType = Entity.MonsterType.CHELL;
+                                break;
+
+                            default:
+                                throw new Exception("Invalid monster type (" + monsterOnSpawnPoint.Name + ")");
+                        }
+
+                        // Create each monster at the good start time
+                        for (int currentTime = startTime; currentTime < (startTime + quantity * interval); currentTime += interval)
+                        {
+                            ((Points.SpawnPoint)mapPoint).spawn(currentTime, monsterType);
+                        }
+                    }
+                    break;
+
+                case "pathPoint":
+                    mapPoint = new Points.PathPoint(x, y, monsterOrientation, layerIndex);
+                    break;
+
+                case "portalPoint":
+                    mapPoint = new Points.PortalPoint(x, y, monsterOrientation, layerIndex);
+                    break;
+
+                case "targetPoint":
+                    mapPoint = new Points.TargetPoint(x, y);
+                    break;
+
+                default:
+                    throw new Exception("Node type not registered (" + pathPoint.Name + ") in map file.");
+            }
+
+            pointList.Add(id, mapPoint);
+
+            // Remember to bind it with another point if indicated
+            if (!String.IsNullOrEmpty(idNext))
+            {
+                bindList.Add(id, idNext);
+            }
         }
 
         /// <summary>
         /// Link the Point objects like described in XML file
         /// </summary>
-        private void linkPoints()
+        private void linkPoints(Dictionary<string, Point> pointList, Dictionary<string, string> bindList)
         {
-
+            foreach (KeyValuePair<string, string> bindPair in bindList)
+            {
+                if (pointList.ContainsKey(bindPair.Key) && pointList.ContainsKey(bindPair.Value))
+                {
+                    pointList[bindPair.Key].Next = pointList[bindPair.Value];
+                }
+                else
+                {
+                    throw new Exception("Invalid map points binding between ID " + bindPair.Key + " and ID " + bindPair.Value);
+                }
+            }
         }
 
         /// <summary>
