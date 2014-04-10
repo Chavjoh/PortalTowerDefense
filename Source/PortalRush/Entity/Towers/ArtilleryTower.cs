@@ -12,6 +12,14 @@ namespace PortalRush.Entity.Towers
     class ArtilleryTower : Tower
     {
         /// <summary>
+        /// Default constructor
+        /// </summary>
+        public ArtilleryTower() : base()
+        {
+            // TODO : set this.attackRange, this.attackSpeed, this.attackDamage
+        }
+
+        /// <summary>
         /// Get image path of the current tower
         /// </summary>
         /// <returns>Image path</returns>

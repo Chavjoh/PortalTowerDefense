@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace PortalRush.Entity
 {
@@ -50,7 +51,33 @@ namespace PortalRush.Entity
         /// <summary>
         /// Visual control, drawing the tower at its location
         /// </summary>
-        private View.Control.TowerControl control;
+        protected View.Control.TowerControl control;
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public Tower()
+        {
+            // Set level
+            this.level = 1;
+
+            // Create lists
+            this.attackedMonsters = new List<Monster>();
+            this.bullets = new List<Bullet>();
+
+            // No location linked at creation
+            this.location = null;
+
+            // Prepare visual control
+            String image = Map.TowerLocation.BaseFolder + this.image();
+
+            // Add visual control to UI
+            Application.Current.Dispatcher.BeginInvoke((Action)delegate()
+            {
+                this.control = new View.Control.TowerControl(image);
+                this.control.changeDelta(36, 50);
+            });
+        }
 
         /// <summary>
         /// Get image path of the current tower
@@ -70,6 +97,19 @@ namespace PortalRush.Entity
         public void tick()
         {
 
+        }
+
+        public void place(Map.TowerLocation location)
+        {
+            // Assign location
+            this.location = location;
+
+            // Move visual control
+            Application.Current.Dispatcher.BeginInvoke((Action)delegate()
+            {
+                this.control.move(this.location.X, this.location.Y);
+                this.control.changeZIndex(this.location.LayerIndex);
+            });
         }
 
         /// <summary>

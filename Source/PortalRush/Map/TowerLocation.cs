@@ -51,6 +51,14 @@ namespace PortalRush.Map
         /// Linked tower, occupying the location
         /// </summary>
         private Entity.Tower tower;
+
+        public int LayerIndex
+        {
+            get
+            {
+                return this.layerIndex;
+            }
+        }
         
         /// <summary>
         /// Visual control, drawing the tower location and sub-menu when user acting with location
@@ -141,8 +149,8 @@ namespace PortalRush.Map
         /// <param name="tower">Tower to place on this location</param>
         public void createTower(Entity.Tower tower)
         {
-            this.tower = tower;
-            this.control.changeImage(TowerLocation.BaseFolder + tower.image());
+            this.setTower(tower);
+            //this.control.changeImage(TowerLocation.BaseFolder + tower.image());
         }
 
         /// <summary>
@@ -159,7 +167,11 @@ namespace PortalRush.Map
         /// <param name="tower">Tower to place, or null</param>
         private void setTower(Entity.Tower tower)
         {
-
+            if (this.tower == null)
+            {
+                this.tower = tower;
+                this.tower.place(this);
+            }
         }
     }
 }

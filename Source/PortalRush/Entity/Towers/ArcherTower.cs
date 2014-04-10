@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace PortalRush.Entity.Towers
 {
@@ -11,6 +12,14 @@ namespace PortalRush.Entity.Towers
     /// </summary>
     class ArcherTower : Tower
     {
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public ArcherTower() : base()
+        {
+            // TODO : set this.attackRange, this.attackSpeed, this.attackDamage
+        }
+
         /// <summary>
         /// Get image path of the current tower
         /// </summary>
