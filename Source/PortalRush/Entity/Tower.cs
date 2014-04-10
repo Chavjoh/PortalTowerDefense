@@ -99,6 +99,10 @@ namespace PortalRush.Entity
 
         }
 
+        /// <summary>
+        /// Place the tower on a map location
+        /// </summary>
+        /// <param name="location">Location on which place the tower</param>
         public void place(Map.TowerLocation location)
         {
             // Assign location

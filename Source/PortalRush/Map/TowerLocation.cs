@@ -52,6 +52,9 @@ namespace PortalRush.Map
         /// </summary>
         private Entity.Tower tower;
 
+        /// <summary>
+        /// Layer index to position tower
+        /// </summary>
         public int LayerIndex
         {
             get
@@ -132,7 +135,7 @@ namespace PortalRush.Map
             View.Menu.NoTowerMenu menu = new View.Menu.NoTowerMenu(this);
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             mainWindow.mainGrid.Children.Add(menu);
-            menu.Margin = new Thickness(this.x - menu.Width/2.0, this.y + menu.Height, 0, 0);
+            menu.Margin = new Thickness(this.x - menu.Width / 2.0, this.y + menu.Height, 0, 0);
         }
 
         /// <summary>
@@ -150,6 +153,8 @@ namespace PortalRush.Map
         public void createTower(Entity.Tower tower)
         {
             this.setTower(tower);
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            mainWindow.clearAllMenus();
             //this.control.changeImage(TowerLocation.BaseFolder + tower.image());
         }
 

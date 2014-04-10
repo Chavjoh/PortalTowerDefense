@@ -53,6 +53,26 @@ namespace PortalRush
         }
 
         /// <summary>
+        /// Clear all remaining menus on MainWindow
+        /// </summary>
+        public void clearAllMenus()
+        {
+            // Delete remaining menu(s) of towers
+            List<UIElement> listDelete = new List<UIElement>();
+            foreach (UIElement uiElement in this.mainGrid.Children)
+            {
+                if (uiElement is View.Menu.NoTowerMenu)
+                {
+                    listDelete.Add(uiElement);
+                }
+            }
+            foreach (UIElement uiElement in listDelete)
+            {
+                this.mainGrid.Children.Remove(uiElement);
+            }
+        }
+
+        /// <summary>
         /// Closing procedure, must stop subthreads
         /// </summary>
         /// <param name="sender"></param>
@@ -70,18 +90,7 @@ namespace PortalRush
         private void mainCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             // Delete remaining menu(s) of towers
-            List<UIElement> listDelete = new List<UIElement>();
-            foreach (UIElement uiElement in this.mainGrid.Children)
-            {
-                if (uiElement is View.Menu.NoTowerMenu)
-                {
-                    listDelete.Add(uiElement);
-                }
-            }
-            foreach (UIElement uiElement in listDelete)
-            {
-                this.mainGrid.Children.Remove(uiElement);
-            }
+            this.clearAllMenus();
 
             // Search for clicked tower location
             foreach (UIElement uiElement in this.mainCanvas.Children)
