@@ -54,6 +54,17 @@ namespace PortalRush.Entity
         protected View.Control.TowerControl control;
 
         /// <summary>
+        /// Current tower level
+        /// </summary>
+        public int Level
+        {
+            get
+            {
+                return this.level;
+            }
+        }
+
+        /// <summary>
         /// Default constructor
         /// </summary>
         public Tower()

@@ -62,6 +62,17 @@ namespace PortalRush.Map
                 return this.layerIndex;
             }
         }
+
+        /// <summary>
+        /// Linked tower, occupying the location
+        /// </summary>
+        public Entity.Tower Tower
+        {
+            get
+            {
+                return this.tower;
+            }
+        }
         
         /// <summary>
         /// Visual control, drawing the tower location and sub-menu when user acting with location
@@ -146,7 +157,7 @@ namespace PortalRush.Map
             View.Menu.TowerMenu menu = new View.Menu.TowerMenu(this);
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             mainWindow.mainGrid.Children.Add(menu);
-            menu.Margin = new Thickness(this.x - menu.Width / 2.0, this.y + menu.Height, 0, 0);
+            menu.Margin = new Thickness(this.x - menu.Width / 2.0, this.y + menu.Height / 2.0, 0, 0);
         }
 
         /// <summary>

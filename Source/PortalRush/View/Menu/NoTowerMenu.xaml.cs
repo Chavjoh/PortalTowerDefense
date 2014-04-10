@@ -42,6 +42,9 @@ namespace PortalRush.View.Menu
             // Associated requester
             this.towerLocation = towerLocation;
 
+            // Set default tower
+            this.onTower = 0;
+
             // Update max costs
             this.updateMaxCost();
         }
@@ -49,7 +52,6 @@ namespace PortalRush.View.Menu
         /// <summary>
         /// Update available items, based on player's money
         /// </summary>
-        /// <param name="money"></param>
         public void updateMaxCost()
         {
             if (GameEngine.GameManager.Instance.canBuy(Entity.Towers.ArcherTower.getPrice(1)))

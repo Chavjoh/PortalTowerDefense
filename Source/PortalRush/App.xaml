@@ -5,6 +5,7 @@
     <Application.Resources>
 
         <SolidColorBrush x:Key="BrushLabelPricePositive" Color="#FF007400"/>
+        <SolidColorBrush x:Key="BrushLabelPriceNegative" Color="#FF630000"/>
 
     </Application.Resources>
 </Application>
