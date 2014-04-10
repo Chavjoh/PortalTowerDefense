@@ -119,7 +119,19 @@ namespace PortalRush.Map
         /// <returns>List of retrieved monsters</returns>
         public List<Entity.Monster> monstersInRange(int x, int y, int range)
         {
-            return null;
+            List<Entity.Monster> monsterInRange = new List<Entity.Monster>();
+
+            foreach (Entity.Monster monster in monsters)
+            {
+                int distance = (int) Math.Sqrt(Math.Pow(monster.X - x, 2) + Math.Pow(monster.Y - y, 2));
+                
+                if (distance < range)
+                {
+                    monsterInRange.Add(monster);
+                }
+            }
+
+            return monsterInRange;
         }
 
         /// <summary>
