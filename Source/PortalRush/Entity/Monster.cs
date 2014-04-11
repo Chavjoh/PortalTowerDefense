@@ -196,7 +196,7 @@ namespace PortalRush.Entity
                     this.strenghArmor = 20;
                     this.magicArmor = 5;
                     this.health = 100;
-                    this.money = 5;
+                    this.money = 10;
                     name = "Chell\\";
                     break;
                 default:
@@ -261,6 +261,13 @@ namespace PortalRush.Entity
                     this.step = 1;
                 }
                 this.updateStep();
+                this.health -= 2;
+
+                // Add visual control to UI
+                Application.Current.Dispatcher.BeginInvoke((Action)delegate()
+                {
+                    this.control.setLife(this.health);
+                });
             }
 
             // If point reached, head to next

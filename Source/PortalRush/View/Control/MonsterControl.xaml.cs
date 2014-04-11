@@ -46,7 +46,7 @@ namespace PortalRush.View.Control
 
             // Differentials
             this.deltaX = deltaX;
-            this.deltaY = deltaY;
+            this.deltaY = deltaY + this.mainGrid.RowDefinitions[0].Height.Value + this.mainGrid.RowDefinitions[1].Height.Value;
 
             // Dictionary of images
             this.images = new Dictionary<int, BitmapImage>();
@@ -89,6 +89,31 @@ namespace PortalRush.View.Control
         {
             Canvas.SetLeft(this, x - this.deltaX);
             Canvas.SetTop(this, y - this.deltaY);
+        }
+
+        /// <summary>
+        /// Define the value of lifebar
+        /// </summary>
+        /// <param name="life">Value in percent</param>
+        public void setLife(int life)
+        {
+            life /= 2;
+            if (life >= 0 && life <= 50)
+            {
+                this.lifeBar.Width = life;
+                if (life > 25)
+                {
+                    this.lifeBar.Fill = (System.Windows.Media.Brush)Application.Current.FindResource("BrushLifeGreen");
+                }
+                else if (life > 10)
+                {
+                    this.lifeBar.Fill = (System.Windows.Media.Brush)Application.Current.FindResource("BrushLifeOrange");
+                }
+                else
+                {
+                    this.lifeBar.Fill = (System.Windows.Media.Brush)Application.Current.FindResource("BrushLifeRed");
+                }
+            }
         }
     }
 }

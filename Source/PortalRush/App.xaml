@@ -6,6 +6,9 @@
 
         <SolidColorBrush x:Key="BrushLabelPricePositive" Color="#FF007400"/>
         <SolidColorBrush x:Key="BrushLabelPriceNegative" Color="#FF630000"/>
+        <SolidColorBrush x:Key="BrushLifeRed" Color="Red"/>
+        <SolidColorBrush x:Key="BrushLifeOrange" Color="#FFFF9700"/>
+        <SolidColorBrush x:Key="BrushLifeGreen" Color="#FF21F500"/>
 
     </Application.Resources>
 </Application>
