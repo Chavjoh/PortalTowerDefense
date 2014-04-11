@@ -79,6 +79,31 @@ namespace PortalRush.Map
         }
 
         /// <summary>
+        /// Distance from this point to the path target point
+        /// </summary>
+        public int DistanceToTarget
+        {
+            get
+            {
+                if (this.distanceToTarget == -1)
+                {
+                    if (this.next == null)
+                    {
+                        if (this is Points.TargetPoint)
+                        {
+                            this.distanceToTarget = 0;
+                        }
+                    }
+                    else
+                    {
+                        this.distanceToTarget = (int)Math.Sqrt(Math.Pow(this.x - this.next.X, 2) + Math.Pow(this.y - this.next.Y, 2)) + this.next.DistanceToTarget;
+                    }
+                }
+                return this.distanceToTarget;
+            }
+        }
+
+        /// <summary>
         /// Default constructor
         /// </summary>
         /// <param name="x">X position on screen</param>

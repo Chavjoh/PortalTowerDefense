@@ -16,8 +16,9 @@ namespace PortalRush.Entity.Towers
         /// </summary>
         public MagicTower() : base()
         {
-
-            // TODO : set this.attackRange, this.attackSpeed, this.attackDamage
+            this.attackRange = 200;
+            this.attackSpeed = 30;
+            this.attackDamage = 20;
             GameEngine.GameManager.Instance.gainMoney(-1 * MagicTower.getPrice(1));
         }
 

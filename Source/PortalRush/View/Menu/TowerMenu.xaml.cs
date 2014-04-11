@@ -172,7 +172,9 @@ namespace PortalRush.View.Menu
         /// <param name="e"></param>
         private void imageSell_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Console.WriteLine("sell");
+            this.towerLocation.sellTower();
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            mainWindow.clearAllMenus();
         }
 
         /// <summary>

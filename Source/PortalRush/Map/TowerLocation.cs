@@ -176,7 +176,7 @@ namespace PortalRush.Map
         /// </summary>
         public void sellTower()
         {
-
+            this.setTower(null);
         }
 
         /// <summary>
@@ -185,9 +185,13 @@ namespace PortalRush.Map
         /// <param name="tower">Tower to place, or null</param>
         private void setTower(Entity.Tower tower)
         {
-            if (this.tower == null)
+            if (this.tower != null)
             {
-                this.tower = tower;
+                this.tower.dispose();
+            }
+            this.tower = tower;
+            if (this.tower != null)
+            {
                 this.tower.place(this);
             }
         }

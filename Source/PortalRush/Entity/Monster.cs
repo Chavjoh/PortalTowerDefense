@@ -261,13 +261,6 @@ namespace PortalRush.Entity
                     this.step = 1;
                 }
                 this.updateStep();
-                this.health -= 2;
-
-                // Add visual control to UI
-                Application.Current.Dispatcher.BeginInvoke((Action)delegate()
-                {
-                    this.control.setLife(this.health);
-                });
             }
 
             // If point reached, head to next
@@ -289,7 +282,7 @@ namespace PortalRush.Entity
         /// <returns>Distance to final TargetPoint</returns>
         public int distanceToTarget()
         {
-            return 0;
+            return (int)Math.Sqrt(Math.Pow(this.x - this.location.Point.X, 2) + Math.Pow(this.y - this.location.Point.Y, 2)) + this.location.Point.DistanceToTarget;
         }
 
         /// <summary>
@@ -301,7 +294,6 @@ namespace PortalRush.Entity
         {
             this.x = x;
             this.y = y;
-
 
             // Add visual control to UI
             Application.Current.Dispatcher.BeginInvoke((Action)delegate()

@@ -16,7 +16,9 @@ namespace PortalRush.Entity.Towers
         /// </summary>
         public ArtilleryTower() : base()
         {
-            // TODO : set this.attackRange, this.attackSpeed, this.attackDamage
+            this.attackRange = 150;
+            this.attackSpeed = 20;
+            this.attackDamage = 50;
             GameEngine.GameManager.Instance.gainMoney(-1 * ArtilleryTower.getPrice(1));
         }
 

@@ -88,6 +88,18 @@ namespace PortalRush.Entity
                 this.control = new View.Control.TowerControl(image);
                 this.control.changeDelta(36, 50);
             });
+
+            // Add to Tickable list
+            GameEngine.GameManager.Instance.clockRegister(this);
+        }
+
+        /// <summary>
+        /// Default destructor
+        /// </summary>
+        public void dispose()
+        {
+            GameEngine.GameManager.Instance.clockUnregister(this);
+            this.control.dispose();
         }
 
         /// <summary>
@@ -107,7 +119,7 @@ namespace PortalRush.Entity
         /// </summary>
         public void tick()
         {
-
+            Console.WriteLine("tick tour");
         }
 
         /// <summary>

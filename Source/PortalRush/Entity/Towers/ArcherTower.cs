@@ -17,7 +17,9 @@ namespace PortalRush.Entity.Towers
         /// </summary>
         public ArcherTower() : base()
         {
-            // TODO : set this.attackRange, this.attackSpeed, this.attackDamage
+            this.attackRange = 120;
+            this.attackSpeed = 60;
+            this.attackDamage = 15;
             GameEngine.GameManager.Instance.gainMoney(-1 * ArcherTower.getPrice(1));
         }
 
