@@ -9,7 +9,7 @@ namespace PortalRush.Entity.Traps
     /// <summary>
     /// Laser trap, making the monster eatable for conventional people
     /// </summary>
-    class LaserTrap : Trap
+    public class LaserTrap : Trap
     {
         /// <summary>
         /// Inherited from Trap

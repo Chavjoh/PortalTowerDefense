@@ -9,7 +9,7 @@ namespace PortalRush.Map.Points
     /// <summary>
     /// Target point, placed at end of path and making player lose one life per passing monster
     /// </summary>
-    class TargetPoint : Point
+    public class TargetPoint : Point
     {
         /// <summary>
         /// Default constructor
@@ -38,8 +38,8 @@ namespace PortalRush.Map.Points
         /// <param name="monster">Monster who arrived</param>
         public override void monsterArrived(Entity.Monster monster)
         {
+            monster.dispose();
             GameEngine.GameManager.Instance.lifeMinus();
-            GameEngine.GameManager.Instance.clockUnregister(monster);
         }
     }
 }

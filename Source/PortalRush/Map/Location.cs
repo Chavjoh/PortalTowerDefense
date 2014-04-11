@@ -9,7 +9,7 @@ namespace PortalRush.Map
     /// <summary>
     /// Real screen location, used by monster as a target when moving
     /// </summary>
-    class Location
+    public class Location
     {
         /// <summary>
         /// X position on screen

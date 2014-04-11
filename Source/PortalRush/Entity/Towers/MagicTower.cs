@@ -9,14 +9,14 @@ namespace PortalRush.Entity.Towers
     /// <summary>
     /// Magic tower
     /// </summary>
-    class MagicTower : Tower
+    public class MagicTower : Tower
     {
         /// <summary>
         /// Default constructor
         /// </summary>
         public MagicTower() : base()
         {
-            this.attackRange = 200;
+            this.attackRange = 290;
             this.attackSpeed = 30;
             this.attackDamage = 20;
             GameEngine.GameManager.Instance.gainMoney(-1 * MagicTower.getPrice(1));
@@ -62,6 +62,21 @@ namespace PortalRush.Entity.Towers
                 this.level++;
                 GameEngine.GameManager.Instance.gainMoney(-1 * MagicTower.getPrice(this.level));
             }
+        }
+
+        /// <summary>
+        /// Get params for building bullet for this tower
+        /// </summary>
+        /// <param name="damageStrengh">Damage done by pure strengh</param>
+        /// <param name="damageMagic">Damage done by magic power</param>
+        /// <param name="damageRange">Range of grouped attack</param>
+        /// <param name="image">Image to display for bullet</param>
+        protected override void getBulletParams(ref int damageStrengh, ref int damageMagic, ref int damageRange, ref String image)
+        {
+            damageStrengh = 0;
+            damageMagic = this.attackDamage + (int)(this.attackDamage * 0.5 * (level - 1));
+            damageRange = 0;
+            image = "magicBullet.png"; 
         }
     }
 }

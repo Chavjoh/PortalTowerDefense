@@ -24,9 +24,25 @@ namespace PortalRush.View.Control
         /// <summary>
         /// Default constructor
         /// </summary>
-        public BulletControl()
+        public BulletControl(String image)
         {
+            // Visual element initialization
             InitializeComponent();
+
+            // Image loading
+            this.image.Source = new BitmapImage(new Uri(image));
+
+            // Add control to drawing canvas
+            GameEngine.GameManager.Instance.Canvas.Children.Add(this);
+        }
+
+        /// <summary>
+        /// Default destructor
+        /// </summary>
+        public void dispose()
+        {
+            // Remove control from drawing canvas
+            GameEngine.GameManager.Instance.Canvas.Children.Remove(this);
         }
 
         /// <summary>
@@ -35,7 +51,7 @@ namespace PortalRush.View.Control
         /// <param name="index">Index of new image, referencing internal tab</param>
         public void changeImage(int index)
         {
-
+            // Nothing
         }
 
         /// <summary>
@@ -44,7 +60,7 @@ namespace PortalRush.View.Control
         /// <param name="index">Z-index of element in canvas</param>
         public void changeZIndex(int index)
         {
-
+            Canvas.SetZIndex(this, index);
         }
 
         /// <summary>
@@ -54,7 +70,8 @@ namespace PortalRush.View.Control
         /// <param name="y">Y position on screen</param>
         public void move(double x, double y)
         {
-
+            Canvas.SetLeft(this, x - 4);
+            Canvas.SetTop(this, y - 4);
         }
     }
 }

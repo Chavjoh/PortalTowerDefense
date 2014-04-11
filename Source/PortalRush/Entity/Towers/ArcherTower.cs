@@ -10,14 +10,14 @@ namespace PortalRush.Entity.Towers
     /// <summary>
     /// Archer tower
     /// </summary>
-    class ArcherTower : Tower
+    public class ArcherTower : Tower
     {
         /// <summary>
         /// Default constructor
         /// </summary>
         public ArcherTower() : base()
         {
-            this.attackRange = 120;
+            this.attackRange = 180;
             this.attackSpeed = 60;
             this.attackDamage = 15;
             GameEngine.GameManager.Instance.gainMoney(-1 * ArcherTower.getPrice(1));
@@ -63,6 +63,21 @@ namespace PortalRush.Entity.Towers
                 this.level++;
                 GameEngine.GameManager.Instance.gainMoney(-1 * ArcherTower.getPrice(this.level));
             }
+        }
+
+        /// <summary>
+        /// Get params for building bullet for this tower
+        /// </summary>
+        /// <param name="damageStrengh">Damage done by pure strengh</param>
+        /// <param name="damageMagic">Damage done by magic power</param>
+        /// <param name="damageRange">Range of grouped attack</param>
+        /// <param name="image">Image to display for bullet</param>
+        protected override void getBulletParams(ref int damageStrengh, ref int damageMagic, ref int damageRange, ref String image)
+        {
+            damageStrengh = this.attackDamage + (int)(this.attackDamage * 0.3 * (level - 1));
+            damageMagic = 0;
+            damageRange = 0;
+            image = "archerBullet.png";
         }
     }
 }

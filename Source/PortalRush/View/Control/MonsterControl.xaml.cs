@@ -60,6 +60,14 @@ namespace PortalRush.View.Control
         }
 
         /// <summary>
+        /// Default constructor
+        /// </summary>
+        public void dispose()
+        {
+            GameEngine.GameManager.Instance.Canvas.Children.Remove(this);
+        }
+
+        /// <summary>
         /// Change the image for the element
         /// </summary>
         /// <param name="index">Index of new image, referencing internal tab</param>

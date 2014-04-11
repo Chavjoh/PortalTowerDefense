@@ -14,7 +14,7 @@ namespace PortalRush.GameEngine
     /// <summary>
     /// General game manager, containing main game loop
     /// </summary>
-    class GameManager
+    public class GameManager
     {
         /// <summary>
         /// Singleton instance

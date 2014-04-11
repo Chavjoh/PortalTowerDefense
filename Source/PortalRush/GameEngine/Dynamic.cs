@@ -9,7 +9,7 @@ namespace PortalRush.GameEngine
     /// <summary>
     /// Dynamic interface, for views which have to be updated
     /// </summary>
-    interface Dynamic
+    public interface Dynamic
     {
         /// <summary>
         /// Change the image for the element

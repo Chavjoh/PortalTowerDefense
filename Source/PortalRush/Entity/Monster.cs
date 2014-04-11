@@ -10,7 +10,7 @@ namespace PortalRush.Entity
     /// <summary>
     /// Generic monster, going along the path
     /// </summary>
-    class Monster : GameEngine.Tickable
+    public class Monster : GameEngine.Tickable
     {
         /// <summary>
         /// Base folder for monsters images
@@ -245,6 +245,18 @@ namespace PortalRush.Entity
         }
 
         /// <summary>
+        /// Default destructor
+        /// </summary>
+        public void dispose()
+        {
+            GameEngine.GameManager.Instance.clockUnregister(this);
+            Application.Current.Dispatcher.BeginInvoke((Action)delegate(){
+                this.control.dispose();
+            });
+            GameEngine.GameManager.Instance.Map.OldMonster = this;
+        }
+
+        /// <summary>
         /// Inherited from Tickable
         /// Called by GameEngine at each game tick (1/30 sec.)
         /// </summary>
@@ -301,6 +313,27 @@ namespace PortalRush.Entity
                 this.control.move(x, y);
             });
             
+        }
+
+        /// <summary>
+        /// Infligate brut damages, must be computed with local armors
+        /// </summary>
+        /// <param name="damageStrengh">Pure strengh damage</param>
+        /// <param name="damageMagic">Magic power damage</param>
+        public void infligate(int damageStrengh, int damageMagic)
+        {
+            damageStrengh -= (this.strenghArmor / 100) * damageStrengh;
+            damageMagic -= (this.magicArmor / 100) * damageMagic;
+            this.health -= (damageStrengh + damageMagic);
+            if (this.health <= 0)
+            {
+                GameEngine.GameManager.Instance.gainMoney(this.money);
+                this.dispose();
+            }
+            Application.Current.Dispatcher.BeginInvoke((Action)delegate()
+            {
+                this.control.setLife(this.health);
+            });
         }
 
         /// <summary>

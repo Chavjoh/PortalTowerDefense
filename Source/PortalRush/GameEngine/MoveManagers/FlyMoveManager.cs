@@ -10,7 +10,7 @@ namespace PortalRush.GameEngine.MoveManagers
     /// Move manager for a flying linear movement
     /// Should be used when monster is trapped into a BeamTrap
     /// </summary>
-    class FlyMoveManager : MoveManager
+    public class FlyMoveManager : MoveManager
     {
         /// <summary>
         /// Inherited from MoveManager

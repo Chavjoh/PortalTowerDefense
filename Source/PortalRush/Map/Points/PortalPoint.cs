@@ -9,7 +9,7 @@ namespace PortalRush.Map.Points
     /// <summary>
     /// Special portal point to which the monster has to move by an immediate movement
     /// </summary>
-    class PortalPoint : Point
+    public class PortalPoint : Point
     {
         /// <summary>
         /// Default constructor
@@ -31,6 +31,16 @@ namespace PortalRush.Map.Points
         public override GameEngine.MoveManager getMoveManager()
         {
             return new GameEngine.MoveManagers.ImmediateMoveManager();
+        }
+
+        /// <summary>
+        /// Triggered when a monster arrives to the point
+        /// </summary>
+        /// <param name="monster">Monster who arrived</param>
+        public override void monsterArrived(Entity.Monster monster)
+        {
+            base.monsterArrived(monster);
+            GameEngine.GameManager.Instance.Map.cancelBulletsTargeting(monster);
         }
     }
 }

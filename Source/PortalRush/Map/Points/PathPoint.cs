@@ -9,7 +9,7 @@ namespace PortalRush.Map.Points
     /// <summary>
     /// Standard path point on which monster has to pass by walking
     /// </summary>
-    class PathPoint : Point
+    public class PathPoint : Point
     {
         /// <summary>
         /// Default constructor

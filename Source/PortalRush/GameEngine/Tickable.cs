@@ -9,7 +9,7 @@ namespace PortalRush.GameEngine
     /// <summary>
     /// Interface for elements which contains a tick() method, called every 1/30 sec
     /// </summary>
-    interface Tickable
+    public interface Tickable
     {
         /// <summary>
         /// Called by GameEngine at each game tick (1/30 sec.)

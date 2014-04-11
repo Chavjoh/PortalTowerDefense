@@ -9,7 +9,7 @@ namespace PortalRush.GameEngine
     /// <summary>
     /// Move management for monsters, depending on targeted point
     /// </summary>
-    abstract class MoveManager
+    public abstract class MoveManager
     {
         /// <summary>
         /// Linked monster, which to move when called (1/30 sec)

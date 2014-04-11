@@ -12,7 +12,7 @@ namespace PortalRush.Map
     /// <summary>
     /// Current map being played
     /// </summary>
-    class Map
+    public class Map
     {
         #region Attributes
 
@@ -132,6 +132,21 @@ namespace PortalRush.Map
             }
 
             return monsterInRange;
+        }
+
+        /// <summary>
+        /// Cancel bullets targetting a specific monster, because he passed through a portal
+        /// </summary>
+        /// <param name="monster">Monster targeted by bullets</param>
+        public void cancelBulletsTargeting(Entity.Monster monster)
+        {
+            foreach (TowerLocation location in this.towerLocations)
+            {
+                if (location.Tower != null)
+                {
+                    location.Tower.cancelBulletsTargeting(monster);
+                }
+            }
         }
 
         /// <summary>

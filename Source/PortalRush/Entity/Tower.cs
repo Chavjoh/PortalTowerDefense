@@ -29,6 +29,11 @@ namespace PortalRush.Entity
         protected int attackDamage;
 
         /// <summary>
+        /// Ticks counter for triggering bullets launches
+        /// </summary>
+        private int attackCounter;
+
+        /// <summary>
         /// Current tower level
         /// </summary>
         protected int level;
@@ -49,6 +54,11 @@ namespace PortalRush.Entity
         private List<Bullet> bullets;
 
         /// <summary>
+        /// Linked bullets, to delete
+        /// </summary>
+        private List<Bullet> bulletsToDelete;
+
+        /// <summary>
         /// Visual control, drawing the tower at its location
         /// </summary>
         protected View.Control.TowerControl control;
@@ -65,6 +75,17 @@ namespace PortalRush.Entity
         }
 
         /// <summary>
+        /// Linked location, on which the tower is placed
+        /// </summary>
+        public Map.TowerLocation Location
+        {
+            get
+            {
+                return this.location;
+            }
+        }
+
+        /// <summary>
         /// Default constructor
         /// </summary>
         public Tower()
@@ -75,9 +96,13 @@ namespace PortalRush.Entity
             // Create lists
             this.attackedMonsters = new List<Monster>();
             this.bullets = new List<Bullet>();
+            this.bulletsToDelete = new List<Bullet>();
 
             // No location linked at creation
             this.location = null;
+
+            // Counter of ticks for attack at 0
+            this.attackCounter = 0;
 
             // Prepare visual control
             String image = Map.TowerLocation.BaseFolder + this.image();
@@ -114,12 +139,57 @@ namespace PortalRush.Entity
         public abstract void upgrade();
 
         /// <summary>
+        /// Get params for building bullet for this tower
+        /// </summary>
+        /// <param name="damageStrengh">Damage done by pure strengh</param>
+        /// <param name="damageMagic">Damage done by magic power</param>
+        /// <param name="damageRange">Range of grouped attack</param>
+        /// <param name="image">Image to display for bullet</param>
+        protected abstract void getBulletParams(ref int damageStrengh, ref int damageMagic, ref int damageRange, ref String image);
+
+        /// <summary>
         /// Inherited from Tickable
         /// Called by GameEngine at each game tick (1/30 sec.)
         /// </summary>
         public void tick()
         {
-            Console.WriteLine("tick tour");
+            // Actualize list of targettable monsters
+            this.attackedMonsters.Clear();
+            foreach (Monster monster in GameEngine.GameManager.Instance.Map.monstersInRange(this.location.X, this.location.Y, this.attackRange))
+            {
+                this.attackedMonsters.Add(monster);
+            }
+
+            // Move existing bullets
+            foreach (Bullet bullet in this.bullets)
+            {
+                bullet.move();
+            }
+
+            // Delete bullets if needed
+            foreach (Bullet bullet in this.bulletsToDelete)
+            {
+                this.bullets.Remove(bullet);
+            }
+            this.bulletsToDelete.Clear();
+
+            // Check if bullet has to be thrown
+            this.attackCounter--;
+            if (this.attackedMonsters.Count > 0)
+            {
+                if (this.attackCounter <= 0)
+                {
+                    this.attackCounter = 1800 / this.attackSpeed;
+                    this.attack();
+                }
+            }
+            else
+            {
+                if (this.attackCounter <= 0)
+                {
+                    this.attackCounter = 0;
+                }
+            }
         }
 
         /// <summary>
@@ -140,11 +210,43 @@ namespace PortalRush.Entity
         }
 
         /// <summary>
+        /// Cancel bullets targeting a specific monster, because he walked through a portal
+        /// </summary>
+        /// <param name="monster">Monster targeted by bullets</param>
+        public void cancelBulletsTargeting(Monster monster)
+        {
+            foreach (Bullet bullet in this.bullets)
+            {
+                if (bullet.Target == monster)
+                {
+                    this.bulletsToDelete.Add(bullet);
+                    bullet.dispose();
+                }
+            }
+        }
+
+        /// <summary>
         /// Throw a bullet to the nearest-from-target monster currently spotted
         /// </summary>
         private void attack()
         {
+            // Determine which monster is the nearest from target
+            Monster target = this.attackedMonsters[0];
+            foreach (Monster monster in this.attackedMonsters)
+            {
+                if (monster.distanceToTarget() < target.distanceToTarget())
+                {
+                    target = monster;
+                }
+            }
 
+            // Attack this monster
+            int damageStrengh = 0;
+            int damageMagic = 0;
+            int damageRange = 0;
+            String image = null;
+            this.getBulletParams(ref damageStrengh, ref damageMagic, ref damageRange, ref image);
+            this.bullets.Add(new Bullet(damageStrengh, damageMagic, damageRange, this, target, image));
         }
     }
 }

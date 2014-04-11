@@ -9,7 +9,7 @@ namespace PortalRush.Map
     /// <summary>
     /// Generic path point, describing a part of a path for monsters
     /// </summary>
-    abstract class Point
+    public abstract class Point
     {
         /// <summary>
         /// X position on screen

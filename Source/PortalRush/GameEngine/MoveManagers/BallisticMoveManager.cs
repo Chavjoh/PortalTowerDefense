@@ -10,7 +10,7 @@ namespace PortalRush.GameEngine.MoveManagers
     /// Move manager for a ballistic movement
     /// Should be used when monster is ejected by a JumpPadTrap
     /// </summary>
-    class BallisticMoveManager : MoveManager
+    public class BallisticMoveManager : MoveManager
     {
         /// <summary>
         /// Inherited from MoveManager

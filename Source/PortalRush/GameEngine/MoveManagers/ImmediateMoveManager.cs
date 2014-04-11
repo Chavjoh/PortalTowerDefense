@@ -10,7 +10,7 @@ namespace PortalRush.GameEngine.MoveManagers
     /// Move manager for an immediate "teleportation" movement
     /// Should be used when monster goes through a portal
     /// </summary>
-    class ImmediateMoveManager : MoveManager
+    public class ImmediateMoveManager : MoveManager
     {
         /// <summary>
         /// Inherited from MoveManager

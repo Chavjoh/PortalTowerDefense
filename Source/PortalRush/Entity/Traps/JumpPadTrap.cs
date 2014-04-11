@@ -9,7 +9,7 @@ namespace PortalRush.Entity.Traps
     /// <summary>
     /// JumpPad trap, making the monster fly out of the map
     /// </summary>
-    class JumpPadTrap : Trap
+    public class JumpPadTrap : Trap
     {
         /// <summary>
         /// Inherited from Trap

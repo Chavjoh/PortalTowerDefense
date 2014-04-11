@@ -9,7 +9,7 @@ namespace PortalRush.Map.Points
     /// <summary>
     /// Spawn point, creating new monsters at configured intervals
     /// </summary>
-    class SpawnPoint : Point, GameEngine.Tickable
+    public class SpawnPoint : Point, GameEngine.Tickable
     {
         /// <summary>
         /// List of times (in ticks) > MonsterType for spawning monsters during game

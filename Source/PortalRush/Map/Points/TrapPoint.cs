@@ -9,7 +9,7 @@ namespace PortalRush.Map.Points
     /// <summary>
     /// Special point corresponding to a trap in which monster will fall when passing
     /// </summary>
-    class TrapPoint : Point
+    public class TrapPoint : Point
     {
         /// <summary>
         /// Linked trap, triggered when a monster passed on the point

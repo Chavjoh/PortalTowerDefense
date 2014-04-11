@@ -10,7 +10,7 @@ namespace PortalRush.GameEngine.MoveManagers
     /// Move manager for a standard walk movement
     /// Should be used when monster walks along the path
     /// </summary>
-    class WalkMoveManager : MoveManager
+    public class WalkMoveManager : MoveManager
     {
         /// <summary>
         /// Inherited from MoveManager
