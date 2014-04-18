@@ -10,11 +10,12 @@
 		</spawnPoint>
 		<pathPoint   id="2" next="3" x="272" y="471" monsterOrientation="REAR_RIGHT" />
 		<pathPoint   id="3" next="4" x="420" y="444" monsterOrientation="REAR_LEFT" />
-		<pathPoint   id="4" next="5" x="326" y="339" />
-		<portalPoint id="5" next="6" x="732" y="384" monsterOrientation="FRONT_LEFT" />
-		<pathPoint   id="6" next="7" x="630" y="405" monsterOrientation="REAR_LEFT" />
-		<pathPoint   id="7" next="8" x="525" y="304" monsterOrientation="REAR_LEFT" layerIndex="3" />
-		<targetPoint id="8"          x="494" y="255" />
+		<trapPoint   id="4" next="5" x="360" y="380" destX="700" destY="540" type="jumpPad" />
+		<pathPoint   id="5" next="6" x="326" y="339" />
+		<portalPoint id="6" next="7" x="732" y="384" monsterOrientation="FRONT_LEFT" />
+		<pathPoint   id="7" next="8" x="630" y="405" monsterOrientation="REAR_LEFT" />
+		<pathPoint   id="8" next="9" x="525" y="304" monsterOrientation="REAR_LEFT" layerIndex="3" />
+		<targetPoint id="9"          x="494" y="255" />
 	</pathPointList>
 	<towerPositionList>
 		<point x="123" y="389" layerIndex="3" />

@@ -6,41 +6,16 @@ using System.Threading.Tasks;
 
 namespace PortalRush.Map.Points
 {
-    /// <summary>
-    /// Special point corresponding to a trap in which monster will fall when passing
-    /// </summary>
-    public class TrapPoint : Point
+    class DeathPoint : Point
     {
-        #region Attributes
-
-        /// <summary>
-        /// Linked trap, triggered when a monster passed on the point
-        /// </summary>
-        private Entity.Trap trap;
-
-        #endregion
-
-        #region Properties
-
-        public Entity.Trap Trap
-        {
-            get { return this.trap; }
-            set { this.trap = value;}
-        }
-
-        #endregion
-
         /// <summary>
         /// Default constructor
         /// </summary>
         /// <param name="x">X position on screen</param>
         /// <param name="y">Y position on screen</param>
-        /// <param name="orientation">Orientation given to monsters passing this point</param>
-        /// <param name="zIndex">ZIndex given to monsters passing this point</param>
-        public TrapPoint(int x, int y, Entity.MonsterOrientation orientation = Entity.MonsterOrientation.NULL, int zIndex = -1)
-            : base(x,y,orientation,zIndex)
+        public DeathPoint(int x, int y)
+            : base(x,y)
         {
-
         }
 
         /// <summary>
@@ -60,8 +35,7 @@ namespace PortalRush.Map.Points
         /// <param name="monster">Monster who arrived</param>
         public override void monsterArrived(Entity.Monster monster)
         {
-            this.trap.monsterArrived(monster);
-            base.monsterArrived(monster);
+            monster.dispose();
         }
     }
 }

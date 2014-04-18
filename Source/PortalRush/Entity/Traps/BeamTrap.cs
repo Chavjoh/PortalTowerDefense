@@ -12,6 +12,15 @@ namespace PortalRush.Entity.Traps
     public class BeamTrap : Trap
     {
         /// <summary>
+        /// Create a new beam trap
+        /// </summary>
+        public BeamTrap(Map.Points.TrapPoint trapPoint)
+            : base(trapPoint)
+        {
+
+        }
+
+        /// <summary>
         /// Inherited from Trap
         /// Triggered when a monster arrives in the trap
         /// </summary>

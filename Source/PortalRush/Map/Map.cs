@@ -326,6 +326,30 @@ namespace PortalRush.Map
                     }
                     break;
 
+                case "trapPoint":
+                    mapPoint = new Points.TrapPoint(x, y, monsterOrientation, layerIndex);
+
+                    Entity.Trap trap;
+                    switch (pathPoint.Attributes.GetNamedItem("type").Value)
+                    {
+                        case "jumpPad":
+                            // Get the destination point after the monster jump with the jumpPad
+                            int destX = int.Parse(pathPoint.Attributes.GetNamedItem("destX").Value);
+                            int destY = int.Parse(pathPoint.Attributes.GetNamedItem("destY").Value);
+                            Point destinationPoint = new Points.DeathPoint(destX, destY);
+
+                            // Create the jumpPad trap
+                            trap = new Entity.Traps.JumpPadTrap((Points.TrapPoint)mapPoint, destinationPoint);
+                            break;
+
+                        default:
+                            throw new Exception("[TrapPoint] Unknown trap point type.");
+                    }
+
+                    // Save trap inside the point
+                    ((Points.TrapPoint)mapPoint).Trap = trap;
+                    break;
+
                 case "pathPoint":
                     mapPoint = new Points.PathPoint(x, y, monsterOrientation, layerIndex);
                     break;

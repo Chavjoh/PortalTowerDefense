@@ -53,6 +53,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Map\Points\DeathPoint.cs" />
     <Compile Include="View\Menu\NoTowerMenu.xaml.cs">
       <DependentUpon>NoTowerMenu.xaml</DependentUpon>
     </Compile>
