@@ -176,6 +176,7 @@ namespace PortalRush.Map
         /// </summary>
         public void sellTower()
         {
+            this.tower.sell();
             this.setTower(null);
         }
 

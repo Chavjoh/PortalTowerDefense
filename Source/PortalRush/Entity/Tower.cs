@@ -139,6 +139,11 @@ namespace PortalRush.Entity
         public abstract void upgrade();
 
         /// <summary>
+        /// Sell the tower
+        /// </summary>
+        public abstract void sell();
+
+        /// <summary>
         /// Get params for building bullet for this tower
         /// </summary>
         /// <param name="damageStrengh">Damage done by pure strengh</param>

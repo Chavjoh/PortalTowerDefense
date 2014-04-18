@@ -66,6 +66,15 @@ namespace PortalRush.Entity.Towers
         }
 
         /// <summary>
+        /// Sell the tower
+        /// </summary>
+        public override void sell()
+        {
+            int sellGain = (int)(ArcherTower.getPrice(this.level) / 2.0);
+            GameEngine.GameManager.Instance.gainMoney(sellGain);
+        }
+
+        /// <summary>
         /// Get params for building bullet for this tower
         /// </summary>
         /// <param name="damageStrengh">Damage done by pure strengh</param>
