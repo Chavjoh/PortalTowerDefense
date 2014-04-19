@@ -46,7 +46,7 @@ namespace PortalRush
 
             // Set window size using map size
             this.Width = GameEngine.GameManager.Instance.Map.Width;
-            this.Height = GameEngine.GameManager.Instance.Map.Height;
+            this.Height = GameEngine.GameManager.Instance.Map.Height + 121; // 121 = Header size
 
             // Launch game
             GameEngine.GameManager.Instance.play();
