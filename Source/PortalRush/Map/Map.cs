@@ -168,6 +168,7 @@ namespace PortalRush.Map
                 XmlNode mapHeight = mapDoc.SelectSingleNode("/portalRushMap/height");
                 XmlNode monsterPath = mapDoc.SelectSingleNode("/portalRushMap/monsterPath");
                 XmlNode towerPath = mapDoc.SelectSingleNode("/portalRushMap/towerPath");
+                XmlNode trapPath = mapDoc.SelectSingleNode("/portalRushMap/trapPath");
                 XmlNode mapPathPointList = mapDoc.SelectSingleNode("/portalRushMap/pathPointList");
 
                 // Save map size
@@ -177,6 +178,7 @@ namespace PortalRush.Map
                 // Save monster path
                 Entity.Monster.BaseFolder = Path.GetDirectoryName(mapFile) + "\\" + monsterPath.InnerText;
                 TowerLocation.BaseFolder = Path.GetDirectoryName(mapFile) + "\\" + towerPath.InnerText;
+                Entity.Trap.BaseFolder = Path.GetDirectoryName(mapFile) + "\\" + trapPath.InnerText;
 
                 // Store point list to bind them together
                 Dictionary<string, Point> pointList = new Dictionary<string, Point>();
@@ -339,7 +341,7 @@ namespace PortalRush.Map
                             Points.DeathPoint destinationPoint = new Points.DeathPoint(destX, destY);
 
                             // Create the jumpPad trap
-                            trap = new Entity.Traps.JumpPadTrap((Points.TrapPoint)mapPoint, destinationPoint);
+                            trap = new Entity.Traps.JumpPadTrap((Points.TrapPoint)mapPoint, destinationPoint, layerIndex);
                             break;
 
                         default:

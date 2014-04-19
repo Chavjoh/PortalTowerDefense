@@ -135,8 +135,18 @@ namespace PortalRush.Map
         /// <param name="monster">Monster who arrived</param>
         public virtual void monsterArrived(Entity.Monster monster)
         {
-            monster.Location = this.next.getRangedLocation();
-            monster.MoveManager = this.next.getMoveManager();
+            if (monster.ForceNextPoint != null)
+            {
+                monster.Location = monster.ForceNextPoint.getRangedLocation();
+                monster.MoveManager = monster.ForceNextPoint.getMoveManager();
+                monster.ForceNextPoint = null;
+            }
+            else
+            {
+                monster.Location = this.next.getRangedLocation();
+                monster.MoveManager = this.next.getMoveManager();
+            }
+
             if (this.orientation != Entity.MonsterOrientation.NULL)
             {
                 monster.Orientation = this.orientation;

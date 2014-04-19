@@ -22,11 +22,40 @@ namespace PortalRush.View.Control
     public partial class TrapControl : UserControl, GameEngine.Dynamic
     {
         /// <summary>
+        /// Pixels differentials between left of image and base placement
+        /// </summary>
+        private double deltaX;
+
+        /// <summary>
+        /// Pixels differentials between top of image and base placement
+        /// </summary>
+        private double deltaY;
+
+        /// <summary>
         /// Default constructor
         /// </summary>
-        public TrapControl()
+        public TrapControl(String image)
         {
+            // Visual element initialization
             InitializeComponent();
+
+            // Differentials 
+            this.deltaX = 0;
+            this.deltaY = 0;
+
+            // Image loading
+            this.image.Source = new BitmapImage(new Uri(image));
+
+            // Add control to drawing canvas
+            GameEngine.GameManager.Instance.Canvas.Children.Add(this);
+        }
+
+        /// <summary>
+        /// Default destructor
+        /// </summary>
+        public void dispose()
+        {
+            GameEngine.GameManager.Instance.Canvas.Children.Remove(this);
         }
 
         /// <summary>
@@ -35,7 +64,7 @@ namespace PortalRush.View.Control
         /// <param name="index">Index of new image, referencing internal tab</param>
         public void changeImage(int index)
         {
-
+            // Nothing
         }
 
         /// <summary>
@@ -44,7 +73,7 @@ namespace PortalRush.View.Control
         /// <param name="index">Z-index of element in canvas</param>
         public void changeZIndex(int index)
         {
-
+            Canvas.SetZIndex(this, index);
         }
 
         /// <summary>
@@ -54,7 +83,22 @@ namespace PortalRush.View.Control
         /// <param name="y">Y position on screen</param>
         public void move(double x, double y)
         {
+            Canvas.SetLeft(this, x - this.deltaX);
+            Canvas.SetTop(this, y - this.deltaY);
+        }
 
+        /// <summary>
+        /// Change deltas of object for displaying in correct basement position
+        /// </summary>
+        /// <param name="deltaX">new X delta to apply</param>
+        /// <param name="deltaY">new Y delta to apply</param>
+        public void changeDelta(double deltaX, double deltaY)
+        {
+            double left = Canvas.GetLeft(this) + this.deltaX;
+            double top = Canvas.GetTop(this) + this.deltaY;
+            this.deltaX = deltaX;
+            this.deltaY = deltaY;
+            this.move(left, top);
         }
     }
 }

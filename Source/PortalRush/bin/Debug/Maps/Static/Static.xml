@@ -4,13 +4,14 @@
 	<width>916</width>
 	<monsterPath>Monsters\</monsterPath>
 	<towerPath>Towers\</towerPath>
+	<trapPath>Traps\</trapPath>
 	<pathPointList>
 		<spawnPoint  id="1" next="2" x="340" y="559" monsterOrientation="REAR_LEFT" layerIndex="5">
 			<chell interval="30" startTime="0" quantity="5" />
 		</spawnPoint>
 		<pathPoint   id="2" next="3" x="272" y="471" monsterOrientation="REAR_RIGHT" />
 		<pathPoint   id="3" next="4" x="420" y="444" monsterOrientation="REAR_LEFT" />
-		<trapPoint   id="4" next="5" x="360" y="380" destX="700" destY="540" type="jumpPad" />
+		<trapPoint   id="4" next="5" x="360" y="380" destX="700" destY="540" type="jumpPad" layerIndex="5" />
 		<pathPoint   id="5" next="6" x="326" y="339" />
 		<portalPoint id="6" next="7" x="732" y="384" monsterOrientation="FRONT_LEFT" />
 		<pathPoint   id="7" next="8" x="630" y="405" monsterOrientation="REAR_LEFT" />

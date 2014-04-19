@@ -94,6 +94,11 @@ namespace PortalRush.Entity
         private int stepCounter;
 
         /// <summary>
+        /// Force the next point to go
+        /// </summary>
+        private Map.Point forceNextPoint;
+
+        /// <summary>
         /// X position on screen
         /// </summary>
         public double X
@@ -166,6 +171,15 @@ namespace PortalRush.Entity
                     this.control.changeZIndex(value);
                 });
             }
+        }
+
+        /// <summary>
+        /// Force the next point to go
+        /// </summary>
+        public Map.Point ForceNextPoint
+        {
+            get { return this.forceNextPoint; }
+            set { this.forceNextPoint = value; }
         }
 
         /// <summary>
@@ -274,8 +288,16 @@ namespace PortalRush.Entity
                 this.updateStep();
             }
 
+            if (this.X < 0 || 
+                this.X > GameEngine.GameManager.Instance.Map.Width || 
+                this.Y < 0 || 
+                this.Y > GameEngine.GameManager.Instance.Map.Height)
+            {
+                this.dispose();
+            }
+
             // If point reached, head to next
-            if (this.location.isReached(this.x, this.y))
+            else if (this.location.isReached(this.x, this.y))
             {
                 this.location.Point.monsterArrived(this);
             }

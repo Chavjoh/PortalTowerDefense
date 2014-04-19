@@ -14,6 +14,11 @@ namespace PortalRush.Entity
         #region Attributes
 
         /// <summary>
+        /// Base folder for trap location image
+        /// </summary>
+        private static String baseFolder;
+
+        /// <summary>
         /// Logic path point to which the trap is linked
         /// </summary>
         private Map.Points.TrapPoint point;
@@ -26,15 +31,38 @@ namespace PortalRush.Entity
         #endregion 
 
         #region Properties
-        
+
+        /// <summary>
+        /// Base folder for trap location image
+        /// </summary>
+        public static String BaseFolder
+        {
+            get
+            {
+                return baseFolder;
+            }
+            set
+            {
+                baseFolder = value;
+            }
+        }
+
+        /// <summary>
+        /// Logic path point to which the trap is linked
+        /// </summary>
         protected Map.Points.TrapPoint Point
         {
             get { return this.point; }
+            set { this.point = value; }
         }
 
+        /// <summary>
+        /// Visual control, drawing the trap in its current state
+        /// </summary>
         protected View.Control.TrapControl Control
         {
             get { return this.control; }
+            set { this.control = value; }
         }
 
         #endregion

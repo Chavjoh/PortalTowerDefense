@@ -47,21 +47,18 @@ namespace PortalRush.GameEngine.MoveManagers
         {
             tick++;
 
-            //double tickNormalized = tick/30.0;
-
-            // We want to arrive to the final position in ticks
-            double timeToDestination = 150;
+            double tickNormalized = tick / 10.0;
 
             // Be careful, to go down, we increase our pixel position
 
             // MRUA
-            double vectorY = tick * (destinationPoint.Y - startPoint.Y) / timeToDestination; //(0.5 * -9.81 * tickNormalized * tickNormalized) + (10 * tickNormalized);
+            double vectorY = (0.5 * -9.81 * 2 * tickNormalized * tickNormalized) + (30 * tickNormalized);
 
             // MRU
-            double vectorX = tick * (destinationPoint.X - startPoint.X) / timeToDestination;
+            double vectorX = 40 * tickNormalized;
 
             // Move monster with calculated position
-            this.Monster.move(startPoint.X + vectorX, startPoint.Y + vectorY);
+            this.Monster.move(startPoint.X + vectorX, startPoint.Y - vectorY);
         }
     }
 }
