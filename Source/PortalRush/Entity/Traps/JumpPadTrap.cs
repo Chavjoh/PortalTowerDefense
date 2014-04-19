@@ -11,15 +11,21 @@ namespace PortalRush.Entity.Traps
     /// </summary>
     public class JumpPadTrap : Trap
     {
-        private Map.Point destinationPoint;
+        /// <summary>
+        /// Destination point after hitting the jumpPad
+        /// </summary>
+        private Map.Points.DeathPoint destinationPoint;
 
+        /// <summary>
+        /// Random number generator
+        /// </summary>
         private Random randomGenerator;
 
         /// <summary>
         /// Create a new JumpPad trap
         /// </summary>
         /// <param name="destinationPoint">Destination point where the monster is sent</param>
-        public JumpPadTrap(Map.Points.TrapPoint trapPoint, Map.Point destinationPoint)
+        public JumpPadTrap(Map.Points.TrapPoint trapPoint, Map.Points.DeathPoint destinationPoint)
             : base(trapPoint)
         {
             this.destinationPoint = destinationPoint;
@@ -41,10 +47,9 @@ namespace PortalRush.Entity.Traps
 
             if (randomNumber == 0)
             {
-                this.Point.Next = this.destinationPoint;
-                monster.MoveManager = new GameEngine.MoveManagers.WalkMoveManager();
+                this.destinationPoint.MoveManager = new GameEngine.MoveManagers.BallisticMoveManager(this.Point, this.destinationPoint);
+                this.Point.Next = (Map.Point) this.destinationPoint;
             }
-            
         }
     }
 }

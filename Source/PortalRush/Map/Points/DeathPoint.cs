@@ -6,8 +6,27 @@ using System.Threading.Tasks;
 
 namespace PortalRush.Map.Points
 {
-    class DeathPoint : Point
+    public class DeathPoint : Point
     {
+        #region Attributes 
+
+        /// <summary>
+        /// Move manager to the DeathPoint
+        /// </summary>
+        GameEngine.MoveManager moveManager;
+
+        #endregion
+
+        #region Properties
+
+        public GameEngine.MoveManager MoveManager
+        {
+            get { return this.moveManager; }
+            set { this.moveManager = value; }
+        }
+
+        #endregion
+
         /// <summary>
         /// Default constructor
         /// </summary>
@@ -16,6 +35,7 @@ namespace PortalRush.Map.Points
         public DeathPoint(int x, int y)
             : base(x,y)
         {
+            this.moveManager = new GameEngine.MoveManagers.WalkMoveManager();
         }
 
         /// <summary>
@@ -25,7 +45,7 @@ namespace PortalRush.Map.Points
         /// <returns>MoveManager to assign to monster</returns>
         public override GameEngine.MoveManager getMoveManager()
         {
-            return new GameEngine.MoveManagers.WalkMoveManager();
+            return this.moveManager;
         }
 
         /// <summary>

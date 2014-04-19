@@ -177,8 +177,7 @@ namespace PortalRush.Entity
             // Assign type
             this.type = type;
 
-            /// Default values
-            this.moveManager = null;
+            // Default values
             this.location = null;
             this.orientation = MonsterOrientation.NULL;
             this.step = 1;

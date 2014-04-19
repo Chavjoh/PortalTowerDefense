@@ -336,7 +336,7 @@ namespace PortalRush.Map
                             // Get the destination point after the monster jump with the jumpPad
                             int destX = int.Parse(pathPoint.Attributes.GetNamedItem("destX").Value);
                             int destY = int.Parse(pathPoint.Attributes.GetNamedItem("destY").Value);
-                            Point destinationPoint = new Points.DeathPoint(destX, destY);
+                            Points.DeathPoint destinationPoint = new Points.DeathPoint(destX, destY);
 
                             // Create the jumpPad trap
                             trap = new Entity.Traps.JumpPadTrap((Points.TrapPoint)mapPoint, destinationPoint);
