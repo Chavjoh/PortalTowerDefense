@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PortalRush.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -120,7 +121,8 @@ namespace PortalRush
 
         private void AboutButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("About us");
+            Window aboutWindow = new AboutWindow();
+            aboutWindow.ShowDialog();
         }
 
         private void QuitButton_Click(object sender, RoutedEventArgs e)
