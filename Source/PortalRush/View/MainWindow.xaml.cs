@@ -117,6 +117,9 @@ namespace PortalRush
         {
             // Launch game
             GameEngine.GameManager.Instance.play();
+
+            // Remove button
+            this.mainGrid.Children.Remove(this.startButton);
         }
 
         private void AboutButton_Click(object sender, RoutedEventArgs e)
@@ -128,6 +131,11 @@ namespace PortalRush
         private void QuitButton_Click(object sender, RoutedEventArgs e)
         {
             Environment.Exit(Environment.ExitCode);
+        }
+
+        private void startImage_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("Patte");
         }
     }
 }

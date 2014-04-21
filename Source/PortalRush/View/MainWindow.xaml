@@ -1,7 +1,7 @@
 ﻿<Window x:Class="PortalRush.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Portal Rush" Height="721" Width="900" ResizeMode="NoResize" Closed="Window_Closed">
+        Title="Portal Rush" Height="721" Width="900" ResizeMode="NoResize" Closed="Window_Closed" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
         <Style x:Key="ClearStyle" TargetType="Button">
@@ -11,10 +11,10 @@
                     <ControlTemplate TargetType="Button">
                         <Border Name="border" 
                             BorderThickness="1"
-                            Padding="4,2" 
+                            Padding="0" 
                             BorderBrush="DarkGray" 
                             CornerRadius="0" 
-                            Background="Transparent">
+                            Background="{TemplateBinding Property=Background}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
                         <ControlTemplate.Triggers>
@@ -36,13 +36,28 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-
+        
         <Image Grid.Row="0" Grid.Column="0" Source="../Resources/header.png" />
+
+        <Button Style="{DynamicResource ClearStyle}" Grid.Row="0" Grid.Column="0" x:Name="startButton" HorizontalAlignment="Left" Margin="361,1,0,1" VerticalAlignment="Top" Width="118" Height="118" Click="StartButton_Click">
+            <Button.Content>
+                <Image Source="../Resources/startButton.png" Stretch="None" />
+            </Button.Content>
+        </Button>
+        
+        <Button Style="{StaticResource ClearStyle}" Grid.Row="0" Grid.Column="0" x:Name="aboutButton" HorizontalAlignment="Left" Margin="541,1,0,1" VerticalAlignment="Top" Width="118" Height="118" Click="AboutButton_Click">
+            <Button.Content>
+                <Image Source="../Resources/aboutButton.png" Stretch="None" />
+            </Button.Content>
+        </Button>
+        
+        <Button Style="{StaticResource ClearStyle}" Grid.Row="0" Grid.Column="0" x:Name="quitButton" HorizontalAlignment="Left" Margin="781,1,0,1" VerticalAlignment="Top" Width="118" Height="118" Click="QuitButton_Click">
+            <Button.Content>
+                <Image Source="../Resources/quitButton.png" Stretch="None" />
+            </Button.Content>
+        </Button>
+
         <Canvas Grid.Row="1" Grid.Column="0" x:Name="mainCanvas" MouseLeftButtonDown="mainCanvas_MouseLeftButtonDown" IsHitTestVisible="True"/>
-
-        <Button Style="{StaticResource ClearStyle}" x:Name="StartButton" Content="" HorizontalAlignment="Left" Margin="361,1,0,1" VerticalAlignment="Top" Width="118" Height="118" Click="StartButton_Click"/>
-        <Button Style="{StaticResource ClearStyle}" x:Name="AboutButton" Content="" HorizontalAlignment="Left" Margin="541,1,0,1" VerticalAlignment="Top" Width="118" Height="118" Click="AboutButton_Click"/>
-        <Button Style="{StaticResource ClearStyle}" x:Name="QuitButton" Content="" HorizontalAlignment="Left" Margin="781,1,0,1" VerticalAlignment="Top" Width="118" Height="118" Click="QuitButton_Click"/>
-
+        
     </Grid>
 </Window>
