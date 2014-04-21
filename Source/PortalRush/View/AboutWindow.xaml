@@ -1,0 +1,8 @@
+﻿<Window x:Class="PortalRush.View.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="About Portal Rush" Height="550" Width="530" Background="#CED0CF">
+    <Grid>
+        <Image Source="..\Resources\about.png" Width="500" Height="500" />
+    </Grid>
+</Window>
