@@ -170,10 +170,16 @@ namespace PortalRush.Map
                 XmlNode towerPath = mapDoc.SelectSingleNode("/portalRushMap/towerPath");
                 XmlNode trapPath = mapDoc.SelectSingleNode("/portalRushMap/trapPath");
                 XmlNode mapPathPointList = mapDoc.SelectSingleNode("/portalRushMap/pathPointList");
+                XmlNode lifes = mapDoc.SelectSingleNode("/portalRushMap/lifes");
+                XmlNode money = mapDoc.SelectSingleNode("/portalRushMap/money");
 
                 // Save map size
                 this.width = int.Parse(mapWidth.InnerText);
                 this.height = int.Parse(mapHeight.InnerText);
+
+                // Save lifes and money at the beginning of the game
+                GameEngine.GameManager.Instance.Lifes = int.Parse(lifes.InnerText);
+                GameEngine.GameManager.Instance.Money = int.Parse(money.InnerText);
 
                 // Save monster path
                 Entity.Monster.BaseFolder = Path.GetDirectoryName(mapFile) + "\\" + monsterPath.InnerText;

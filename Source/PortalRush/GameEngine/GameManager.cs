@@ -135,6 +135,24 @@ namespace PortalRush.GameEngine
         }
 
         /// <summary>
+        /// Current player remaining lifes
+        /// </summary>
+        public int Lifes
+        {
+            get { return this.lifes; }
+            set { this.lifes = value; }
+        }
+
+        /// <summary>
+        /// Current player money
+        /// </summary>
+        public int Money
+        {
+            get { return this.money; }
+            set { this.money = value; }
+        }
+
+        /// <summary>
         /// Default constructor
         /// </summary>
         public GameManager()
@@ -142,10 +160,6 @@ namespace PortalRush.GameEngine
             this.clocks = new List<Tickable>();
             this.clocksNew = new List<Tickable>();
             this.clocksOld = new List<Tickable>();
-            
-            // TEMP : load from config file
-            this.lifes = 20;
-            this.money = 1000;
         }
 
         /// <summary>
@@ -154,7 +168,7 @@ namespace PortalRush.GameEngine
         /// </summary>
         public void loadConfig()
         {
-
+            // Nothing here for this version
         }
 
         /// <summary>

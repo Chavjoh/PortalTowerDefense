@@ -2,6 +2,8 @@
 <portalRushMap>
 	<height>798</height>
 	<width>916</width>
+	<lifes>20</lifes>
+	<money>1000</money>
 	<monsterPath>Monsters\</monsterPath>
 	<towerPath>Towers\</towerPath>
 	<trapPath>Traps\</trapPath>
