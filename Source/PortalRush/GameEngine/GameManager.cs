@@ -120,17 +120,22 @@ namespace PortalRush.GameEngine
             {
                 this.canvas = value;
 
+                MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
+
                 labelLifes = new Label();
-                this.canvas.Children.Add(labelLifes);
-                Canvas.SetLeft(labelLifes, 10);
-                Canvas.SetTop(labelLifes, 10);
-                Canvas.SetZIndex(labelLifes, 100000);
+                labelLifes.FontSize = 14;
+                mainWindow.mainGrid.Children.Add(labelLifes);
+                Grid.SetRow(labelLifes, 0);
+                Grid.SetColumn(labelLifes, 0);
+                labelLifes.Margin = new Thickness(130, 15, 0, 0);
 
                 labelMoney = new Label();
-                this.canvas.Children.Add(labelMoney);
-                Canvas.SetRight(labelMoney, 10);
-                Canvas.SetTop(labelMoney, 10);
-                Canvas.SetZIndex(labelMoney, 100000);
+                labelMoney.FontSize = 14;
+                mainWindow.mainGrid.Children.Add(labelMoney);
+                Grid.SetRow(labelMoney, 0);
+                Grid.SetColumn(labelMoney, 0);
+                labelMoney.Margin = new Thickness(130, 75, 0, 0);
             }
         }
 
