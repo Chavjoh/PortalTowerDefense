@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace PortalRush.Map
 {
@@ -146,6 +147,8 @@ namespace PortalRush.Map
             View.Menu.NoTowerMenu menu = new View.Menu.NoTowerMenu(this);
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             mainWindow.mainGrid.Children.Add(menu);
+            Grid.SetRow(menu, 1);
+            Grid.SetColumn(menu, 0);
             menu.Margin = new Thickness(this.x - menu.Width / 2.0, this.y + menu.Height / 2.0, 0, 0);
         }
 

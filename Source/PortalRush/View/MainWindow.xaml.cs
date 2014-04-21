@@ -48,8 +48,8 @@ namespace PortalRush
             this.Width = GameEngine.GameManager.Instance.Map.Width;
             this.Height = GameEngine.GameManager.Instance.Map.Height + 121; // 121 = Header size
 
-            // Launch game
-            GameEngine.GameManager.Instance.play();
+            // Set label
+
         }
 
         /// <summary>
@@ -110,6 +110,22 @@ namespace PortalRush
                     }
                 }
             }
+        }
+
+        private void StartButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Launch game
+            GameEngine.GameManager.Instance.play();
+        }
+
+        private void AboutButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("About us");
+        }
+
+        private void QuitButton_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(Environment.ExitCode);
         }
     }
 }
