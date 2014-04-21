@@ -122,19 +122,24 @@ namespace PortalRush.GameEngine
 
                 MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
 
-
                 labelLifes = new Label();
+                labelLifes.Width = 100;
                 labelLifes.FontSize = 14;
                 mainWindow.mainGrid.Children.Add(labelLifes);
                 Grid.SetRow(labelLifes, 0);
                 Grid.SetColumn(labelLifes, 0);
+                labelLifes.VerticalAlignment = VerticalAlignment.Top;
+                labelLifes.HorizontalAlignment = HorizontalAlignment.Left;
                 labelLifes.Margin = new Thickness(130, 15, 0, 0);
 
                 labelMoney = new Label();
+                labelMoney.Width = 100;
                 labelMoney.FontSize = 14;
                 mainWindow.mainGrid.Children.Add(labelMoney);
                 Grid.SetRow(labelMoney, 0);
                 Grid.SetColumn(labelMoney, 0);
+                labelMoney.VerticalAlignment = VerticalAlignment.Top;
+                labelMoney.HorizontalAlignment = HorizontalAlignment.Left;
                 labelMoney.Margin = new Thickness(130, 75, 0, 0);
             }
         }
