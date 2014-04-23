@@ -141,6 +141,8 @@ namespace PortalRush.GameEngine
                 labelMoney.VerticalAlignment = VerticalAlignment.Top;
                 labelMoney.HorizontalAlignment = HorizontalAlignment.Left;
                 labelMoney.Margin = new Thickness(130, 75, 0, 0);
+
+                this.updateLabels();
             }
         }
 
@@ -235,6 +237,7 @@ namespace PortalRush.GameEngine
         public void gainMoney(int money)
         {
             this.money += money;
+            this.updateLabels();
         }
 
         /// <summary>
@@ -243,6 +246,7 @@ namespace PortalRush.GameEngine
         public void lifeMinus()
         {
             this.lifes--;
+            this.updateLabels();
             if (this.lifes <= 0)
             {
                 Application.Current.Dispatcher.BeginInvoke((Action)delegate()
@@ -261,6 +265,19 @@ namespace PortalRush.GameEngine
             {
                 this.gameLoop.Abort();
             }
+        }
+
+        /// <summary>
+        /// Update money and life labels content
+        /// </summary>
+        public void updateLabels()
+        {
+            // Update labels
+            Application.Current.Dispatcher.BeginInvoke((Action)delegate()
+            {
+                this.labelMoney.Content = "Money : " + this.money;
+                this.labelLifes.Content = "Lifes : " + this.lifes;
+            });
         }
 
         /// <summary>
@@ -299,13 +316,7 @@ namespace PortalRush.GameEngine
                 this.clocks.Remove(oldTickable);
             }
             this.clocksOld.Clear();
-
-            // Update labels
-            Application.Current.Dispatcher.BeginInvoke((Action)delegate()
-            {
-                this.labelMoney.Content = "Money : " + this.money;
-                this.labelLifes.Content = "Lifes : " + this.lifes;
-            });
+            this.updateLabels();
         }
     }
 }
