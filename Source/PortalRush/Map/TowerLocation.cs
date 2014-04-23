@@ -160,6 +160,8 @@ namespace PortalRush.Map
             View.Menu.TowerMenu menu = new View.Menu.TowerMenu(this);
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             mainWindow.mainGrid.Children.Add(menu);
+            Grid.SetRow(menu, 1);
+            Grid.SetColumn(menu, 0);
             menu.Margin = new Thickness(this.x - menu.Width / 2.0, this.y + menu.Height / 2.0, 0, 0);
         }
 
