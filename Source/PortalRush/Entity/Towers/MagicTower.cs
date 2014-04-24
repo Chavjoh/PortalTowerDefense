@@ -16,7 +16,7 @@ namespace PortalRush.Entity.Towers
         /// </summary>
         public MagicTower() : base()
         {
-            this.attackRange = 290;
+            this.attackRange = 300;
             this.attackSpeed = 30;
             this.attackDamage = 20;
             GameEngine.GameManager.Instance.gainMoney(-1 * MagicTower.getPrice(1));
@@ -41,11 +41,11 @@ namespace PortalRush.Entity.Towers
             switch (level)
             {
                 case 1:
-                    return 80;
+                    return 160;
                 case 2:
-                    return 180;
+                    return 260;
                 case 3:
-                    return 240;
+                    return 340;
                 default:
                     return 1000000;
             }
@@ -60,6 +60,9 @@ namespace PortalRush.Entity.Towers
             if (this.level < 3)
             {
                 this.level++;
+                this.attackDamage += (int)(this.attackDamage * 0.5);
+                this.attackRange += (int)(this.attackRange * 0.2);
+                this.attackSpeed += (int)(this.attackSpeed * 0.3);
                 GameEngine.GameManager.Instance.gainMoney(-1 * MagicTower.getPrice(this.level));
             }
         }
@@ -69,6 +72,11 @@ namespace PortalRush.Entity.Towers
         /// </summary>
         public override void sell()
         {
+            foreach (Bullet bullet in this.bullets)
+            {
+                this.bulletsToDelete.Add(bullet);
+                bullet.dispose();
+            }
             int sellGain = (int) (MagicTower.getPrice(this.level) / 2.0);
             GameEngine.GameManager.Instance.gainMoney(sellGain);
         }
@@ -83,7 +91,7 @@ namespace PortalRush.Entity.Towers
         protected override void getBulletParams(ref int damageStrengh, ref int damageMagic, ref int damageRange, ref String image)
         {
             damageStrengh = 0;
-            damageMagic = this.attackDamage + (int)(this.attackDamage * 0.5 * (level - 1));
+            damageMagic = this.attackDamage;
             damageRange = 0;
             image = "magicBullet.png"; 
         }

@@ -15,5 +15,11 @@ namespace PortalRush.GameEngine
         /// Called by GameEngine at each game tick (1/30 sec.)
         /// </summary>
         void tick();
+
+        /// <summary>
+        /// Called by GameEngine at each game tick to know if object has finished game
+        /// </summary>
+        /// <returns></returns>
+        bool gameFinished();
     }
 }

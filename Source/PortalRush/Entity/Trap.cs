@@ -90,5 +90,15 @@ namespace PortalRush.Entity
         {
             
         }
+
+        /// <summary>
+        /// Inherited from Tickable
+        /// Called by GameEngine at each game tick (1/30 sec.) to know if game is finished
+        /// </summary>
+        /// <returns>true if game is finished</returns>
+        public bool gameFinished()
+        {
+            return true;
+        }
     }
 }

@@ -51,12 +51,12 @@ namespace PortalRush.Entity
         /// <summary>
         /// Linked bullets, thrown by tower and having not reached monster yet
         /// </summary>
-        private List<Bullet> bullets;
+        protected List<Bullet> bullets;
 
         /// <summary>
         /// Linked bullets, to delete
         /// </summary>
-        private List<Bullet> bulletsToDelete;
+        protected List<Bullet> bulletsToDelete;
 
         /// <summary>
         /// Visual control, drawing the tower at its location
@@ -198,6 +198,16 @@ namespace PortalRush.Entity
         }
 
         /// <summary>
+        /// Inherited from Tickable
+        /// Called by GameEngine at each game tick (1/30 sec.) to know if game is finished
+        /// </summary>
+        /// <returns>true if game is finished</returns>
+        public bool gameFinished()
+        {
+            return true;
+        }
+
+        /// <summary>
         /// Place the tower on a map location
         /// </summary>
         /// <param name="location">Location on which place the tower</param>
@@ -228,6 +238,16 @@ namespace PortalRush.Entity
                     bullet.dispose();
                 }
             }
+        }
+
+        /// <summary>
+        /// Cancel a specific bullet, because it reached objective
+        /// </summary>
+        /// <param name="bullet">Bullet to cancel</param>
+        public void cancelBullet(Bullet bullet)
+        {
+            this.bulletsToDelete.Add(bullet);
+            bullet.dispose();
         }
 
         /// <summary>

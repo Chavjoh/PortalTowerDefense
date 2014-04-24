@@ -44,6 +44,11 @@ namespace PortalRush.Entity
         private Monster target;
 
         /// <summary>
+        /// Tower who launched the bullet
+        /// </summary>
+        private Tower launcher;
+
+        /// <summary>
         /// Visual control, drawing the bullet at its current location
         /// </summary>
         private View.Control.BulletControl control;
@@ -77,6 +82,7 @@ namespace PortalRush.Entity
             this.x = launcher.Location.X;
             this.y = launcher.Location.Y;
             this.target = target;
+            this.launcher = launcher;
 
             // Prepare visual control
             image = Map.TowerLocation.BaseFolder + image;
@@ -130,7 +136,15 @@ namespace PortalRush.Entity
         private void targetReached()
         {
             this.target.infligate(this.damageStrengh, this.damageMagic);
-            GameEngine.GameManager.Instance.Map.cancelBulletsTargeting(this.target);
+            if (this.damageRange > 0)
+            {
+                List<Monster> monsters = GameEngine.GameManager.Instance.Map.monstersInRange((int)this.x, (int)this.y, this.damageRange);
+                foreach(Monster monster in monsters)
+                {
+                    monster.infligate(this.damageStrengh, this.damageMagic);
+                }
+            }
+            this.launcher.cancelBullet(this);
         }
     }
 }

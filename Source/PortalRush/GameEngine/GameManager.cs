@@ -87,6 +87,11 @@ namespace PortalRush.GameEngine
         private Thread gameLoop = null;
 
         /// <summary>
+        /// Marker for preventing quitting in first loop
+        /// </summary>
+        private bool justStarted;
+
+        /// <summary>
         /// Game maps folder path
         /// </summary>
         private static string mapFolder = AppDomain.CurrentDomain.BaseDirectory + "Maps\\";
@@ -172,6 +177,7 @@ namespace PortalRush.GameEngine
             this.clocks = new List<Tickable>();
             this.clocksNew = new List<Tickable>();
             this.clocksOld = new List<Tickable>();
+            this.justStarted = true;
         }
 
         /// <summary>
@@ -199,6 +205,14 @@ namespace PortalRush.GameEngine
         {
             this.gameLoop = new Thread(clock);
             this.gameLoop.Start();
+        }
+
+        /// <summary>
+        /// Stop the loop of the game engine
+        /// </summary>
+        public void stop()
+        {
+            this.gameLoop.Abort();
         }
 
         /// <summary>
@@ -251,6 +265,8 @@ namespace PortalRush.GameEngine
             {
                 Application.Current.Dispatcher.BeginInvoke((Action)delegate()
                 {
+                    this.stop();
+                    MessageBox.Show("Vous ferez mieux la prochaine fois...", "Game Over", MessageBoxButton.OK);
                     Application.Current.MainWindow.Close();
                 });
             }
@@ -302,9 +318,14 @@ namespace PortalRush.GameEngine
         /// </summary>
         private void tick()
         {
+            bool gameFinished = !justStarted;
             foreach (Tickable tickable in this.clocks)
             {
                 tickable.tick();
+                if (!tickable.gameFinished())
+                {
+                    gameFinished = false;
+                }
             }
             foreach (Tickable newTickable in this.clocksNew)
             {
@@ -317,6 +338,16 @@ namespace PortalRush.GameEngine
             }
             this.clocksOld.Clear();
             this.updateLabels();
+            if (gameFinished)
+            {
+                Application.Current.Dispatcher.BeginInvoke((Action)delegate()
+                {
+                    this.stop();
+                    MessageBox.Show("Félicitations, allez prendre un peu de repos", "Game Finished", MessageBoxButton.OK);
+                    Application.Current.MainWindow.Close();
+                });
+            }
+            justStarted = false;
         }
     }
 }

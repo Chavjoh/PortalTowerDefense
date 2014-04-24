@@ -209,7 +209,7 @@ namespace PortalRush.Entity
                     this.strenghArmor = 20;
                     this.magicArmor = 5;
                     this.health = 100;
-                    this.money = 10;
+                    this.money = 20;
                     name = "Chell\\";
                     break;
                 default:
@@ -310,6 +310,16 @@ namespace PortalRush.Entity
         }
 
         /// <summary>
+        /// Inherited from Tickable
+        /// Called by GameEngine at each game tick (1/30 sec.) to know if game is finished
+        /// </summary>
+        /// <returns>true if game is finished</returns>
+        public bool gameFinished()
+        {
+            return false;
+        }
+
+        /// <summary>
         /// Get distance to final target
         /// </summary>
         /// <returns>Distance to final TargetPoint</returns>
@@ -349,6 +359,7 @@ namespace PortalRush.Entity
             if (this.health <= 0)
             {
                 GameEngine.GameManager.Instance.gainMoney(this.money);
+                GameEngine.GameManager.Instance.Map.cancelBulletsTargeting(this);
                 this.dispose();
             }
             Application.Current.Dispatcher.BeginInvoke((Action)delegate()

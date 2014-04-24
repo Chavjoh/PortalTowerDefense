@@ -2,47 +2,46 @@
 <portalRushMap>
 	<height>798</height>
 	<width>916</width>
-	<lifes>20</lifes>
-	<money>1000</money>
+	<lifes>5</lifes>
+	<money>150</money>
 	<monsterPath>Monsters\</monsterPath>
 	<towerPath>Towers\</towerPath>
 	<trapPath>Traps\</trapPath>
 	<pathPointList>
-		<spawnPoint  id="1" next="2" x="340" y="559" monsterOrientation="REAR_LEFT" layerIndex="5">
-			<chell interval="30" startTime="0" quantity="5" />
+		<spawnPoint  id="1" next="2" x="340" y="559" monsterOrientation="REAR_LEFT" layerIndex="11">
+			<chell interval="90" startTime="0" quantity="5" />
+			<chell interval="50" startTime="800" quantity="10" />
+			<chell interval="30" startTime="1700" quantity="15" />
+			<chell interval="20" startTime="2400" quantity="20" />
 		</spawnPoint>
 		<pathPoint   id="2" next="3" x="272" y="471" monsterOrientation="REAR_RIGHT" />
 		<pathPoint   id="3" next="4" x="420" y="444" monsterOrientation="REAR_LEFT" />
-		<trapPoint   id="4" next="5" x="360" y="380" destX="700" destY="540" type="jumpPad" layerIndex="5" />
+		<trapPoint   id="4" next="5" x="360" y="380" destX="700" destY="540" type="jumpPad" layerIndex="11"/>
 		<pathPoint   id="5" next="6" x="326" y="339" />
 		<portalPoint id="6" next="7" x="732" y="384" monsterOrientation="FRONT_LEFT" />
 		<pathPoint   id="7" next="8" x="630" y="405" monsterOrientation="REAR_LEFT" />
-		<pathPoint   id="8" next="9" x="525" y="304" monsterOrientation="REAR_LEFT" layerIndex="3" />
+		<pathPoint   id="8" next="9" x="525" y="304" monsterOrientation="REAR_LEFT" layerIndex="9" />
 		<targetPoint id="9"          x="494" y="255" />
 	</pathPointList>
 	<towerPositionList>
-		<point x="123" y="389" layerIndex="3" />
-		<point x="197" y="377" layerIndex="3" />
 		<point x="266" y="365" layerIndex="3" />
-		<point x="147" y="420" layerIndex="3" />
-		<point x="220" y="407" layerIndex="3" />
-		<point x="292" y="395" layerIndex="3" />
-		<point x="170" y="450" layerIndex="3" />
-		<point x="245" y="440" layerIndex="3" />
-		<point x="318" y="425" layerIndex="3" />
-		<point x="195" y="485" layerIndex="3" />
-		<point x="220" y="520" layerIndex="3" />
-		<point x="250" y="555" layerIndex="3" />
-		<point x="432" y="370" layerIndex="3" />
-		<point x="460" y="400" layerIndex="3" />
-		<point x="560" y="387" layerIndex="3" />
-		<point x="501" y="359" layerIndex="3" />
+		<point x="292" y="395" layerIndex="4" />
+		<point x="170" y="450" layerIndex="5" />
+		<point x="245" y="440" layerIndex="5" />
+		<point x="318" y="425" layerIndex="5" />
+		<point x="195" y="485" layerIndex="6" />
+		<point x="220" y="520" layerIndex="7" />
+		<point x="250" y="555" layerIndex="8" />
+		<point x="432" y="370" layerIndex="4" />
+		<point x="460" y="400" layerIndex="5" />
+		<point x="530" y="387" layerIndex="5" />
+		<point x="501" y="359" layerIndex="4" />
 	</towerPositionList>
 	<layerList location="Layers\">
 		<layer layerIndex="1" image="map_layer1.png" />
 		<layer layerIndex="2" image="map_layer2.png" />
-		<layer layerIndex="4" image="map_layer4.png" />
-		<layer layerIndex="6" image="map_layer6.png" />
-		<layer layerIndex="7" image="map_layer7.png" />
+		<layer layerIndex="10" image="map_layer4.png" />
+		<layer layerIndex="12" image="map_layer6.png" />
+		<layer layerIndex="13" image="map_layer7.png" />
 	</layerList>
 </portalRushMap>

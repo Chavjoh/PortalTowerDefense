@@ -17,9 +17,9 @@ namespace PortalRush.Entity.Towers
         /// </summary>
         public ArcherTower() : base()
         {
-            this.attackRange = 180;
-            this.attackSpeed = 60;
-            this.attackDamage = 15;
+            this.attackRange = 160;
+            this.attackSpeed = 100;
+            this.attackDamage = 13;
             GameEngine.GameManager.Instance.gainMoney(-1 * ArcherTower.getPrice(1));
         }
 
@@ -42,11 +42,11 @@ namespace PortalRush.Entity.Towers
             switch (level)
             {
                 case 1:
-                    return 60;
+                    return 80;
                 case 2:
-                    return 100;
+                    return 120;
                 case 3:
-                    return 200;
+                    return 170;
                 default:
                     return 1000000;
             }
@@ -61,6 +61,9 @@ namespace PortalRush.Entity.Towers
             if (this.level < 3)
             {
                 this.level++;
+                this.attackDamage += (int)(this.attackDamage * 0.5);
+                this.attackRange += (int)(this.attackRange * 0.2);
+                this.attackSpeed += (int)(this.attackSpeed * 0.3);
                 GameEngine.GameManager.Instance.gainMoney(-1 * ArcherTower.getPrice(this.level));
             }
         }
@@ -70,6 +73,11 @@ namespace PortalRush.Entity.Towers
         /// </summary>
         public override void sell()
         {
+            foreach (Bullet bullet in this.bullets)
+            {
+                this.bulletsToDelete.Add(bullet);
+                bullet.dispose();
+            }
             int sellGain = (int)(ArcherTower.getPrice(this.level) / 2.0);
             GameEngine.GameManager.Instance.gainMoney(sellGain);
         }
@@ -83,7 +91,7 @@ namespace PortalRush.Entity.Towers
         /// <param name="image">Image to display for bullet</param>
         protected override void getBulletParams(ref int damageStrengh, ref int damageMagic, ref int damageRange, ref String image)
         {
-            damageStrengh = this.attackDamage + (int)(this.attackDamage * 0.3 * (level - 1));
+            damageStrengh = this.attackDamage;
             damageMagic = 0;
             damageRange = 0;
             image = "archerBullet.png";
