@@ -18,7 +18,7 @@ namespace PortalRush.Entity.Towers
         {
             this.attackRange = 180;
             this.attackSpeed = 20;
-            this.attackDamage = 30;
+            this.attackDamage = 40;
             GameEngine.GameManager.Instance.gainMoney(-1 * ArtilleryTower.getPrice(1));
         }
 
